@@ -32,7 +32,7 @@ const queue = new Map()
 //client events
 client.once('ready', () => {
 console.log(`Logged in as ${client.user.tag}`)
-client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.size} servers | ${prefix}help` }, status: 'online' }) 
+client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.size} servers | ${client.prefix}help` }, status: 'online' }) 
 })
 client.once("reconnecting", () => {
   console.log("Reconnecting!");
