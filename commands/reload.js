@@ -3,6 +3,7 @@ module.exports = {
     description: 'Reloads a command',
     category: 'owner',
     execute(client,message,args) {
+if (message.user.id!==client.ownerID) return message.reply("You are not supposed to do this!") 
         if (!args) return;
       const commandName = args;
   if(!client.commands.has(commandName)) {
