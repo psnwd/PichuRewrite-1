@@ -10,9 +10,9 @@ const fs = require('fs')
 //
 //
 //Part to customize if you want to selfhost the bot
-const ownerID = '' //insert ID here
-const prefix = '' //insert prefix here 
-const client_token = '' //insert bot token here
+const ownerID = process.env.ownerID //insert ID here
+const prefix = process.env.prefix //insert prefix here 
+const client_token = process.env.bot_token //insert bot token here
 //
 //
 //
