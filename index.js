@@ -10,9 +10,9 @@ const fs = require('fs')
 //
 //
 //Part to customize if you want to selfhost the bot
-const ownerID = process.env.ownerID //insert ID here
-const prefix = process.env.prefix //insert prefix here 
-const client_token = process.env.bot_token //insert bot token here
+client.ownerID = process.env.ownerID //insert ID here
+client.prefix = process.env.prefix //insert prefix here 
+client.token = process.env.bot_token //insert bot token here
 //
 //
 //
@@ -49,9 +49,9 @@ client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.siz
 //message time
 client.on('message', async message =>{
     if (message.channel.type === "dm" || message.author.bot ||    message.author === client.user) return;
-    if (message.content.toLowerCase().startsWith(prefix)) {
+    if (message.content.toLowerCase().startsWith(client.prefix)) {
         const commandName = message.content.slice(prefix.length).toLowerCase().split(' ')[0].toLowerCase()
-const args = message.content.slice(prefix.length).toLowerCase().split(' ').slice(1).join(' ')
+const args = message.content.slice(client.prefix.length).toLowerCase().split(' ').slice(1).join(' ')
         const command = client.commands.get(commandName)
             || client.commands.find(cmd => cmd.aliases &&                       cmd.aliases.includes(commandName))
         if (!command) return;
@@ -63,5 +63,5 @@ const args = message.content.slice(prefix.length).toLowerCase().split(' ').slice
     }
 });
 
-client.login(client_token)
+client.login(client.token)
 
