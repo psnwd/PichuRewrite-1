@@ -43,7 +43,7 @@ client.once("disconnect", () => {
 
 //set current game to resresh every minute (for server count)
 setInterval(function(){
-client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.size} servers | ${prefix}help` }, status: 'online' }) 
+client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.size} servers | ${client.prefix}help` }, status: 'online' }) 
 }, 60000);
 
 //message time
