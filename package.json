@@ -1,0 +1,15 @@
+{
+  "name": "pichu-rewrite", 
+  "description": "No description",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "12.13.0"
+  },
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
+}
