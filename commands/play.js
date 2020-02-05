@@ -3,7 +3,7 @@ module.exports = {
     description: 'Plays music!',
     category: 'music',
     async execute(client,message,args) {
-        if (!args) return message.channel.Send('Please provide a song name or a youtube url!')
+        if (!args) return message.channel.send('Please provide a song name or a youtube url!')
         
         let aSongIsAlreadyPlaying = client.player.isPlaying(message.guild.id);
         // If there's already a song playing 
