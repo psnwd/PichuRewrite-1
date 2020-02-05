@@ -19,16 +19,6 @@ module.exports = {
             message.channel.send(`No song found for ${args.join(' ')}`);
         });
         
-        let song = await client.player.play(message.member.voice.channel, args.join(' '));
-            song.queue.on('end', () => {
-            message.channel.send('The queue is empty, leaving voice channel...');
-        });
-        song.queue.on('songChanged', (oldSong, newSong, skipped, repeatMode) => {
-            if(repeatMode){
-                message.channel.send(`Playing ${newSong} again...`);
-            } else {
-                message.channel.send(`Now playing ${newSong}...`);
-            }
-        });
+        
     },
 }
