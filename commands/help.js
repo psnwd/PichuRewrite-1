@@ -12,8 +12,8 @@ module.exports = {
             let misccommands = []
             let ownercommands = []
             client.commands.forEach(command => {
-                            if (command.category === 'misc') misccommands.push(`${commandname}`)
-                            if (command.category === 'owner') ownercommands.push(`${commandname}`)
+                            if (command.category === 'misc') misccommands.push(`${command.name}`)
+                            if (command.category === 'owner') ownercommands.push(`${command.name}`)
             })
         embed.addField('Misc commands :',misccommands.join(', '))
         embed.addField('Owner commands :',ownercommands.join(', '))
