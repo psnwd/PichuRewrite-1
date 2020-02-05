@@ -11,12 +11,15 @@ module.exports = {
             .setDescription('Thx u for using PichuRewrite! This bot is currently WiP and not finished, but here is a list of commands :')
             let misccommands = []
             let ownercommands = []
+            let musiccommands = []
             client.commands.forEach(command => {
-                            if (command.category === 'misc') misccommands.push(`${command.name}`)
-                            if (command.category === 'owner') ownercommands.push(`${command.name}`)
+                            if (command.category === 'misc') misccommands.push(`\`${command.name}\``)
+                            if (command.category === 'owner') ownercommands.push(`\`${command.name}\``)
+                            if (command.category === 'music') musiccommands.push(`\`${command.name}\``)
             })
         embed.addField('Misc commands :',misccommands.join(', '))
         embed.addField('Owner commands :',ownercommands.join(', '))
+        embed.addField('Music commands :',musiccommands.join(', '))
             message.channel.send(embed)
             
 //    
