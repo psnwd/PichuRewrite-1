@@ -18,6 +18,7 @@ module.exports = {
             message.channel.send(`No song found for ${args[0]}`);
         });
         }
+        let song = await client.player.play(message.member.voice.channel, args[0]);
             song.queue.on('end', () => {
             message.channel.send('The queue is empty, leaving voice channel...');
         });
