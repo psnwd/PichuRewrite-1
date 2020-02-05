@@ -11,10 +11,10 @@ module.exports = {
             .setDescription('Thx u for using PichuRewrite! This bot is currently WiP and not finished, but here is a list of commands :')
             let misccommands = []
             let ownercommands = []
-            client.commands.forEach(command =>
+            client.commands.forEach(command => {
                             if (command.category === 'misc') misccommands.push(`${commandname}`)
                             if (command.category === 'owner') ownercommands.push(`${commandname}`)
-        )
+            })
         embed.addField('Misc commands :',misccommands.join(', '))
         embed.addField('Owner commands :',ownercommands.join(', '))
             message.channel.send(embed)
