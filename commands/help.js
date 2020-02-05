@@ -1,13 +1,15 @@
-const {MessageEmbed} = require('discord.js')
+const Discord = require('discord.js')
 module.exports = {
     name: 'help',
     description: 'Shows the help',
     category: 'misc',
     execute(client,message,args) {
         
-            const embed = new MessageEmbed()
+            const embed = new Discord.MessageEmbed()
             .setColor('RANDOM')
             .setTitle('Pichu\'s help!')
+            
+            message.channel.send(embed)
             
 //    
 //list=[]
