@@ -17,6 +17,7 @@ module.exports = {
         }).catch(() => {
             message.channel.send(`No song found for ${args[0]}`);
         });
+        }
             song.queue.on('end', () => {
             message.channel.send('The queue is empty, leaving voice channel...');
         });
