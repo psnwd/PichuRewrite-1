@@ -4,11 +4,11 @@ module.exports = {
     description: 'Shows the help',
     category: 'misc',
     execute(client,message,args) {
-        if (!args) {
+        
             const embed = new MessageEmbed()
             .setColor('RANDOM')
             .setTitle('Pichu\'s help!')
-            }
+            
 //    
 //list=[]
 //client.commands.forEach(command => {
