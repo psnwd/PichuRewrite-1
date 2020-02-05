@@ -1,6 +1,6 @@
 module.exports = {
-    name: 'clear',
-    description: 'Clears the queue',
+    name: 'skip',
+    description: 'Skips the current song',
     category: 'music',
     execute(client,message) {
         let playing = client.player.isPlaying(message.guild.id);
