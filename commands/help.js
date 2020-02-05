@@ -4,7 +4,7 @@ module.exports = {
     description: 'Shows the help',
     category: 'misc',
     execute(client,message,args) {
-        if (!args) {
+        
             const embed = new Discord.MessageEmbed()
             .setColor('RANDOM')
             .setTitle('Pichu\'s help!')
@@ -18,22 +18,6 @@ module.exports = {
         embed.addField('Misc commands :',misccommands.join(', '))
         embed.addField('Owner commands :',ownercommands.join(', '))
             message.channel.send(embed)
-        } else {
-            let commandName = args.join(' ')
-            let embed = new Discord.MessageEmbed()
-            .setColor('RANDOM')
-            client.commands.forEach(command => {
-                if (command.name === commandName) {
-                    embed.setTitle(`Help about the **${command.name}** command`)
-                    embed.addField('Name :',`\`${command.name}\``)
-                    if (command.aliases) embed.addField('Aliases: ',`\`${command.aliases}\``)
-                    embed.addField('Desciption :', `\`${command.description}\``)
-                    embed.addField('Category :', `\`${command.category}\``)
-                    return message.channel.send(embed)
-                }
-            })
-            
-            }
 //    
 //list=[]
 //client.commands.forEach(command => {
