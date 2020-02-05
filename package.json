@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "discord.js": "discordjs/discord.js", 
-"@discordjs/opus": "^0.1.0"
+    "@discordjs/opus": "^0.1.0",
+    "ffmpeg": "^0.0.4",
+    "sodium: "^3.0.2"
   }
 }
