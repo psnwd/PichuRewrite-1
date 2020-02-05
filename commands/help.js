@@ -8,7 +8,7 @@ module.exports = {
             const embed = new Discord.MessageEmbed()
             .setColor('RANDOM')
             .setTitle('Pichu\'s help!')
-            .setDescription('Thx u for using PichuRewrite! This bot is currently WiP and not finished, but here is a lost of commands
+            .setDescription('Thx u for using PichuRewrite! This bot is currently WiP and not finished, but here is a list of commands :')
             let misccommands = []
             let ownercommands = []
             client.commands.forEach(command =>
