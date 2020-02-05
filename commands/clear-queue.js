@@ -5,6 +5,6 @@ module.exports = {
     execute(client,message) {
          client.player.clearQueue(message.guild.id);
         message.channel.send('Queue cleared!');
-    }
+    
     },
 }
