@@ -54,6 +54,19 @@ client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.siz
 
 //message time
 client.on('message', async message =>{
+ 
+ client.player.getQueue(message.guild.id)
+.on('end', () => {
+    message.channel.send('There is no more music in the queue!');
+})
+.on('songChanged', (oldSong, newSong) => {
+    message.channel.send(`Now playing ${newSong.name}...`);
+})
+.on('channelEmpty', () => {
+    message.channel.send('Stop playing, there is no more member in the voice channel...');
+});
+ 
+ 
     if (message.channel.type === "dm" || message.author.bot ||    message.author === client.user) return;
     if (message.content.toLowerCase().startsWith(client.prefix)) {
         const commandName = message.content.slice(client.prefix.length).toLowerCase().split(' ')[0].toLowerCase()
