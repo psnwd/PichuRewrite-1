@@ -32,7 +32,7 @@ module.exports = {
                     return message.channel.send(embed)
                 }
             })
-                message.channel.send('Command not found!')
+            
             }
 //    
 //list=[]
