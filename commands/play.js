@@ -19,6 +19,12 @@ module.exports = {
             message.channel.send(`No song found for ${args.join(' ')}`);
         });
         
+         client.player.play(message.member.voice.channel, args[0]).then((song) => {
+            message.channel.send(`Currently playing ${song.name}!`);
+        }).catch(() => {
+            message.channel.send(`No song found for ${args[0]}`);
+        });
+        
         
     },
 }
