@@ -30,7 +30,8 @@ module.exports = {
                     embed.addField('Desciption :', `\`${command.description}\``)
                     embed.addField('Category :', `\`${command.category}\``)
                     return message.channel.send(embed)
-                })
+                }
+            })
                 message.channel.send('Command not found!')
             }
 //    
