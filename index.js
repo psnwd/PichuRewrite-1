@@ -13,7 +13,6 @@ const fs = require('fs')
 client.ownerID = process.env.ownerID //insert ID here
 client.prefix = process.env.prefix //insert prefix here 
 client.token = process.env.bot_token //insert bot token here
-client.yt_api = process.env.yt_api_key //Youtube API key
 //
 //
 //
@@ -30,9 +29,7 @@ const queue = new Map()
     client.commands.set(command.name, command);
   }
 
-const { Player } = require("discord-player");
-const player = new Player(client, client.yt_api);
-client.player = player;
+
 
 
 //client events
