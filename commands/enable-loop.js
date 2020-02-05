@@ -2,7 +2,7 @@
 module.exports = {
     name: 'enable-loop',
     description: 'Loops the current song',
-    category: 'misc',
+    category: 'music',
     async execute(client,message) {
         client.player.setRepeatMode(message.guild.id, true);
         // Get the current song
