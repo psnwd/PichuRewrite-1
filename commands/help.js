@@ -8,7 +8,15 @@ module.exports = {
             const embed = new Discord.MessageEmbed()
             .setColor('RANDOM')
             .setTitle('Pichu\'s help!')
-            
+            .setDescription('Thx u for using PichuRewrite! This bot is currently WiP and not finished, but here is a lost of commands
+            let misccommands = []
+            let ownercommands = []
+            client.commands.forEach(command =>
+                            if (command.category === 'misc') misccommands.push(`${commandname}`)
+                            if (command.category === 'owner') ownercommands.push(`${commandname}`)
+        )
+        embed.addField('Misc commands :',misccommands.join(', '))
+        embed.addField('Owner commands :',ownercommands.join(', '))
             message.channel.send(embed)
             
 //    
