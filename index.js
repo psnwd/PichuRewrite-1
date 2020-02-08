@@ -12,8 +12,8 @@ const fs = require('fs')
 //Part to customize if you want to selfhost the bot
 client.ownerID = process.env.ownerID //insert ID here
 client.prefix = process.env.prefix //insert prefix here 
-client.tokens.bot_token = process.env.bot_token //insert bot token here
-client.tokens.ksoftsi = process.env.ksoftsi_token
+client.bot_token = process.env.bot_token //insert bot token here
+client.ksoftsi = process.env.ksoftsi_token
 //
 //
 //
@@ -75,5 +75,5 @@ const args = message.content.slice(client.prefix.length).toLowerCase().split(' '
     }
 });
 
-client.login(client.tokens.token)
+client.login(client.token)
 
