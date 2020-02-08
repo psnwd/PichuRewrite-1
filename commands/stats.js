@@ -3,7 +3,7 @@ module.exports = {
     category: 'owner',
 	description: "Bot statuts",
 	execute(client,message) {
-  
+  const Discord = require('discord.js')
     
     let totalSeconds = (client.uptime / 1000);
 let days = Math.floor(totalSeconds / 86400);
