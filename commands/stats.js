@@ -23,7 +23,6 @@ client.guilds.forEach(g => {h = h + g.memberCount});
     .addField('Guilds : ', `${client.guilds.size}`)
     .addField('Cached users : ', `${client.users.size}`)
     .addField('Total users :', h) 
-    .addField('Bot version :', client.version)
     .addField('Number of commands : ', client.commands.size)
     .setTimestamp()
         .setFooter("Command Ran By: " + message.author.username, message.author.avatarURL());
