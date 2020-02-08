@@ -5,7 +5,7 @@ const Discord = require('discord.js')
   category: 'fun',
 	description: "Shows a cat",
 	execute: async (client,message) => {
-    const res = await require('axios').get('https://api.ksoft.si/images/rand-reddit/cat', {headers: {'Authorization': 'Bearer '+client.ksoftsi})
+    const res = await require('axios').get('https://api.ksoft.si/images/rand-reddit/cat', {headers: {'Authorization': 'Bearer '+client.ksoftsi}})
       const e = new Discord.MessageEmbed()
       .setColor('RANDOM')
       .setDescription(`Image not showing? Click [here](${res.data.image_url}) !`)
