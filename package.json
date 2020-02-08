@@ -11,6 +11,6 @@
   },
   "dependencies": {
     "discord.js": "discordjs/discord.js",
-    "ksoft.js", "3.1.4"
+    "ksoft.js": "3.1.4"
   }
 }
