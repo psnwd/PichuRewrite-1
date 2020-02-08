@@ -75,5 +75,5 @@ const args = message.content.slice(client.prefix.length).toLowerCase().split(' '
     }
 });
 
-client.login(client.token)
+client.login(client.bot_token)
 
