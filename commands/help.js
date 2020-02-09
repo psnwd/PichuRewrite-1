@@ -12,17 +12,14 @@ module.exports = {
             let misccommands = []
             let ownercommands = []
             let funcommands=[]
-            let unknowcommands=[]
             client.commands.forEach(command => {
                             if (command.category === 'misc') misccommands.push(`\`${command.name}\``)
                             if (command.category === 'owner') ownercommands.push(`\`${command.name}\``)
-                            if (command.category === 'fun') funcommands.push(`\`${command.name}\``)
-                            else unknowcommands.push(`\`${command.name}\``)
+                            if (command.category === 'fun') funcommands.push(`\`${command.name}\``) 
             })
         embed.addField('Misc commands :',misccommands.join(', '))
         embed.addField('Owner commands :',ownercommands.join(', '))
         embed.addField('Fun commands :',funcommands.join(', '))
-        embed.addField('Unknow category command :',unknowcommands.join(', '))
             message.channel.send(embed)
 //    
 //list=[]
