@@ -5,7 +5,8 @@ const newUsers = new Discord.Collection()
 const path = require('path')
 const client = new Client()
 const fs = require('fs')
-const queue = new Map();
+const queue = new Map()
+
 
 
 //
@@ -22,7 +23,6 @@ client.ksoftsi = process.env.ksoftsi_token
 
 //initializing commands here
 client.commands = new Discord.Collection()
-const queue = new Map()
  var commandFiles = fs
      .readdirSync(`./commands`)
     .filter(file => file.endsWith('.js'));
