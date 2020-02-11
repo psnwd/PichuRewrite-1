@@ -33,7 +33,7 @@ module.exports = {
 }
 
 
- const songInfo = await ytdl.getInfo(args.join(' '));
+ const songInfo = await ytdl.getInfo(args[0]);
 	const song = {
 		title: songInfo.title,
 		url: songInfo.video_url,
