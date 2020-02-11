@@ -5,6 +5,8 @@ const newUsers = new Discord.Collection()
 const path = require('path')
 const client = new Client()
 const fs = require('fs')
+const queue = new Map();
+
 
 //
 //
