@@ -28,7 +28,8 @@ module.exports = {
 		})
 		.on('error', error => {
 			console.error(error);
-		});
+		})
+;
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 }
 
@@ -57,6 +58,7 @@ module.exports = {
 			var connection = await voiceChannel.join();
 			queueContruct.connection = connection;
 			play(message.guild, queueContruct.songs[0]);
+message.channel.send(`Now playing ${song.title}`)
 		} catch (err) {
 			console.log(err);
 			queue.delete(message.guild.id);
