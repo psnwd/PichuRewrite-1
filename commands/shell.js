@@ -7,10 +7,8 @@ module.exports = {
   aliases: ['shell','sh'],
   category: 'owner',
   description: "It's a cool command!",
- execute(client,message) {
+ execute(client,message,args) {
   date = new Date()
-  if (message.author.id !== require("../../config.json").ownerID) return;
- const args = message.content.split(" ").slice(2)
   exec(args.join(" "), function (err, stdout, stderr) {
     if (!err) err = "-"
     if (!stdout) stdout = "-"
