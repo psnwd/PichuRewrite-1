@@ -11,7 +11,7 @@ module.exports = {
             .setDescription('Thx u for using PichuRewrite! This bot is currently WiP and not finished, but here is a list of commands :')
             let misccommands = []
             let ownercommands = []
-let musiccommands=['WiP'] 
+let musiccommands=['WiP,may not work'] 
             let funcommands=[]
             client.commands.forEach(command => {
                             if (command.category === 'misc') misccommands.push(`\`${command.name}\``)
