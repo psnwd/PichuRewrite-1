@@ -14,7 +14,7 @@ let minutes = Math.floor(totalSeconds / 60);
 let seconds = totalSeconds % 60;
     const user = message.author
  let h = 0;
-client.guilds.forEach(g => {h = h + g.memberCount});
+client.guilds.cache.forEach(g => {h = h + g.memberCount});
    
     const embed1 = new Discord.MessageEmbed()
     .setColor('#5147FF')
