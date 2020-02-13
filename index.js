@@ -38,7 +38,7 @@ client.commands = new Discord.Collection()
 //client events
 client.once('ready', () => {
 console.log(`Logged in as ${client.user.tag}`)
-client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.size} servers | ${client.prefix}help` }, status: 'online' }) 
+client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.cache.size} servers | ${client.prefix}help` }, status: 'online' }) 
 })
 client.once("reconnecting", () => {
   console.log("Reconnecting!");
@@ -49,7 +49,7 @@ client.once("disconnect", () => {
 
 //set current game to resresh every minute (for server count)
 setInterval(function(){
-client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.size} servers | ${client.prefix}help` }, status: 'online' }) 
+client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.cache.size} servers | ${client.prefix}help` }, status: 'online' }) 
 }, 60000);
 
 //message time
