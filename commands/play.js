@@ -1,4 +1,4 @@
-const ytdl = require('ytdl-core-discord')
+const ytdl = require('ytdl-core')
 module.exports = {
     name: 'play',
     description: 'Play a song!',
