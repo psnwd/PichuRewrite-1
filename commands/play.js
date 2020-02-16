@@ -53,7 +53,7 @@ module.exports = {
 		queue.set(message.guild.id, queueContruct);
 let serverQueue = queue.get(guild.id);
 
-		queueContruct.songs.push(song)let serverQueue = queue.get(guild.id);
+		queueContruct.songs.push(song)
 
 
 		try {
