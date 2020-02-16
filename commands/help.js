@@ -21,7 +21,7 @@ if (command.category === 'music') musiccommands.push(`\`${command.name}\``)
             })
         embed.addField('Misc commands :',misccommands.join(', '))
         embed.addField('Owner commands :',ownercommands.join(', '))
-embed.addField('Music commands :', musiccommands.join(' ')) 
+embed.addField('Music commands :', musiccommands.join(', ')) 
         embed.addField('Fun commands :',funcommands.join(', '))
             message.channel.send(embed)
 //    
