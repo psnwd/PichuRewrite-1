@@ -10,10 +10,11 @@ module.exports = {
  if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
   return message.channel.send('I need the permissions to join and speak in your voice channel!');
  }
+let serverQueue = queue.get(guild.id);
+
  
  function play(guild, song) {
-	const serverQueue = queue.get(guild.id);
-
+	
 	if (!song) {
 		serverQueue.voiceChannel.leave();
 		queue.delete(guild.id);
