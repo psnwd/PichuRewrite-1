@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'connect',
   category: 'music',
-  aliases: ['summon']
+  aliases: ['summon'],
 	description: 'Connects to the VC',
 	execute(client,message) {
 		let voiceChannel = message.member.voice.channel
