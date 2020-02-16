@@ -13,8 +13,7 @@ module.exports = {
 
  
  function play(guild, song) {
-	let serverQueue = queue.get(guild.id);
-
+	
 	if (!song) {
 		serverQueue.voiceChannel.leave();
 		queue.delete(guild.id);
@@ -52,8 +51,10 @@ module.exports = {
 		};
 
 		queue.set(message.guild.id, queueContruct);
+let serverQueue = queue.get(guild.id);
 
-		queueContruct.songs.push(song);
+		queueContruct.songs.push(song)let serverQueue = queue.get(guild.id);
+
 
 		try {
 			var connection = await voiceChannel.join();
