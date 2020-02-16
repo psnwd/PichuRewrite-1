@@ -40,7 +40,7 @@ module.exports = {
 		url: songInfo.video_url,
 	};
 
-	if (!serverQueue) {
+	if (serverQueue === undefined) {
 		const queueContruct = {
 			textChannel: message.channel,
 			voiceChannel: voiceChannel,
