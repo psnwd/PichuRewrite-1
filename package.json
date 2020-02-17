@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "discord.js": "discordjs/discord.js",
-    "ksoft.js": "3.1.4",
-"@discordjs/opus": "0.1.0",
-"ffmpeg-static": "4.0.1",
-"sodium":"3.0.2",
-    "ytdl-core": "1.0.8",
-    "axios": "0.19.2"
+    "ksoft.js": "^3.1.4",
+"@discordjs/opus": "^0.1.0",
+"ffmpeg-static": "^4.0.1",
+"sodium":"^3.0.2",
+    "ytdl-core": "^1.0.8",
+    "axios": "^0.19.2"
   }
 }
