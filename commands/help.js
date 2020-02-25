@@ -11,17 +11,24 @@ module.exports = {
             .setDescription('Thx u for using Pichu! This bot is currently WiP and not finished, but here is a list of commands :')
             let misccommands = []
             let ownercommands = []
-let musiccommands=[] 
+            let musiccommands=[] 
             let funcommands=[]
             client.commands.forEach(command => {
+                            if (!command.aliases) {
                             if (command.category === 'misc') misccommands.push(`\`${command.name}\``)
                             if (command.category === 'owner') ownercommands.push(`\`${command.name}\``)
-if (command.category === 'music') musiccommands.push(`\`${command.name}\``)
-                            if (command.category === 'fun') funcommands.push(`\`${command.name}\``) 
+                            if (command.category === 'music') musiccommands.push(`\`${command.name}\``)
+                            if (command.category === 'fun') funcommands.push(`\`${command.name}\``)
+                            } else {
+                                if (command.category === 'misc') misccommands.push(`\`${command.name} (${command.aliases[0]})\``)
+                                if (command.category === 'owner') ownercommands.push(`\`${command.name} (${command.aliases[0]})\``)
+                                if (command.category === 'music') musiccommands.push(`\`${command.name} (${command.aliases[0]})\``)
+                                if (command.category === 'fun') funcommands.push(`\`${command.name} (${command.aliases[0]})\``)
+                            } 
             })
         embed.addField('Misc commands :',misccommands.join(', '))
         embed.addField('Owner commands :',ownercommands.join(', '))
-embed.addField('Music commands :', musiccommands.join(', ')) 
+        embed.addField('Music commands :', musiccommands.join(', ')) 
         embed.addField('Fun commands :',funcommands.join(', '))
             message.channel.send(embed)
 //    
