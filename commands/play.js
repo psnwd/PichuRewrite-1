@@ -1,8 +1,5 @@
-const Discord = require('discord.js')
-const {
-	Util
-} = require('discord.js');
-const ytdl = require('ytdl-core');
+const Discord = require('discord.js'), {Util} = require('discord.js'), ytdl = require('ytdl-core'), ytpl = require('ytpl');
+
 module.exports = {
     name: 'play',
     description: 'Play a song!',
@@ -17,15 +14,7 @@ module.exports = {
 		if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
 			return message.channel.send(nopermissions);
 		}
-
-		const songInfo = await ytdl.getInfo(args[0]);
-		const song = {
-			title: songInfo.title,
-			url: songInfo.video_url,
-		};
-       
-
-		if (!serverQueue) {
+	    if (!serverQueue) {
 			const queueContruct = {
 				textChannel: message.channel,
 				voiceChannel: voiceChannel,
@@ -35,11 +24,33 @@ module.exports = {
 				playing: true,
 			};
 
-			queue.set(message.guild.id, queueContruct);
+		if (args.includes('list=') {
+			 const playlist = await ytpl(url.split("list=")[1])
+    const videos = playlist.items;
+		    queue.set(message.guild.id, queueContruct);
+for (const video of videos) await {
+	song = {
+		title: video.title,
+		url: video.url_simple,
+	};
+		    queteContruct.songs.push(song)
+	    }
+    message.channel.send("✅ Playlist **" + playlist.title + "** (" + videos.length + ") has been added to the queue!")
+	    } else {
+    
+		const songInfo = await ytdl.getInfo(args[0]);
+		const song = {
+			title: songInfo.title,
+			url: songInfo.video_url,
+		};
+	    
+
+		
+			
 
 			queueContruct.songs.push(song);
       
-
+	    }
 
 			try {
 				var connection = await voiceChannel.join();
