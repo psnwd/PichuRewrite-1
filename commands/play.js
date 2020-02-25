@@ -29,7 +29,7 @@ module.exports = {
     const videos = playlist.items;
 		    queue.set(message.guild.id, queueContruct);
 for (const video of videos) await {
-	song = {
+	const song = {
 		title: video.title,
 		url: video.url_simple,
 	};
