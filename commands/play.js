@@ -23,11 +23,11 @@ module.exports = {
 				volume: 5,
 				playing: true,
 			};
-
-		if (args.includes('list=')) {
+queue.set(message.guild.id, queueContruct);
+		if (args.includes("list=")) {
 			 const playlist = await ytpl(url.split("list=")[1])
     const videos = playlist.items;
-		    queue.set(message.guild.id, queueContruct);
+		    
 for (const video of videos)  {
 	let song = {
 		title: video.title,
