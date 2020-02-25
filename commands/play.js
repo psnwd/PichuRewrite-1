@@ -24,6 +24,7 @@ module.exports = {
 				playing: true,
 			};
 queue.set(message.guild.id, queueContruct);
+		    if (args[0] === 'playlist') {
 		if (args.includes("list=")) {
 			 const playlist = await ytpl(url.split("list=")[1])
     const videos = playlist.items;
@@ -35,8 +36,10 @@ for (const video of videos)  {
 	};
 		    queueContruct.songs.push(song)
 	    }
+		
     message.channel.send("✅ Playlist **" + playlist.title + "** (" + videos.length + ") has been added to the queue!")
-	    } else {
+	    }
+		    } else {
     
 		const songInfo = await ytdl.getInfo(args[0]);
 		const song = {
