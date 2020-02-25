@@ -5,6 +5,7 @@
       return text;
 }
 
+const Discord = require('discord.js')
 
 module.exports = {
   name: 'eval',
@@ -17,10 +18,19 @@ module.exports = {
  
       if (typeof evaled !== "string")
         evaled = require("util").inspect(evaled);
- 
-      message.channel.send(clean(evaled), {code:"xl"});
+      const successembed = new Discord.MessageEmbed()
+      .setColor('RANDOM')
+      .setDescription('Pichu eval command results :')
+      .addField('Ipnut :',args)
+      .addField('Output :', clean(evaled), {code: 'js'})
+      message.react('✅').then(message.channel.send(successembed));
     } catch (err) {
-      message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+      const failureembed = new Discord.MessageEmbed()
+      .setColor('RANDOM')
+      .setDescription('Pichu eval command results :')
+      .addField('Ipnut :',args)
+      .addField('Error :', clean(err), {code: 'js'})
+      message.react('✖️').then(message.channel.send(failureembed));
     }
   },
 };

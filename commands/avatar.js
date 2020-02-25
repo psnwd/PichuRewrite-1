@@ -8,7 +8,8 @@ module.exports = {
 
             let avataremb = new Discord.MessageEmbed()
             .setColor('RANDOM')
-            .setImage(message.author.avatarURL({format: 'jpg'}))
+            .setDescription(`[Click here to download](${message.author.avatarURL({format: 'jpg',size: '2048'})})`)
+            .setImage(message.author.avatarURL({format: 'jpg',size: '2048'}))
             message.channel.send(avataremb)
         
 
