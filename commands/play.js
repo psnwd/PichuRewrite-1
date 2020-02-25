@@ -24,7 +24,7 @@ module.exports = {
 				playing: true,
 			};
 
-		if (args.includes('list=') {
+		if (args.includes('list=')) {
 			 const playlist = await ytpl(url.split("list=")[1])
     const videos = playlist.items;
 		    queue.set(message.guild.id, queueContruct);
