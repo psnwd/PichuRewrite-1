@@ -8,7 +8,7 @@ module.exports = {
           async function replyWithInvite(message) {
             let invite = await message.channel.createInvite(
             {
-              maxAge: 86400000, // maximum time for the invite, in milliseconds
+              maxAge: 86400, // maximum time for the invite, in milliseconds
               maxUses: 100 // maximum times it can be used
             },
             `Requested with command by ${message.author.tag}`
