@@ -61,7 +61,7 @@ for (const video of videos)  {
         
 				this.play(message, queueContruct.songs[0]);
         
-     message.channel.send('Now playing '+song.title);
+     message.channel.send('Now playing '+queueContruct.songs[0].title);
 			} catch (err) {
 				console.log(err);
 				queue.delete(message.guild.id);
