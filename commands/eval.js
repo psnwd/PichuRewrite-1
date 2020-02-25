@@ -22,14 +22,14 @@ module.exports = {
       .setColor('RANDOM')
       .setDescription('Pichu eval command results :')
       .addField('Ipnut :',args)
-      .addField('Output :', clean(evaled), {code: 'js'})
+      .addField('Output :', `${clean(evaled), {code: 'js'}}`)
       message.react('✅').then(message.channel.send(successembed));
     } catch (err) {
       const failureembed = new Discord.MessageEmbed()
       .setColor('RANDOM')
       .setDescription('Pichu eval command results :')
       .addField('Ipnut :',args)
-      .addField('Error :', clean(err), {code: 'js'})
+      .addField('Error :', `${clean(err), {code: 'js'}}`)
       message.react('✖️').then(message.channel.send(failureembed));
     }
   },
