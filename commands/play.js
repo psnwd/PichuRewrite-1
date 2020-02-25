@@ -28,8 +28,8 @@ module.exports = {
 			 const playlist = await ytpl(url.split("list=")[1])
     const videos = playlist.items;
 		    queue.set(message.guild.id, queueContruct);
-for (const video of videos) await {
-	const song = {
+for (const video of videos)  {
+	let song = {
 		title: video.title,
 		url: video.url_simple,
 	};
