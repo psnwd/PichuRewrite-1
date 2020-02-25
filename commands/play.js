@@ -33,7 +33,7 @@ for (const video of videos) await {
 		title: video.title,
 		url: video.url_simple,
 	};
-		    queteContruct.songs.push(song)
+		    queueContruct.songs.push(song)
 	    }
     message.channel.send("✅ Playlist **" + playlist.title + "** (" + videos.length + ") has been added to the queue!")
 	    } else {
