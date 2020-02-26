@@ -1,6 +1,6 @@
 module.exports = {
     name: 'stats',
-    category: 'owner',
+    category: 'misc',
 	description: "Bot statuts",
 	execute(client,message) {
   const Discord = require('discord.js')
