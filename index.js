@@ -48,7 +48,7 @@ client.once('ready', () => {
 console.log(`Logged in as ${client.user.tag}`)
 
 setInterval(() => {
-  dbl.postStats(client.guilds.cache.size);
+  dbl.postStats(client.guilds.cache.size).then(console.log('Server count posted!')).catch(err => console.log('Oops! '+err));
 }, 1800000);
 
 client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.cache.size} servers | ${client.prefix}help` }, status: 'online' }) 
