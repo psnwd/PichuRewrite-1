@@ -28,7 +28,6 @@ client.ksoftsi = process.env.ksoftsi_token
 
 const DBL = require("dblapi.js");
 const dbl = new DBL(client.dbl_token)
-dbl.postStats(client.guilds.cache.size).then(console.log('Server count posted!')).catch(err => console.log('Oops! '+err));
 
 
 //initializing commands here
@@ -44,7 +43,7 @@ client.commands = new Discord.Collection()
 
 //client events
 client.once('ready', () => {
-
+  dbl.postStats(client.guilds.cache.size).then(console.log('Server count posted!')).catch(err => console.log('Oops! '+err));
 console.log(`Logged in as ${client.user.tag}`)
 
 setInterval(() => {
