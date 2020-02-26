@@ -1,4 +1,4 @@
-const Discord = require('discord.js'), {Util} = require('discord.js'), ytdl = require('ytdl-core'), ytpl = require('ytpl');
+const Discord = require('discord.js'), {Util} = require('discord.js'), ytdl = require('ytdl-core');
 
 module.exports = {
     name: 'play',
