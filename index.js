@@ -27,7 +27,7 @@ client.ksoftsi = process.env.ksoftsi_token
 //
 
 const DBL = require("dblapi.js");
-const dbl = new DBL(client.dbl_token, client)
+const dbl = new DBL(client.dbl_token)
 
 
 
