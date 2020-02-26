@@ -6,6 +6,10 @@ const path = require('path')
 const client = new Client()
 const fs = require('fs')
 const queue = new Map()
+client.version = require('./package.json').version
+const DBL = require("dblapi.js");
+
+
 
 
 
@@ -16,10 +20,14 @@ const queue = new Map()
 client.ownerID = process.env.ownerID //insert ID here
 client.prefix = process.env.prefix //insert prefix here 
 client.bot_token = process.env.bot_token //insert bot token here
+client.dbl_token = process.env.dbl_token
 client.ksoftsi = process.env.ksoftsi_token
 //
 //
 //
+const dbl = new DBL(client.dbl_token, client)
+
+
 
 //initializing commands here
 client.commands = new Discord.Collection()
@@ -33,6 +41,18 @@ client.commands = new Discord.Collection()
   }
 
 
+  // Optional events
+  dbl.on('posted', () => {
+    console.log('Server count posted!');
+  })
+
+  dbl.on('vote', vote => {
+    console.log(`User with ID ${vote.user} just voted!`);
+  });
+  
+  dbl.on('error', e => {
+   console.log(`Oops! ${e}`);
+  })
 
 
 //client events
