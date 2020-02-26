@@ -58,6 +58,9 @@ client.commands = new Discord.Collection()
 //client events
 client.once('ready', () => {
 console.log(`Logged in as ${client.user.tag}`)
+setInterval(() => {
+  dbl.postStats(client.guilds.cache.size);
+}, 1800000);
 client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.cache.size} servers | ${client.prefix}help` }, status: 'online' }) 
 })
 client.once("reconnecting", () => {
