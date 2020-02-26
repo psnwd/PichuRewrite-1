@@ -21,7 +21,7 @@ client.guilds.cache.forEach(g => {h = h + g.memberCount});
     .setAuthor('Bot stats: ')
     .addField('Uptime : ', `${days} days, ${hours} hours, ${minutes} minutes and ${Math.round(seconds)} seconds`)
     .addField('Guilds : ', `${client.guilds.cache.size}`)
-    .addField('Cached users : ', `${client.users.size}`)
+    .addField('Bot version : ', `${client.version}`)
     .addField('Total users :', h) 
     .addField('Number of commands : ', client.commands.size)
     .setTimestamp()
