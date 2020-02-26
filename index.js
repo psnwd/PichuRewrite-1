@@ -17,7 +17,6 @@ client.ownerID = process.env.ownerID //insert ID here
 client.prefix = process.env.prefix //insert prefix here 
 client.bot_token = process.env.bot_token //insert bot token here
 client.ksoftsi = process.env.ksoftsi_token
-client.version = require('./package.json').version
 //
 //
 //
