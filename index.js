@@ -42,17 +42,6 @@ client.commands = new Discord.Collection()
     client.commands.set(command.name, command);
   }
 
-
-  // Optional events
-  dbl.on('posted', () => {
-    console.log('Server count posted!');
-  })
-  
-  dbl.on('error', e => {
-   console.log(`Oops! ${e}`);
-  })
-
-
 //client events
 client.once('ready', () => {
 
