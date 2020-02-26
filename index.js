@@ -7,7 +7,7 @@ const client = new Client()
 const fs = require('fs')
 const queue = new Map()
 client.version = require('./package.json').version
-const DBL = require("dblapi.js");
+
 
 
 
@@ -25,6 +25,8 @@ client.ksoftsi = process.env.ksoftsi_token
 //
 //
 //
+
+const DBL = require("dblapi.js");
 const dbl = new DBL(client.dbl_token, client)
 
 
@@ -45,10 +47,6 @@ client.commands = new Discord.Collection()
   dbl.on('posted', () => {
     console.log('Server count posted!');
   })
-
-  dbl.on('vote', vote => {
-    console.log(`User with ID ${vote.user} just voted!`);
-  });
   
   dbl.on('error', e => {
    console.log(`Oops! ${e}`);
@@ -57,10 +55,13 @@ client.commands = new Discord.Collection()
 
 //client events
 client.once('ready', () => {
+
 console.log(`Logged in as ${client.user.tag}`)
+
 setInterval(() => {
   dbl.postStats(client.guilds.cache.size);
 }, 1800000);
+
 client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.cache.size} servers | ${client.prefix}help` }, status: 'online' }) 
 })
 client.once("reconnecting", () => {
