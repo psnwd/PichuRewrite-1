@@ -14,9 +14,9 @@ let minutes = Math.floor(totalSeconds / 60);
 let seconds = totalSeconds % 60;
     const user = message.author
  let h = 0;
-client.guilds.cache.forEach(g => {h = h + g.memberCount});
+client.guilds.forEach(g => {h = h + g.memberCount});
    
-    const embed1 = new Discord.MessageEmbed()
+    const embed1 = new Discord.RichEmbed()
     .setColor('#5147FF')
     .setAuthor('Bot stats: ')
     .addField('Uptime : ', `${days} days, ${hours} hours, ${minutes} minutes and ${Math.round(seconds)} seconds`)
@@ -25,7 +25,7 @@ client.guilds.cache.forEach(g => {h = h + g.memberCount});
     .addField('Total users :', h) 
     .addField('Number of commands : ', client.commands.size)
     .setTimestamp()
-        .setFooter("Command Ran By: " + message.author.username, message.author.avatarURL());
+        .setFooter("Command Ran By: " + message.author.username, message.author.avatarURL);
     
     message.channel.send(embed1)
   },

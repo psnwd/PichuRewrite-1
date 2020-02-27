@@ -10,7 +10,7 @@
     "node": "12.13.0"
   },
   "dependencies": {
-    "discord.js": "discordjs/discord.js",
+    "discord.js": "11.5.1",
     "dblapi.js": "2.3.1",
     "ksoft.js": "^3.1.4",
     "@discordjs/opus": "^0.1.0",

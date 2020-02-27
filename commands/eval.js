@@ -18,14 +18,14 @@ module.exports = {
  
       if (typeof evaled !== "string")
         evaled = require("util").inspect(evaled);
-      const successembed = new Discord.MessageEmbed()
+      const successembed = new Discord.RichEmbed()
       .setColor('RANDOM')
       .setDescription('Pichu eval command results :')
       .addField('Ipnut :',args)
       .addField('Output :', `\`\`\`js\n${clean(evaled)}\`\`\``)
       message.react('✅').then(message.channel.send(successembed));
     } catch (err) {
-      const failureembed = new Discord.MessageEmbed()
+      const failureembed = new Discord.RichEmbed()
       .setColor('RANDOM')
       .setDescription('Pichu eval command results :')
       .addField('Ipnut :',args)

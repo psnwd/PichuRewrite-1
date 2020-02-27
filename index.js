@@ -27,7 +27,18 @@ client.ksoftsi = process.env.ksoftsi_token
 //
 
 const DBL = require("dblapi.js");
-const dbl = new DBL(client.dbl_token)
+const dbl = new DBL(client.dbl_token, client)
+
+
+// Optional events
+dbl.on('posted', () => {
+  console.log('Server count posted!');
+})
+
+dbl.on('error', e => {
+ console.log(`Oops! ${e}`);
+})
+
 
 
 //initializing commands here
@@ -43,14 +54,8 @@ client.commands = new Discord.Collection()
 
 //client events
 client.once('ready', () => {
-  dbl.postStats(client.guilds.cache.size).then(console.log('Server count posted!')).catch(err => console.log('Oops! '+err));
-console.log(`Logged in as ${client.user.tag}`)
-
-setInterval(() => {
-  dbl.postStats(client.guilds.cache.size).then(console.log('Server count posted!')).catch(err => console.log('Oops! '+err));
-}, 1800000);
-
-client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.cache.size} servers | ${client.prefix}help` }, status: 'online' }) 
+  
+client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.size} servers | ${client.prefix}help` }, status: 'online' }) 
 })
 client.once("reconnecting", () => {
   console.log("Reconnecting!");
@@ -61,7 +66,7 @@ client.once("disconnect", () => {
 
 //set current game to resresh every minute (for server count)
 setInterval(function(){
-client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.cache.size} servers | ${client.prefix}help` }, status: 'online' }) 
+client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.size} servers | ${client.prefix}help` }, status: 'online' }) 
 }, 60000);
 
 //message time

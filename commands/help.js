@@ -5,7 +5,7 @@ module.exports = {
     category: 'misc',
     execute(client,message,args) {
         
-            const embed = new Discord.MessageEmbed()
+            const embed = new Discord.RichEmbed()
             .setColor('RANDOM')
             .setTitle('Pichu\'s help!')
             .setDescription('Thx u for using Pichu! This bot is currently WiP and not finished, but here is a list of commands :')

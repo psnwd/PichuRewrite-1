@@ -17,7 +17,7 @@ module.exports = {
       message.channel.send(`The output is too big sending it to the js console insted!\nThe output is ${err.length + stdout.length + stderr.length} / 1024 long!`)
       console.log(`${err}\n${stdout}\n${stderr}`);
     } else {
-      const embed = new MessageEmbed()
+      const embed = new RichEmbed()
         .setTitle("Terminal")
         .setColor("55ff55 ")
         .addField("**err**", err + "** **")

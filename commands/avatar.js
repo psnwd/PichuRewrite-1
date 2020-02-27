@@ -5,8 +5,8 @@ module.exports = {
 	description: 'Shows user avatar',
 	execute(client,message,args) {
         const Discord = require('discord.js')
-            let avatar = message.author.avatarURL({format: 'png',size: 2048})
-            let avataremb = new Discord.MessageEmbed()
+            let avatar = message.author.avatarURL
+            let avataremb = new Discord.RichEmbed()
             .setColor('RANDOM')
             .setDescription(`[Click here to download](${avatar})`)
             .setImage(avatar)

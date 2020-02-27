@@ -4,7 +4,7 @@ description: 'Serverlist',
 category: 'owner',
 execute(client,message) {
  let string = '';
-client.guilds.cache.forEach(guild => {
+client.guilds.forEach(guild => {
     string += guild.name + '\n';})
     
     

@@ -7,7 +7,7 @@ aliases: ['meme'],
 	description: "Shows a meme",
 	execute: async (client,message) => {
     const res = await require('axios').get('https://api.ksoft.si/images/rand-reddit/dankmemes', {headers: {'Authorization': 'Bearer '+client.ksoftsi}})
-      const e = new Discord.MessageEmbed()
+      const e = new Discord.RichEmbed()
       .setColor('RANDOM')
       .setDescription(`Image not showing? Click [here](${res.data.image_url}) !`)
       .setImage(res.data.image_url)
