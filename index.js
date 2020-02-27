@@ -54,7 +54,7 @@ client.commands = new Discord.Collection()
 
 //client events
 client.once('ready', () => {
-  
+console.log(`Logged in as ${client.user.tag}!`)
 client.user.setPresence({ activity: { name: `Is a pokémon | ${client.guilds.size} servers | ${client.prefix}help` }, status: 'online' }) 
 })
 client.once("reconnecting", () => {
