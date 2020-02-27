@@ -1,4 +1,4 @@
-jsmodule.exports = {
+module.exports = {
     name: 'random',
     category: 'misc',
 	description: "This command will sometimes execute, sometimes not",
