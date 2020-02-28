@@ -70,7 +70,7 @@ module.exports = {
 			return;
 		}
 	
-		const dispatcher = serverQueue.connection.play(ytdl(song.url))
+		const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
 			.on('end', () => {
 				console.log('Finish!');
 				serverQueue.songs.shift();
