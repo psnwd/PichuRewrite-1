@@ -3,9 +3,9 @@ module.exports = {
   category: 'utility',
   aliases: ['ui'],
 	description: 'Shows user info',
-	execute(client,message) {
+	execute(client,message,args) {
         const Discord = require('discord.js')
-        let server = message.mentions.users.first() || client.users.get(args.join(' ')) || message.author;
+        let suser = message.mentions.users.first() || client.users.get(args.join(' ')) || message.author;
         let isabot = ''
         if (user.bot) {isabot = 'Yes'} else {isabot = 'No'}
         let e = new Discord.RichEmbed()
@@ -19,7 +19,6 @@ module.exports = {
         .addField('Default Avatar URL :', user.defaultAvatarURL)
         .addField('User id :', user.id)
         .addField('Last message ID :', user.lastMessageID)
-        .addField('User presence :', user.presence)
         .addField('Time to tag him!', user.tag)
         message.channel.send(e)
 	},
