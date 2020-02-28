@@ -5,7 +5,7 @@ module.exports = {
 	description: 'Shows user info',
 	execute(client,message,args) {
         const Discord = require('discord.js')
-        let suser = message.mentions.users.first() || client.users.get(args.join(' ')) || message.author;
+        let user = message.mentions.users.first() || client.users.get(args.join(' ')) || message.author;
         let isabot = ''
         if (user.bot) {isabot = 'Yes'} else {isabot = 'No'}
         let e = new Discord.RichEmbed()
