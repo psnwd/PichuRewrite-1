@@ -2,7 +2,7 @@ module.exports = {
 	name: 'serverinfo',
   category: 'utility',
   aliases: ['si'],
-	description: 'Skip the current song',
+	description: 'Shows server info',
 	execute(client,message) {
         const Discord = require('discord.js')
         let server = message.guild
