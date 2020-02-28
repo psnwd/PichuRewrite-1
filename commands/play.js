@@ -11,11 +11,11 @@ module.exports = {
         const queue = message.client.queue;
          const serverQueue = message.client.queue.get(message.guild.id);
    
-		const voiceChannel = message.member.voice.channel;
+		const voiceChannel = message.member.voiceChannel;
 		if (!voiceChannel) return message.channel.send('You\'re not in a voice channel!');
 		const permissions = voiceChannel.permissionsFor(message.client.user);
 		if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
-			return message.channel.send(nopermissions);
+			return message.channel.send('I/You don\'t have the permissions to do that!');
 		}
 
 		const songInfo = await ytdl.getInfo(args[0]);

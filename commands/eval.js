@@ -11,7 +11,7 @@ module.exports = {
   name: 'eval',
   description: 'Eval something',
   category: 'owner',
-  execute(client,message,args) {
+  execute(client,message,args,dbl) {
    try {
       const code = args.join(" ");
       let evaled = eval(code);
@@ -21,14 +21,14 @@ module.exports = {
       const successembed = new Discord.RichEmbed()
       .setColor('RANDOM')
       .setDescription('Pichu eval command results :')
-      .addField('Ipnut :',args)
+      .addField('Input :',args)
       .addField('Output :', `\`\`\`js\n${clean(evaled)}\`\`\``)
       message.react('✅').then(message.channel.send(successembed));
     } catch (err) {
       const failureembed = new Discord.RichEmbed()
       .setColor('RANDOM')
       .setDescription('Pichu eval command results :')
-      .addField('Ipnut :',args)
+      .addField('Input :',args)
       .addField('Error :', `\`\`\`js\n${clean(err)}\`\`\``)
       message.react('✖️').then(message.channel.send(failureembed));
     }

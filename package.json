@@ -16,6 +16,7 @@
     "@discordjs/opus": "^0.1.0",
     "ffmpeg-static": "^4.0.1",
     "sodium":"^3.0.2",
+    "node-opus": "0.3.2",
     "ytdl-core": "2.0.0",
     "axios": "^0.19.2"
   }
