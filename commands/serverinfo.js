@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'serverinfo',
   category: 'utility',
+  aliases: ['si'],
 	description: 'Skip the current song',
 	execute(client,message) {
         const Discord = require('discord.js')
