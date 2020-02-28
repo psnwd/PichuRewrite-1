@@ -22,8 +22,9 @@ module.exports = {
         .addField('AFK Channel :', server.afkChannel)
         .addField('Member count :', server.memberCount)
         .addField('Verification level :', server.verificationLevel)
-        if (server.verified) {let verified = 'Yes'}
-        else {let verified = 'No'}
+        let verified = ''
+        if (server.verified) {verified = 'Yes'}
+        else {verified = 'No'}
         e.addField('Is this guild verified ?', verified)
         message.channel.send(e)
 	},
