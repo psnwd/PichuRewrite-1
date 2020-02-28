@@ -7,7 +7,7 @@
     category: 'misc',
     execute(client,message,args,dbl) {
         if (!args) return message.channel.send('Please mention the bot or give bot ID');
-        let user = message.user.mentions.first() || client.users.get(args.join(' '))
+        let user = message.mentions.users.first() || client.users.get(args.join(' '))
         if (!user) return message.channel.send('Bot not found!');
         if (!user.bot) return message.channel.send('This is not a bot!');
         dbl.getBot(user.id).then(bot => {
@@ -23,10 +23,10 @@
             .addField('Bot short description :', bot.shortdesc)
             .addField('Bot long description :', `\`\`\`html\n${bot.longdesc}\`\`\``)
             let bottags = ''
-            bot.tags.forEach(tag => bottags += tag)
-            .addField('Bot tags :', bottags)
+            bot.tags.forEach(tag => bottags += tag+', ')
+            e.addField('Bot tags :', bottags)
             if (bot.website) {e.addField('Bot website :', bot.website)}
-            if (bot.support) {e.addField('Bot support server invite : ', bot.support)}
+            if (bot.support) {e.addField('Bot support server invite : ', 'discord.gg/'+bot.support)}
             if (bot.github) {e.addField('Bot github repo :', bot.github)}
             let botowners = ''
             bot.owners.forEach(owner => botowners += owner)
