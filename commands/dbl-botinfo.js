@@ -21,7 +21,6 @@
             .addField('Bot\'s library :', bot.lib)
             .addField('Bot prefix(es) :', bot.prefix)
             .addField('Bot short description :', bot.shortdesc)
-            .addField('Bot long description :', `\`\`\`html\n${bot.longdesc}\`\`\``)
             let bottags = ''
             bot.tags.forEach(tag => bottags += tag+', ')
             e.addField('Bot tags :', bottags)
