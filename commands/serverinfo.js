@@ -13,7 +13,6 @@ module.exports = {
         .addField('Server name :', server.name)
         .addField('Server ID :', server.id)
         .addField('Owner ID :', server.ownerID)
-        .addField('Owner :', server.owner.name+'#'+server.owner.discriminator)
         .addField('Server region :', server.region)
         .addField('MFA Level :', server.mfaLevel)
         .addField('Seerver created at :', server.createdAt)
