@@ -17,7 +17,7 @@
             .addField('Bot name :', bot.username)
             .addField('Bot discriminator (tag) :', bot.discriminator)
             .addField('Bot ID :', bot.id)
-            .addField('Bot\'s avatar (URL) :', bot.defAvatar)
+            .setThumbnail(user.avatarURL)
             .addField('Bot\'s library :', bot.lib)
             .addField('Bot prefix(es) :', bot.prefix)
             .addField('Bot short description :', bot.shortdesc)
