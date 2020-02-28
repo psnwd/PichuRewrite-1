@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 module.exports = {
     name: 'help',
     description: 'Shows the help',
-    category: 'misc',
+    category: 'utility',
     execute(client,message,args) {
         
             const embed = new Discord.RichEmbed()
@@ -13,16 +13,19 @@ module.exports = {
             let ownercommands = []
             let musiccommands=[] 
             let funcommands=[]
+            let utilitycommands = []
             client.commands.forEach(command => {
                             if (!command.aliases) {
                             if (command.category === 'misc') misccommands.push(`\`${command.name}\``)
                             if (command.category === 'owner') ownercommands.push(`\`${command.name}\``)
                             if (command.category === 'music') musiccommands.push(`\`${command.name}\``)
                             if (command.category === 'fun') funcommands.push(`\`${command.name}\``)
+                            if (command.category === 'utility') utilitycommands.push(`\`${command.name}\``)
                             } else {
                                 if (command.category === 'misc') misccommands.push(`\`${command.name} (${command.aliases[0]})\``)
                                 if (command.category === 'owner') ownercommands.push(`\`${command.name} (${command.aliases[0]})\``)
                                 if (command.category === 'music') musiccommands.push(`\`${command.name} (${command.aliases[0]})\``)
+                                if (command.category === 'utility') utilitycommands.push(`\`${command.name} (${command.aliases[0]})\``)
                                 if (command.category === 'fun') funcommands.push(`\`${command.name} (${command.aliases[0]})\``)
                             } 
             })
@@ -30,6 +33,7 @@ module.exports = {
         embed.addField('Owner commands :',ownercommands.join(', '))
         embed.addField('Music commands :', musiccommands.join(', ')) 
         embed.addField('Fun commands :',funcommands.join(', '))
+        embed.addField('Utility commands :', utilitycommands.join(' '))
             message.channel.send(embed)
 //    
 //list=[]

@@ -68,14 +68,14 @@ client.once("disconnect", () => {
 setInterval(function(){
   client.user.setActivity(`Is a pokémon | ${client.guilds.size} servers | ${client.prefix}help`) 
 }, 60000);
-
+let analysedmessages = [0,0] //[0] is number of messages ananysed in total, [1] is commands executed
 //message time
 client.on('message', async message =>{
- 
+ analysedmessages[0] += 1
 
  
  
-    if (message.channel.type === "dm" || message.author.bot ||    message.author === client.user) return;
+    if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
     if (message.content.toLowerCase().startsWith(client.prefix)) {
         const commandName = message.content.slice(client.prefix.length).toLowerCase().split(' ')[0].toLowerCase()
 const args = message.content.slice(client.prefix.length).split(' ').slice(1)
@@ -86,7 +86,8 @@ const args = message.content.slice(client.prefix.length).split(' ').slice(1)
          if (command.category === 'owner') {
           if (message.author.id !== client.ownerID) return message.reply("You tried to execute a owner-only command, and you can't do that :(")
          }
-            command.execute(client,message,args,dbl)
+         analysedmessages[1] += 1 
+            command.execute(client,message,args,dbl,analysedmessages)
          
         } catch (error) {
             console.log(error)

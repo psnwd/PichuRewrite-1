@@ -1,7 +1,7 @@
 module.exports = {
   name: 'avatar',
   aliases: ['pfp'],
-  category: 'fun',
+  category: 'utility',
 	description: 'Shows user avatar',
 	execute(client,message,args) {
 let user = client.users.get(args.join(' ')) || message.mentions.users.first() || message.author 
