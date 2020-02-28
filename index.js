@@ -76,12 +76,13 @@ client.on('message', async message =>{
  
  
     if (message.channel.type === "dm" || message.author.bot ||    message.author === client.user) return;
-    if (!message.content.toLowerCase().startsWith(client.prefix) || !message.content.startsWith(`<@${client.user.id}> `) || !message.content.startsWith(`<@!${client.user.id}> `)) return;
-   totalargs = message.content.toLowerCase().startsWith(client.prefix) || message.content.startsWith(`<@${client.user.id}> `) || message.content.startsWith(`<@!${client.user.id}> `)
-        const commandName = totalargs.toLowerCase().split(' ')[0].toLowerCase()
-const args = message.content.slice(client.prefix.length || `<@${client.user.id}> `.length || `<@!${client.user.id}> `.length).split(' ').slice(1)
-        const command = client.commands.get(commandName)
-            || client.commands.find(cmd => cmd.aliases &&                       cmd.aliases.includes(commandName))
+let prefixlist = [client.prefix, `<@${client.user.id}> `, `<@!${client.user.id}> `]
+for (let i = 0; i !== prefixlist.length; i++) {
+  if (!message.content.toLowerCase().startsWith(prefixlist[i])) {return}
+  else {let args = message.content.slice(prefixlist[i].length).split(' ').slice(1)
+  let commandName = message.content.slice(prefixlist[i].length).split(' ')[0]
+     const command = client.commands.get(commandName)
+            || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
         if (!command) return;
         try {
          if (command.category === 'owner') {
@@ -92,8 +93,10 @@ const args = message.content.slice(client.prefix.length || `<@${client.user.id}>
         } catch (error) {
             console.log(error)
         }
+      }
     }
-});
+  }
+);
 
 client.login(client.bot_token)
 
