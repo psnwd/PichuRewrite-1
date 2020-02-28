@@ -16,7 +16,7 @@ let seconds = totalSeconds % 60;
  let h = 0;
 client.guilds.forEach(g => {h = h + g.memberCount});
 let playingmusic = message.client.queue.size
-if (!playingmusic) let playingmusic = 0
+if (!playingmusic) playingmusic = 0
    
     const embed1 = new Discord.RichEmbed()
     .setColor('#5147FF')
