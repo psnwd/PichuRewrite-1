@@ -22,11 +22,11 @@ module.exports = {
                             if (command.category === 'fun') funcommands.push(`\`${command.name}\``)
                             if (command.category === 'utility') utilitycommands.push(`\`${command.name}\``)
                             } else {
-                                if (command.category === 'misc') misccommands.push(`\`${command.name} (${command.aliases[0]})\``)
-                                if (command.category === 'owner') ownercommands.push(`\`${command.name} (${command.aliases[0]})\``)
-                                if (command.category === 'music') musiccommands.push(`\`${command.name} (${command.aliases[0]})\``)
-                                if (command.category === 'utility') utilitycommands.push(`\`${command.name} (${command.aliases[0]})\``)
-                                if (command.category === 'fun') funcommands.push(`\`${command.name} (${command.aliases[0]})\``)
+                                if (command.category === 'misc') misccommands.push(`\`${command.name}(${command.aliases[0]})\``)
+                                if (command.category === 'owner') ownercommands.push(`\`${command.name}(${command.aliases[0]})\``)
+                                if (command.category === 'music') musiccommands.push(`\`${command.name}(${command.aliases[0]})\``)
+                                if (command.category === 'utility') utilitycommands.push(`\`${command.name}(${command.aliases[0]})\``)
+                                if (command.category === 'fun') funcommands.push(`\`${command.name}(${command.aliases[0]})\``)
                             } 
             })
         embed.addField('Misc commands :',misccommands.join(', '))
