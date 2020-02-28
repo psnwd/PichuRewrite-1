@@ -2,7 +2,7 @@ module.exports = {
     name: 'stats',
     category: 'misc',
 	description: "Bot statuts",
-	execute(client,message,analysedmessages) {
+	execute(client,message,analysedmessages,executedcommands) {
   const Discord = require('discord.js')
     
     let totalSeconds = (client.uptime / 1000);
@@ -27,8 +27,8 @@ if (!playingmusic) playingmusic = 0
     .addField('Total users :', h) 
     .addField('Number of servers playing music thx to me :', playingmusic)
     .addField('Number of commands : ', client.commands.size)
-    .addField('Analysed messages :', analysedmessages[0])
-    .addField('Number of commands executed :', analysedmessages[1])
+    .addField('Analysed messages :', analysedmessages)
+    .addField('Number of commands executed :', executedcommands)
     .setTimestamp()
         .setFooter("Command Ran By: " + message.author.username, message.author.avatarURL);
     
