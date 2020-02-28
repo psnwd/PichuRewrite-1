@@ -4,7 +4,7 @@ module.exports = {
   category: 'fun',
 	description: 'Shows user avatar',
 	execute(client,message,args) {
-let user = message.author || client.users.get(args.join(' ')) || message.mentions.users.first()
+let user = client.users.get(args.join(' ')) || message.mentions.users.first() || message.author 
 
         const Discord = require('discord.js')
             let avatar = user.avatarURL
