@@ -17,11 +17,11 @@ client.version = require('./package.json').version
 //
 //
 //Part to customize if you want to selfhost the bot
-client.ownerID = '635383782576357407'//insert ID here
-client.prefix = 'pi '//insert prefix here 
-client.bot_token = 'Njc0NDk3NjM1MTcxNjk2NjQ0.XlaiYg.xeUN6-KlQWC4G9Wwd_j4WOlhbf8'//insert bot token here
-client.dbl_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDQ5NzYzNTE3MTY5NjY0NCIsImJvdCI6dHJ1ZSwiaWF0IjoxNTgyNzEyNjMzfQ.Ovr1uUKctExQ9LKLNDhHFPPPcGgbKiN8hxalRxv6HSk'
-client.ksoftsi = '7bc7dd120e05fc2390ab5494a527a8a0577d0ae0';
+client.ownerID = proness.env.ownerID//insert ID here
+client.prefix = process.env.prefix//insert prefix here 
+client.bot_token = process.env.bot_token//insert bot token here
+client.dbl_token = process.env.dbl_token
+client.ksoftsi = process.env.ksoftsi_token
 //
 //
 //
@@ -76,10 +76,9 @@ client.on('message', async message =>{
  
  
     if (message.channel.type === "dm" || message.author.bot ||    message.author === client.user) return;
-    if (!message.content.toLowerCase().startsWith(client.prefix) || !message.content.startsWith(`<@${client.user.id}> `) || !message.content.startsWith(`<@!${client.user.id}> `)) return;
-   let totalargs = message.content.toLowerCase().startsWith(client.prefix) || message.content.startsWith(`<@${client.user.id}> `) || message.content.startsWith(`<@!${client.user.id}> `)
-        const commandName = totalargs.toLowerCase().split(' ')[0].toLowerCase()
-const args = message.content.slice(client.prefix.length || `<@${client.user.id}> `.length || `<@!${client.user.id}> `.length).split(' ').slice(1)
+    if (message.content.toLowerCase().startsWith(client.prefix)) {
+        const commandName = message.content.slice(client.prefix.length).toLowerCase().split(' ')[0].toLowerCase()
+const args = message.content.slice(client.prefix.length).split(' ').slice(1)
         const command = client.commands.get(commandName)
             || client.commands.find(cmd => cmd.aliases &&                       cmd.aliases.includes(commandName))
         if (!command) return;
@@ -93,7 +92,7 @@ const args = message.content.slice(client.prefix.length || `<@${client.user.id}>
             console.log(error)
         }
     }
-);
+});
 
 client.login(client.bot_token)
 
