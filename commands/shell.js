@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { RichEmbed } = require("discord.js");
 const fs = require("fs");
 let exec = require("child_process").exec
 
@@ -8,7 +8,8 @@ module.exports = {
   category: 'owner',
   description: "It's a cool command!",
  execute(client,message,args) {
-  date = new Date()
+
+ let date = new Date()
   exec(args.join(" "), function (err, stdout, stderr) {
     if (!err) err = "-"
     if (!stdout) stdout = "-"
