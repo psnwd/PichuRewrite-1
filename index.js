@@ -87,14 +87,14 @@ const args = message.content.slice(client.prefix.length).split(' ').slice(1)
     
             command.execute(client,message,args,dbl)
          
-        } catch (error) {
+        } catch (err) {
           let error = new Discord.RichEmbed()
           .setColor('RED')
           .setAuthor('Oops! Soemthing went wrong!')
           .setDescription('Hi. An error happend during the execution of the **'+command.name+'* command. You should never get an error like that. Please contact Lumap#1049 with this error :')
           .addField('Error :', `\`\`\`js\n${err}\`\`\``)
           message.reply(error)
-            console.log(error)
+            console.log(err)
         }
     }
 });
