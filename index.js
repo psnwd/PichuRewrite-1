@@ -85,7 +85,7 @@ const args = message.content.slice(client.prefix.length).split(' ').slice(1)
           if (message.author.id !== client.ownerID) return message.reply("You tried to execute a owner-only command, and you can't do that :(")
          }
     
-            command.execute(client,message,args,dbl)
+            await command.execute(client,message,args,dbl)
          
         } catch (err) {
           let error = new Discord.RichEmbed()
