@@ -5,7 +5,7 @@ const Discord = require('discord.js')
 aliases: ['meme'], 
   category: 'fun',
 	description: "Shows a meme",
-	async execute: async (client,message) => {
+	async execute (client,message) {
     const res = await require('axios').get('https://api.ksoft.si/images/rand-reddit/dankmemes', {headers: {'Authorization': 'Bearer '+client.ksoftsi}})
       const e = new Discord.MessageEmbed()
       .setColor('RANDOM')
