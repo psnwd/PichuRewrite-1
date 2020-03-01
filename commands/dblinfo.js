@@ -15,7 +15,7 @@
             let e = new Discord.MessageEmbed()
             .setColor('RANDOM')
             .setDescription('DBL Botinfo results : ')
-            .setThumbnail(user.avatarURL)
+            .setThumbnail(user.avatarURL({format: 'png', dynamic: true, size: 2048}))
             .addFields(
               { name: 'Bot name :', value: bot.username, inline: true },
               { name: 'Bot discriminator (tag) :',value: bot.discriminator, inline: true },
