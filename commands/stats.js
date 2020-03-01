@@ -26,7 +26,7 @@ if (!playingmusic) playingmusic = 0
       {name: 'Guilds :', value: client.guilds.cache.size, inline: true},
       {name: 'Bot version :', value: client.version, inline: true},
       {name: 'Total users :', value: h, inline: true},
-      {name: 'Number of servers playingmusic thx to me :', value: playingmusic, inline: true},
+      {name: 'Number of servers playing music thx to me :', value: playingmusic, inline: true},
       {name: 'number of commands :', value: client.commands.size, inline: true}
     )
     .setFooter('Made by Lumap#0149')
