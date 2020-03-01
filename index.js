@@ -30,14 +30,6 @@ const DBL = require("dblapi.js");
 const dbl = new DBL(client.dbl_token)
 
 
-// Optional events
-dbl.on('posted', () => {
-  console.log('Server count posted!');
-})
-
-dbl.on('error', e => {
- console.log(`Oops! ${e}`);
-})
 
 
 
@@ -53,19 +45,19 @@ client.commands = new Discord.Collection()
   }
 
 //client events
-client.once('ready', () => {
+client.on('ready', () => {
 
   setInterval(() => {
-    dbl.postStats(client.guilds.cache.size);
+    dbl.postStats(client.guilds.cache.size).then(console.log('Server count posted !'));
 }, 1800000);
 
 console.log(`Logged in as ${client.user.tag}!`)
 client.user.setActivity(`Is a pokémon | ${client.guilds.cache.size} servers | ${client.prefix}help`) 
 })
-client.once("reconnecting", () => {
+client.on("reconnecting", () => {
   console.log("Reconnecting!");
 });
-client.once("disconnect", () => {
+client.on("disconnect", () => {
   console.log("Disconnect!");
 });
 
