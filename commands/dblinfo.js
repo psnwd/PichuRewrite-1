@@ -15,6 +15,7 @@
             let e = new Discord.MessageEmbed()
             .setColor('RANDOM')
             .setDescription('DBL Botinfo results : ')
+            .setThumbnail(user.avatarURL)
             .addFields(
               { name: 'Bot name :', value: bot.username, inline: true },
               { name: 'Bot discriminator (tag) :',value: bot.discriminator, inline: true },
@@ -24,7 +25,7 @@
               { name: 'Bot short desc :', value: bot.shortdesc, inline: true },
               { name: 'Bot total votes :', value: bot.points, inline: true },
               { name: 'Bot monthly votes :', value: bot.monthlyPoints, inline: true })
-            .setThumbnail(user.avatarURL)
+            
             let bottags = ''
             bot.tags.forEach(tag => bottags += tag+', ')
             if (!bottags) bottags = 'No tags'
