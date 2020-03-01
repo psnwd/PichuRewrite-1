@@ -17,7 +17,7 @@ client.version = require('./package.json').version
 //
 //
 //Part to customize if you want to selfhost the bot
-client.ownerID = proness.env.ownerID//insert ID here
+client.ownerID = process.env.ownerID//insert ID here
 client.prefix = process.env.prefix//insert prefix here 
 client.bot_token = process.env.bot_token//insert bot token here
 client.dbl_token = process.env.dbl_token
