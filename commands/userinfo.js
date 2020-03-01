@@ -5,7 +5,7 @@ module.exports = {
 	description: 'Shows user info',
 	async execute(client,message,args) {
         const Discord = require('discord.js')
-        let user = message.mentions.users.first() || client.users.get(args.join(' ')) || message.author;
+        let user = message.mentions.users.first() || client.users.cache.get(args.join(' ')) || message.author;
         let isabot = ''
         if (user.bot) {isabot = 'Yes'} else {isabot = 'No'}
         let e = new Discord.MessageEmbed()
