@@ -3,23 +3,26 @@ module.exports = {
   category: 'utility',
   aliases: ['ui'],
 	description: 'Shows user info',
-	execute(client,message,args) {
+	async execute(client,message,args) {
         const Discord = require('discord.js')
         let user = message.mentions.users.first() || client.users.get(args.join(' ')) || message.author;
         let isabot = ''
         if (user.bot) {isabot = 'Yes'} else {isabot = 'No'}
-        let e = new Discord.RichEmbed()
+        let e = new Discord.MessageEmbed()
         .setColor('RANDOM')
         .setAuthor('User info :')
-        .addField('Name :', user.username)
-        .addField('Discriminator (tag) :', user.discriminator)
-        .addField('Avatar URL :', user.avatarURL)
-        .addField('Is user a bot?', isabot)
-        .addField('Was created at :', user.createdAt)
-        .addField('Default Avatar URL :', user.defaultAvatarURL)
-        .addField('User id :', user.id)
-        .addField('Last message ID :', user.lastMessageID)
-        .addField('Time to tag him!', user.tag)
+        .setThumbnail(user.avatarURL({format: 'png', dynamic: true, size: 2048}))
+        .addFields(
+          {name: 'Name :', value: user.username, inline: true},
+          {name: 'Discrimintor :', value: user.discriminator, inline: true},
+          {name: 'Avatar URL :', value: user.avatarURL({format: 'png', dynamic: true, size: 2048}), inline: true},
+          {name: 'Is a bot ?', value: isabot, inline: true},
+          {name: 'Account creation date :', value: user.createdAt, inline: true},
+          {name: 'Default avatar URL :', value: user.defaultAvatarURL, inline: true},
+          {name: 'ID :', value: user.id, inline: true},
+          {name: 'Last message ID :', value: user.lastMessageID, inline: true}
+        )
+        .setFooter('Made by Lumap#0149')
         message.channel.send(e)
 	},
 };

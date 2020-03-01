@@ -3,12 +3,11 @@ module.exports = {
     name: 'help',
     description: 'Shows the help',
     category: 'utility',
-    execute(client,message,args) {
+    async execute(client,message,args) {
         
-            const embed = new Discord.RichEmbed()
+            const embed = new Discord.MessageEmbed()
             .setColor('RANDOM')
             .setTitle('Pichu\'s help!')
-            .setDescription('Thx u for using Pichu! This bot is currently WiP and not finished, but here is a list of commands :')
             let misccommands = []
             let ownercommands = []
             let musiccommands=[] 
@@ -29,20 +28,15 @@ module.exports = {
                                 if (command.category === 'fun') funcommands.push(`\`${command.name}(${command.aliases[0]})\``)
                             } 
             })
-        embed.addField('Misc commands :',misccommands.join(', '))
-        embed.addField('Owner commands :',ownercommands.join(', '))
-        embed.addField('Music commands :', musiccommands.join(', ')) 
-        embed.addField('Fun commands :',funcommands.join(', '))
-        embed.addField('Utility commands :', utilitycommands.join(' '))
+        embed.addFields(
+            {name: 'Misc commands :', value: misccommands.join(', ')},
+            {name: 'Owner commands :', value: ownercommands.join(', ')},
+            {name: 'Music commands :', value: musiccommands.join(', ')},
+            {name: 'Fun commands :',value: funcommands.join(', ')},
+            {name: 'Utility commands :', value: utilitycommands.join(', ')}
+            )
+
             message.channel.send(embed)
-//    
-//list=[]
-//client.commands.forEach(command => {
-//    list.push('Name : '+command.name+', Description : '+command.description+', Category : '+command.category)
-//});
-//
-//list.join(`\n`)
-//message.channel.send(list)
-//
+
     },
 };

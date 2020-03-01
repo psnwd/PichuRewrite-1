@@ -1,7 +1,7 @@
 {
   "name": "pichu", 
   "description": "No description",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -10,7 +10,7 @@
     "node": "12.13.0"
   },
   "dependencies": {
-    "discord.js": "11.5.1",
+    "discord.js": "^12.0.0",
     "dblapi.js": "2.3.1",
     "ksoft.js": "^3.1.4",
     "@discordjs/opus": "^0.1.0",

@@ -2,9 +2,9 @@ module.exports = {
 name: 'serverlist',
 description: 'Serverlist',
 category: 'owner',
-execute(client,message) {
+async execute(client,message) {
  let string = '';
-client.guilds.forEach(guild => {
+client.guilds.cache.forEach(guild => {
     string += guild.name + '\n';})
     
     

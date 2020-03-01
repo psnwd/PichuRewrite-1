@@ -11,25 +11,31 @@ module.exports = {
   name: 'eval',
   description: 'Eval something',
   category: 'owner',
-  execute(client,message,args,dbl) {
+  async execute(client,message,args,dbl) {
    try {
       const code = args.join(" ");
       let evaled = eval(code);
  
       if (typeof evaled !== "string")
         evaled = require("util").inspect(evaled);
-      const successembed = new Discord.RichEmbed()
+      const successembed = new Discord.MessageEmbed()
       .setColor('RANDOM')
       .setDescription('Pichu eval command results :')
-      .addField('Input :',args)
-      .addField('Output :', `\`\`\`js\n${clean(evaled)}\`\`\``)
+      .addFields(
+        {name: 'Input :', value: args},
+        {name: 'Output', value: `\`\`\`js\n${clean(evaled)}\`\`\``}
+      )
+      .setFooter('Made by Lumap#0149')
       message.react('✅').then(message.channel.send(successembed));
     } catch (err) {
-      const failureembed = new Discord.RichEmbed()
+      const failureembed = new Discord.MessageEmbed()
       .setColor('RANDOM')
       .setDescription('Pichu eval command results :')
-      .addField('Input :',args)
-      .addField('Error :', `\`\`\`js\n${clean(err)}\`\`\``)
+      .addFields(
+        {name: 'Input :', value: args},
+        {name: 'Error :', value: `\`\`\`js\n${clean(err)}\`\`\``}
+        )
+        .setFooter('Made by Lumap#0149')
       message.react('✖️').then(message.channel.send(failureembed));
     }
   },

@@ -7,7 +7,7 @@ module.exports = {
   aliases: ['shell','sh'],
   category: 'owner',
   description: "It's a cool command!",
- execute(client,message,args) {
+  async execute(client,message,args) {
 
  let date = new Date()
   exec(args.join(" "), function (err, stdout, stderr) {
@@ -18,12 +18,15 @@ module.exports = {
       message.channel.send(`The output is too big sending it to the js console insted!\nThe output is ${err.length + stdout.length + stderr.length} / 1024 long!`)
       console.log(`${err}\n${stdout}\n${stderr}`);
     } else {
-      const embed = new RichEmbed()
+      const embed = new MessageEmbed()
         .setTitle("Terminal")
         .setColor("55ff55 ")
-        .addField("**err**", err + "** **")
-        .addField("**stdout**", stdout + "** **")
-        .addField("**stderr**", stderr + "** **");
+        .addFields(
+          {name: "**err**", value: err + "** **"},
+          {name: "**stdout**", value: stdout + "** **"},
+          {name: "**stderr**", value: stderr + "** **"}
+        )
+        .setFooter('Made by Lumap#0149')
       message.channel.send(embed);
     };
   });

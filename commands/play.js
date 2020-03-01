@@ -11,7 +11,7 @@ module.exports = {
         const queue = message.client.queue;
          const serverQueue = message.client.queue.get(message.guild.id);
    
-		const voiceChannel = message.member.voiceChannel;
+		const voiceChannel = message.member.voice.channel;
 		if (!voiceChannel) return message.channel.send('You\'re not in a voice channel!');
 		const permissions = voiceChannel.permissionsFor(message.client.user);
 		if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
@@ -70,10 +70,11 @@ module.exports = {
 			return;
 		}
 	
-		const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
+		const dispatcher = serverQueue.connection.play(ytdl(song.url))
 			.on('end', () => {
 				console.log('Finish!');
 				serverQueue.songs.shift();
+				message.channel.send('Now playing :'+serverQueue.songs[0].title)
 				this.play(message, serverQueue.songs[0]);
 			})
 			.on('error', error => {

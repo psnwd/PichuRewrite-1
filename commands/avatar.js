@@ -3,15 +3,16 @@ module.exports = {
   aliases: ['pfp'],
   category: 'utility',
 	description: 'Shows user avatar',
-	execute(client,message,args) {
+	async execute(client,message,args) {
 let user = client.users.get(args.join(' ')) || message.mentions.users.first() || message.author 
 
         const Discord = require('discord.js')
-            let avatar = user.avatarURL
-            let avataremb = new Discord.RichEmbed()
+            let avatar = user.avatarURL({format: 'png', dynamic: true, size: 2048})
+            let avataremb = new Discord.MessageEmbed()
             .setColor('RANDOM')
             .setDescription(`[Click here to download](${avatar})`)
             .setImage(avatar)
+            .setFooter('Made by Lumap#0149')
             message.channel.send(avataremb)
         
 

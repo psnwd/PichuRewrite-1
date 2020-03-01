@@ -17,7 +17,7 @@ client.version = require('./package.json').version
 //
 //
 //Part to customize if you want to selfhost the bot
-client.ownerID = proness.env.ownerID//insert ID here
+client.ownerID = process.env.ownerID//insert ID here
 client.prefix = process.env.prefix//insert prefix here 
 client.bot_token = process.env.bot_token//insert bot token here
 client.dbl_token = process.env.dbl_token
@@ -55,7 +55,7 @@ client.commands = new Discord.Collection()
 //client events
 client.once('ready', () => {
 console.log(`Logged in as ${client.user.tag}!`)
-client.user.setActivity(`Is a pokémon | ${client.guilds.size} servers | ${client.prefix}help`) 
+client.user.setActivity(`Is a pokémon | ${client.guilds.cache.size} servers | ${client.prefix}help`) 
 })
 client.once("reconnecting", () => {
   console.log("Reconnecting!");
@@ -66,7 +66,7 @@ client.once("disconnect", () => {
 
 //set current game to resresh every minute (for server count)
 setInterval(function(){
-  client.user.setActivity(`Is a pokémon | ${client.guilds.size} servers | ${client.prefix}help`) 
+  client.user.setActivity(`Is a pokémon | ${client.guilds.cache.size} servers | ${client.prefix}help`) 
 }, 60000);
 
 //message time
@@ -88,11 +88,12 @@ const args = message.content.slice(client.prefix.length).split(' ').slice(1)
             await command.execute(client,message,args,dbl)
          
         } catch (err) {
-          let error = new Discord.RichEmbed()
+          let error = new Discord.MessageEmbed()
           .setColor('RED')
           .setAuthor('Oops! Soemthing went wrong!')
           .setDescription('Hi. An error happend during the execution of the **'+command.name+'* command. You should never get an error like that. Please contact Lumap#1049 with this error :')
-          .addField('Error :', `\`\`\`js\n${err}\`\`\``)
+          .addFields(
+            { name: 'Error :', value: `\`\`\`js\n${err}\`\`\``})
           message.reply(error)
             console.log(err)
         }
