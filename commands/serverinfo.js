@@ -11,11 +11,11 @@ module.exports = {
         if (server.verified) {verified = 'Yes'}
         else {verified = 'No'}
 
-        let e = new Discord.RichEmbed()
+        let e = new Discord.MessageEmbed()
         .setColor('RANDOM')
         .setAuthor('Server info :')
         .setThumbnail(server.iconURL)
-        e.addFields(
+        .addFields(
           {name: 'Server name :', value: server.name, inline: true},
           {name: 'Server ID :', value: server.id, inline: true},
           {name: 'Owner ID :', value: server.ownerID, inline: true},
