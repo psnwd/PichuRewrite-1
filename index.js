@@ -85,10 +85,11 @@ const args = message.content.slice(client.prefix.length).split(' ').slice(1)
         const command = client.commands.get(commandName)
             || client.commands.find(cmd => cmd.aliases &&                       cmd.aliases.includes(commandName))
         if (!command) return;
-        try {
-         if (command.category === 'owner') {
+        if (command.category === 'owner') {
           if (message.author.id !== client.ownerID) return message.reply("You tried to execute a owner-only command, and you can't do that :(")
          }
+        try {
+         
     
             await command.execute(client,message,args,dbl)
          
