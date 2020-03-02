@@ -31,7 +31,7 @@
             if (!bottags) bottags = 'No tags'
             e.addFields({ name: 'Bot tags :', value: bottags, inline: true })
             if (bot.website) {e.addFields({ name: 'Bot website :', value: bot.website, inline: true })}
-            if (bot.support) {e.addFields({ name: 'Bot support server invite : ', value: 'discord.gg/'+bot.support, inline: true })}
+            if (bot.support) {e.addFields({ name: 'Bot support server invite : ', value: 'https://discord.gg/'+bot.support, inline: true })}
             if (bot.github) {e.addFields({ name: 'Bot github repo :', value: bot.github, inline: true })}
             let botowners = ''
             bot.owners.forEach(owner => botowners += owner + ', ')
