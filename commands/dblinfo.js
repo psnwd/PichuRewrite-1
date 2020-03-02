@@ -7,7 +7,7 @@
     category: 'misc',
     async execute(client,message,args,dbl) {
         if (!args) return message.channel.send('Please mention the bot or give bot ID');
-        let user = message.mentions.users.first() || client.users.cache.get(args.join(' '))
+        let user = message.mentions.users.first() || client.users.cache.get(args.join(' ')) || client.users.cache.find(user => user.username === args.join(' '))
         if (!user) return message.channel.send('Bot not found!');
         if (!user.bot) return message.channel.send('This is not a bot!');
         dbl.getBot(user.id).then(bot => {
