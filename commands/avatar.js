@@ -4,8 +4,8 @@ module.exports = {
   category: 'utility',
 	description: 'Shows user avatar',
 	async execute(client,message,args) {
-    let user = message.mentions.users.first() || message.guild.members.cache.find(member => member.user.id === args.join(' '))|| message.guild.members.cache.find(member => member.nickname === args.join(' ') || member.user.username.toLowerCase() === args.join(' ').toLowerCase()) || message.author;
- 
+let user = client.users.cache.get(args.join(' ')) || message.mentions.users.first() || message.author 
+
         const Discord = require('discord.js')
             let avatar = user.avatarURL({format: 'png', dynamic: true, size: 2048})
             let avataremb = new Discord.MessageEmbed()
