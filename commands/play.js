@@ -8,6 +8,7 @@ module.exports = {
     description: 'Play a song!',
     category: 'music',
     async execute(client,message,args) {
+if (!args) return;
         const queue = message.client.queue;
          const serverQueue = message.client.queue.get(message.guild.id);
    
@@ -19,6 +20,7 @@ module.exports = {
 		}
 
 		const songInfo = await ytdl.getInfo(args[0]);
+if (!songInfo) return message.channel.send('Invalid YouTube URL/song!');
 		const song = {
 			title: songInfo.title,
 			url: songInfo.video_url,
