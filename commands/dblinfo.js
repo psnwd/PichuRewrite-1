@@ -34,7 +34,7 @@
             if (bot.support) {e.addFields({ name: 'Bot support server invite : ', value: 'discord.gg/'+bot.support, inline: true })}
             if (bot.github) {e.addFields({ name: 'Bot github repo :', value: bot.github, inline: true })}
             let botowners = ''
-            bot.owners.forEach(owner => botowners += owner)
+            bot.owners.forEach(owner => botowners += owner + ', ')
             e.addFields({name: 'Bot owners ID :', value: botowners})
             if (bot.invite) {e.addFields({ name: 'Bot invite link :', value: bot.invite, inline: true })}
             e.addFields({ name: 'Bot approval date :', value: bot.date, inline: true })
