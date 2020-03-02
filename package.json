@@ -1,7 +1,7 @@
 {
   "name": "pichu", 
   "description": "No description",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
