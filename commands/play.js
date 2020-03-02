@@ -74,7 +74,7 @@ if (!songInfo) return message.channel.send('Invalid YouTube URL/song!');
 		}
 	
 		const dispatcher = serverQueue.connection.play(ytdl(song.url))
-			.on('end', () => {
+			.on('finish', () => {
 				console.log('Finish!');
 				serverQueue.songs.shift();
 				message.channel.send('Now playing :'+serverQueue.songs[0].title)
