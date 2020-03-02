@@ -8,7 +8,7 @@ module.exports = {
     description: 'Play a song!',
     category: 'music',
     async execute(client,message,args) {
-if (!args) return;
+
         const queue = message.client.queue;
          const serverQueue = message.client.queue.get(message.guild.id);
    
@@ -17,7 +17,8 @@ if (!args) return;
 		const permissions = voiceChannel.permissionsFor(message.client.user);
 		if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
 			return message.channel.send('I/You don\'t have the permissions to do that!');
-		}
+		} 
+if (!args) return;
 
 		const songInfo = await ytdl.getInfo(args[0]);
 if (!songInfo) return message.channel.send('Invalid YouTube URL/song!');
