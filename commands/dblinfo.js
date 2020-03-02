@@ -24,8 +24,11 @@
               { name: 'Bot prefix(es) :', value: bot.prefix, inline: true },
               { name: 'Bot short desc :', value: bot.shortdesc, inline: true },
               { name: 'Bot total votes :', value: bot.points, inline: true },
-              { name: 'Bot monthly votes :', value: bot.monthlyPoints, inline: true })
-            
+              { name: 'Bot monthly votes :', value: bot.monthlyPoints, inline: true },
+              {name: 'Bot top.gg page :', value: 'https://top.gg/bot/'+user.id, inline: true},
+              {name: 'Link to vote for this bot :', value: 'https://top.gg/bot/'+user.id+'/vote', inline: true}
+              )
+              
             let bottags = ''
             bot.tags.forEach(tag => bottags += tag+', ')
             if (!bottags) bottags = 'No tags'
