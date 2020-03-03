@@ -10,7 +10,7 @@ module.exports = {
         const output = []
         for (let i = 0; i < Math.min(serverQueue.songs.length, 10); i++) {
           output[i] = [
-            `-[${serverQueue.songs[i].title}](${serverQueue.songs[i].url})`
+            `-${serverQueue.songs[i].title}\n`
           ].join('\n');
         }
         if (queue.length > 10) output.push(`\nShowing 10 songs of ${queue.length}`);
