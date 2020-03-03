@@ -14,7 +14,7 @@ module.exports = {
         let e = new Discord.MessageEmbed()
         .setColor('RANDOM')
         .setAuthor('Server info :')
-        .setThumbnail(server.iconURL({format: 'png', dynamic: true, size: 2048})
+        .setThumbnail(server.iconURL({format: 'png', dynamic: true, size: 2048})) 
         .addFields(
           {name: 'Server name :', value: server.name, inline: true},
           {name: 'Server ID :', value: server.id, inline: true},
@@ -28,7 +28,7 @@ module.exports = {
           {name: 'Verification level :', value: server.verificationLevel, inline: true},
           {name: 'Is this guild verified ?', value: verified, inline: true}
         )
-        .setFooter('Mad by Lumap#0149')
+        .setFooter('Made by Lumap#0149')
         message.channel.send(e)
 	},
 };
