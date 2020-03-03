@@ -5,7 +5,7 @@ module.exports = {
     name: 'play',
     description: 'Play a song!',
     category: 'music',
-    async execute(client,message,args,queue) {
+    async execute(client,message,args,dbl,queue) {
 
 	
 

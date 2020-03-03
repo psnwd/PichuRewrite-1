@@ -2,7 +2,7 @@ module.exports = {
     name: 'queue',
     category: 'music',
       description: 'Shows server queue',
-      async execute(client,message,args,queue) {
+      async execute(client,message,args,dbl,queue) {
 
         const serverQueue = queue.get(message.guild.id);
 		if (!message.member.voice.channel) return message.channel.send('Please add me in a voice channel');
