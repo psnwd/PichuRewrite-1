@@ -12,7 +12,7 @@ module.exports = {
 		let nowplaying = new Discord.MessageEmbed()
 		.setColor('RANDOM')
 		.addFields(
-			{name: 'Now playing :', value: song.title || serverQueue.songs[0].title}
+			{name: 'Now playing :', value: '['+song.title+']('+song.url+')' || '['+serverQueue.songs[0].title+']('+serverQueue.songs[0].url+')'}
 		)
 		.setFooter('Made by Lumap#0149')
 
