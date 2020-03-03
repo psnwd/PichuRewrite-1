@@ -9,6 +9,20 @@ module.exports = {
     category: 'music',
     async execute(client,message,args) {
 
+		let nowplaying = new Discord.MessageEmbed()
+		.setColor('RANDOM')
+		.addFields(
+			{name: 'Now playing :', value: song.title || serverQueue.songs[0].title}
+		)
+		.setFooter('Made by Lumap#0149')
+
+		let addedtoqueue = new Discord.MessageEmbed()
+			.setColor('RANDOM')
+			.addFields(
+				{name: song.title, value: 'has been added to the queue!'}
+			)
+			.setFooter('Made by Lumap#0149')
+
         const queue = message.client.queue;
          const serverQueue = message.client.queue.get(message.guild.id);
    
@@ -50,12 +64,7 @@ if (!songInfo) return message.channel.send('Invalid YouTube URL/song!');
         
 				this.play(message, queueContruct.songs[0]);
 
-		let nowplaying = new Discord.MessageEmbed()
-		.setColor('RANDOM')
-		.addFields(
-			{name: 'Now playing :', value: song.title || serverQueue.songs[0].title}
-		)
-		.setFooter('Made by Lumap#0149')
+		
 
      message.channel.send(nowplaying);
 			} catch (err) {
@@ -66,12 +75,7 @@ if (!songInfo) return message.channel.send('Invalid YouTube URL/song!');
 		} else {
 			serverQueue.songs.push(song);
 
-			let addedtoqueue = new Discord.MessageEmbed()
-			.setColor('RANDOM')
-			.addFields(
-				{name: song.title, value: 'has been added to the queue!'}
-			)
-			.setFooter('Made by Lumap#0149')
+			
 			return message.channel.send(addedtoqueue);
 		}
 	},
