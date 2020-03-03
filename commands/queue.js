@@ -14,7 +14,7 @@ module.exports = {
           ].join('\n');
         }
         if (queue.length > 10) output.push(`\nShowing 10 songs of ${queue.length}`);
-        message.channel.Send(output.join(' '))
+        message.channel.send(output.join(' '))
        // message.channel.send([
         //    "__**Song queue:**__",
          //   serverQueue.songs.map(song => "- " + song.title).join("\n")

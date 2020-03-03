@@ -48,6 +48,7 @@ module.exports = {
 				  errors: ['time']
 				});
 			  } catch(e) {
+				  console.log(e)
 				return message.channel.send("❌ Video selection timed out.")
 			  }
 			  const videoIndex = parseInt(response.first().content)
