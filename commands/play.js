@@ -77,7 +77,9 @@ if (!songInfo) return message.channel.send('Invalid YouTube URL/song!');
 			.on('finish', () => {
 				console.log('Finish!');
 				serverQueue.songs.shift();
+                                if (serverQueue.songs[0]){
 				message.channel.send('Now playing :'+serverQueue.songs[0].title)
+                               } 
 				this.play(message, serverQueue.songs[0]);
 			})
 			.on('error', error => {
