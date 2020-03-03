@@ -1,112 +1,121 @@
-const Discord = require('discord.js')
-const {
-	Util
-} = require('discord.js');
-const ytdl = require('ytdl-core');
+
 module.exports = {
     name: 'play',
     description: 'Play a song!',
     category: 'music',
     async execute(client,message,args) {
 
-		
+		const ytdl = require("ytdl-core"), ytpl = require("ytpl"), ytsearch = require("yt-search"), { Util } = require("discord.js"), Discord = require('discord.js');
 
-	     const queue = message.client.queue;
-         const serverQueue = message.client.queue.get(message.guild.id);
-   
+
+		
 		const voiceChannel = message.member.voice.channel;
-		if (!voiceChannel) return message.channel.send('You\'re not in a voice channel!');
-		const permissions = voiceChannel.permissionsFor(message.client.user);
-		if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
-			return message.channel.send('I/You don\'t have the permissions to do that!');
-		} 
-if (!args) return;
-
-		const songInfo = await ytdl.getInfo(args[0]);
-if (!songInfo) return message.channel.send('Invalid YouTube URL/song!');
-		const song = {
-			title: songInfo.title,
-			url: songInfo.video_url,
-		};
-       
-
-		if (!serverQueue) {
-			const queueContruct = {
-				textChannel: message.channel,
-				voiceChannel: voiceChannel,
-				connection: null,
-				songs: [],
-				volume: 5,
-				playing: true,
-			};
-
-			queue.set(message.guild.id, queueContruct);
-
-			queueContruct.songs.push(song);
-      
-
-			let nowplaying = new Discord.MessageEmbed()
-			.setColor('RANDOM')
-			.addFields(
-				{name: 'Now playing :', value: '['+song.title+']('+song.url+')'}			)
-			.setFooter('Made by Lumap#0149')
-			
-			try {
-				var connection = await voiceChannel.join();
-				queueContruct.connection = connection;
-        
-				this.play(message, queueContruct.songs[0]);
-
-		
-
-     message.channel.send(nowplaying);
-			} catch (err) {
-				console.log(err);
-				queue.delete(message.guild.id);
-				return message.channel.send(err);
-			}
+		if (!voiceChannel) return message.channel.send("❌ You are not in a voice channel, please join one first!")
+	  
+		const permissions = voiceChannel.permissionsFor(message.guild.me)
+		if (!permissions.has("CONNECT")) return message.channel.send("❌ I don't have permission to connect to the voice channel!")
+		if (!permissions.has("SPEAK")) return message.channel.send("❌ I don't have permission to speak in the voice channel!")
+	  
+		const url = args.join(" ")
+		if (url.includes("list=")) {
+		  const playlist = await ytpl(url.split("list=")[1])
+		  const videos = playlist.items;
+	  
+		  message.channel.send("✅ Playlist **" + playlist.title + "** (" + videos.length + ") has been added to the queue!")
+	  
+		  for (const video of videos) await queueSong(video, message, voiceChannel, queue)
 		} else {
-			serverQueue.songs.push(song);
-
-			let addedtoqueue = new Discord.MessageEmbed()
-			.setColor('RANDOM')
-			.addFields(
-				{name: 'Song succesfully added to the queue!', value: '['+song.title+']('+song.url+')'}
-			)
-			.setFooter('Made by Lumap#0149')
-
-			return message.channel.send(addedtoqueue);
+		  let video;
+		  try {
+			video = await ytdl.getBasicInfo(url)
+		  } catch(e) {
+			try {
+			  const results = await ytsr(url)
+			  const videos = results.videos.slice(0, 10)
+			  let index = 0;
+			  await message.channel.send([
+				"__**Song selection:**__",
+				videos.map(v => ++index + " - **" + v.title + "**").join("\n"),
+				"**Select your song by sending the number from 1 to " + videos.length + " in chat.**"
+			  ].join("\n\n"))
+	  
+			  let response;
+			  try {
+				response = await message.channel.awaitMessages(msg => 0 < msg.content && msg.content < videos.length + 1 && msg.author.id == message.author.id, {
+				  maxMatches: 1,
+				  time: 10000,
+				  errors: ['time']
+				});
+			  } catch(e) {
+				return message.channel.send("❌ Video selection timed out.")
+			  }
+			  const videoIndex = parseInt(response.first().content)
+			  video = await ytdl.getBasicInfo(videos[videoIndex - 1].videoId)
+			} catch(e) {
+			  console.log(e)
+			  return message.channel.send("❌ No search results found.")
+			}
+		  }
+		  
+		  await message.channel.send("✅ Song **" + video.title + "** has been added to the queue!")
+		  return await queueSong(video, message, voiceChannel, queue)
 		}
-	},
-
-	play(message, song) {
-		const queue = message.client.queue;
-		const guild = message.guild;
-		const serverQueue = queue.get(message.guild.id);
-	
+	  
+	  
+	  async function queueSong(video, message, voiceChannel, queue) {
+		const serverQueue = queue.get(message.guild.id)
+	  
+		const song = {
+		  id: video.id || video.video_id,
+		  title: Util.escapeMarkdown(video.title),
+		  url: "https://www.youtube.com/watch?v=" + (video.id || video.video_url)
+		}
+	  
+		if (!serverQueue) {
+		  const queueConstruct = {
+			textChannel: message.channel,
+			voiceChannel,
+			connection: null,
+			songs: [song],
+			volume: 50,
+			playing: true
+		  }
+	  
+		  try {
+			const connection = await voiceChannel.join();
+			queueConstruct.connection = connection;
+			queue.set(message.guild.id, queueConstruct)
+			playSong(message.guild, queue, queueConstruct.songs[0])
+		  } catch(e) {
+			console.log(e)
+			message.channel.send("❌ An unknown error occoured upon trying to join the voice channel!")
+			return queue.delete(message.guild.id)
+		  }
+		} else serverQueue.songs.push(song);
+	  
+		return;
+	  }
+	  
+	  async function playSong(guild, queue, song) {
+		const serverQueue = queue.get(guild.id);
+	  
 		if (!song) {
-			serverQueue.voiceChannel.leave();
-			queue.delete(guild.id);
-			return;
+		  serverQueue.voiceChannel.leave();
+		  queue.delete(guild.id);
+		  return;
 		}
-	
-		const dispatcher = serverQueue.connection.play(ytdl(song.url))
-			.on('finish', () => {
-				serverQueue.songs.shift();
-                                if (serverQueue.songs[0]){
-									let nowplaying = new Discord.MessageEmbed()
-		.setColor('RANDOM')
-		.addFields(
-			{name: 'Now playing :', value: '['+serverQueue.songs[0].title+']('+serverQueue.songs[0].url+')'}
-		)
-		.setFooter('Made by Lumap#0149')
-				message.channel.send(nowplaying)
-                               } 
-				this.play(message, serverQueue.songs[0]);
-			})
-			.on('error', error => {
-				console.error(error);
-			});
-		dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+	  
+		serverQueue.connection.play(ytdl(song.id))
+		  .on("finish", reason => {
+			serverQueue.songs.shift();
+			playSong(guild, queue, serverQueue.songs[0])
+		  })
+		  .on("error", console.error)
+		  .setVolumeLogarithmic(serverQueue.volume / 250)
+		
+		serverQueue.textChannel.send("🎶 Now playing **" + song.title + "**")
+	  }
     },
 }
+
+const ytsr = (url) => new Promise((resolve, reject) => ytsearch(url, (err, r) => err ? reject(err) : resolve(r)))
