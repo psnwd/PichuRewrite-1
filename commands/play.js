@@ -1,10 +1,12 @@
 const ytdl = require("ytdl-core"), ytpl = require("ytpl"), ytsearch = require("yt-search"), { Util } = require("discord.js"), Discord = require('discord.js');
+let queue = new Map()
+
 
 module.exports = {
     name: 'play',
     description: 'Play a song!',
     category: 'music',
-    async execute(client,message,args,queue) {
+    async execute(client,message,args) {
 
 	
 
