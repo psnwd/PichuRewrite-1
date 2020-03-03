@@ -5,7 +5,7 @@ const newUsers = new Discord.Collection()
 const path = require('path')
 const client = new Client()
 const fs = require('fs')
-const queue = new Map()
+let queue = new Map()
 client.version = require('./package.json').version
 
 
@@ -83,7 +83,7 @@ const args = message.content.slice(client.prefix.length).split(' ').slice(1)
         try {
          
     
-            await command.execute(client,message,args,dbl)
+            await command.execute(client,message,args,dbl,queue)
          
         } catch (err) {
           let error = new Discord.MessageEmbed()

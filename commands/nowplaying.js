@@ -3,8 +3,8 @@ module.exports = {
   aliases: ['np'],
   category: 'music',
 	description: 'What song is currently playing?',
-	async execute(client,message) {
-		const serverQueue = message.client.queue.get(message.guild.id);
+	async execute(client,message,queue) {
+		const serverQueue = queue.get(message.guild.id);
  
 		if (!serverQueue) return message.channel.send('No song is playing right now :(');
 ;
