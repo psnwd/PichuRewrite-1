@@ -49,8 +49,15 @@ if (!songInfo) return message.channel.send('Invalid YouTube URL/song!');
 				queueContruct.connection = connection;
         
 				this.play(message, queueContruct.songs[0]);
-        
-     message.channel.send('Now playing '+song.title);
+
+		let nowplaying = new Discord.MessageEmbed()
+		.setColor('RANDOM')
+		.addFields(
+			{name: 'Now playing :', value: song.title || serverQueue.songs[0].title}
+		)
+		.setFooter('Made by Lumap#0149')
+
+     message.channel.send(nowplaying);
 			} catch (err) {
 				console.log(err);
 				queue.delete(message.guild.id);
@@ -58,7 +65,14 @@ if (!songInfo) return message.channel.send('Invalid YouTube URL/song!');
 			}
 		} else {
 			serverQueue.songs.push(song);
-			return message.channel.send(song.title+' has been added to the queue!');
+
+			let addedtoqueue = new Discord.MessageEmbed()
+			.setColor('RANDOM')
+			.addFields(
+				{name: song.title, value: 'has been added to the queue!'}
+			)
+			.setFooter('Made by Lumap#0149')
+			return message.channel.send(addedtoqueue);
 		}
 	},
 
@@ -75,10 +89,9 @@ if (!songInfo) return message.channel.send('Invalid YouTube URL/song!');
 	
 		const dispatcher = serverQueue.connection.play(ytdl(song.url))
 			.on('finish', () => {
-				console.log('Finish!');
 				serverQueue.songs.shift();
                                 if (serverQueue.songs[0]){
-				message.channel.send('Now playing :'+serverQueue.songs[0].title)
+				message.channel.send(nowplaying)
                                } 
 				this.play(message, serverQueue.songs[0]);
 			})
