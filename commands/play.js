@@ -71,10 +71,10 @@ if (!songInfo) return message.channel.send('Invalid YouTube URL/song!');
 			let addedtoqueue = new Discord.MessageEmbed()
 			.setColor('RANDOM')
 			.addFields(
-				{name: song.title, value: 'has been added to the queue!'}
+				{name: 'Song succesfully added to the queue!', value: '['+song.title+']('+song.url+')'}
 			)
 			.setFooter('Made by Lumap#0149')
-			
+
 			return message.channel.send(addedtoqueue);
 		}
 	},
