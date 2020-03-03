@@ -7,14 +7,24 @@ module.exports = {
         const serverQueue = queue.get(message.guild.id);
 		if (!message.member.voice.channel) return message.channel.send('Please add me in a voice channel');
         if (!serverQueue) return message.channel.send('The queue is empty!');
+
+
         const output = []
         for (let i = 0; i < Math.min(serverQueue.songs.length, 10); i++) {
           output[i] = [
             `-${serverQueue.songs[i].title}\n`
           ].join('\n');
         }
-        if (queue.length > 10) output.push(`\nShowing 10 songs of ${queue.length}`);
-        message.channel.send(output.join(' '))
+       
+
+       const Discord = require('discord.js')
+       let queue = new Discord.MessageEmbed()
+       .setColor('RANDOM')
+       for (let i = 0; i < output.length; i++) {
+         queue.addFields({name: i+1, value: output[i]})
+       }
+
+        message.channel.send(queue)
        // message.channel.send([
         //    "__**Song queue:**__",
          //   serverQueue.songs.map(song => "- " + song.title).join("\n")
