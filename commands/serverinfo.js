@@ -14,7 +14,7 @@ module.exports = {
         let e = new Discord.MessageEmbed()
         .setColor('RANDOM')
         .setAuthor('Server info :')
-        .setThumbnail(server.iconURL)
+        .setThumbnail(server.iconURL({format: 'png', dynamic: true, size: 2048})
         .addFields(
           {name: 'Server name :', value: server.name, inline: true},
           {name: 'Server ID :', value: server.id, inline: true},
