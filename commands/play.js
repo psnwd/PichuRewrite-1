@@ -9,12 +9,7 @@ module.exports = {
     category: 'music',
     async execute(client,message,args) {
 
-		let nowplaying = new Discord.MessageEmbed()
-		.setColor('RANDOM')
-		.addFields(
-			{name: 'Now playing :', value: '['+song.title+']('+song.url+')' || '['+serverQueue.songs[0].title+']('+serverQueue.songs[0].url+')'}
-		)
-		.setFooter('Made by Lumap#0149')
+		
 
 		let addedtoqueue = new Discord.MessageEmbed()
 			.setColor('RANDOM')
@@ -57,7 +52,12 @@ if (!songInfo) return message.channel.send('Invalid YouTube URL/song!');
 			queueContruct.songs.push(song);
       
 
-
+			let nowplaying = new Discord.MessageEmbed()
+			.setColor('RANDOM')
+			.addFields(
+				{name: 'Now playing :', value: '['+song.title+']('+song.url+')'}			)
+			.setFooter('Made by Lumap#0149')
+			
 			try {
 				var connection = await voiceChannel.join();
 				queueContruct.connection = connection;
@@ -95,6 +95,12 @@ if (!songInfo) return message.channel.send('Invalid YouTube URL/song!');
 			.on('finish', () => {
 				serverQueue.songs.shift();
                                 if (serverQueue.songs[0]){
+									let nowplaying = new Discord.MessageEmbed()
+		.setColor('RANDOM')
+		.addFields(
+			{name: 'Now playing :', value: '['+serverQueue.songs[0].title+']('+serverQueue.songs[0].url+')'}
+		)
+		.setFooter('Made by Lumap#0149')
 				message.channel.send(nowplaying)
                                } 
 				this.play(message, serverQueue.songs[0]);
