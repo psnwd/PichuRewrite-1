@@ -14,7 +14,7 @@
     "dblapi.js": "2.3.1",
     "ksoft.js": "^3.1.4",
     "ytpl": "^0.1.20",
-    "ytsearch": "^1.0.4",
+    "yt-search": "^1.0.4",
     "@discordjs/opus": "^0.1.0",
     "ffmpeg-static": "^4.0.1",
     "sodium":"^3.0.2",
