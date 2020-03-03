@@ -5,7 +5,7 @@ const newUsers = new Discord.Collection()
 const path = require('path')
 const client = new Client()
 const fs = require('fs')
-let queue = new Map()
+
 client.version = require('./package.json').version
 
 
@@ -65,6 +65,8 @@ client.on("disconnect", () => {
 setInterval(function(){
   client.user.setActivity(`Is a pokémon | ${client.guilds.cache.size} servers | ${client.prefix}help`) 
 }, 60000);
+
+let queue = new Map()
 
 //message time
 client.on('message', async message =>{
