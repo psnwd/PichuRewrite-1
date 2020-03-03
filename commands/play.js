@@ -1,3 +1,4 @@
+const ytdl = require("ytdl-core"), ytpl = require("ytpl"), ytsearch = require("yt-search"), { Util } = require("discord.js"), Discord = require('discord.js');
 
 module.exports = {
     name: 'play',
@@ -5,8 +6,7 @@ module.exports = {
     category: 'music',
     async execute(client,message,args) {
 
-		const ytdl = require("ytdl-core"), ytpl = require("ytpl"), ytsearch = require("yt-search"), { Util } = require("discord.js"), Discord = require('discord.js');
-
+	
 
 		
 		const voiceChannel = message.member.voice.channel;
