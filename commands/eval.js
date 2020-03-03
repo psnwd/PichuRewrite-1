@@ -11,7 +11,7 @@ module.exports = {
   name: 'eval',
   description: 'Eval something',
   category: 'owner',
-  async execute(client,message,args,dbl) {
+  async execute(client,message,args,dbl,queue) {
    try {
       const code = args.join(" ");
       let evaled = eval(code);
