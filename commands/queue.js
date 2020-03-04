@@ -9,7 +9,7 @@ module.exports = {
 		if (!message.member.voice.channel) return message.channel.send('Please add me in a voice channel');
         if (!serverQueue) return message.channel.send('The queue is empty!');
         const output = []
-        for (let i = 1; i < Math.min(serverQueue.songs.length+1, 11); i++) {
+        for (let i = 1; i < Math.min(serverQueue.songs.length, 11); i++) {
           output[i] = [
             `-[${serverQueue.songs[i].title}](${serverQueue.songs[i].url})\n`
           ].join('\n');
