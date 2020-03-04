@@ -15,7 +15,7 @@ module.exports = {
   .setColor('RANDOM')
   .setDescription('Nithing is playong right now')
   .setFooter('Made by Lumap#0149'))
-  if (!serverQueue.playing) return message.channel.send(new Discord.MessageEmbed()
+  if (serverQueue.playing) return message.channel.send(new Discord.MessageEmbed()
   .setColor('RANDOM')
   .setDescription('The player is alerady resumed!')
   .setFooter('Made by Lumap#0149'))
