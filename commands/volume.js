@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'voluma',
+    name: 'volume',
     category: 'music',
       description: 'Changes the volume',
       async execute(client,message,args,dbl,queue) {
