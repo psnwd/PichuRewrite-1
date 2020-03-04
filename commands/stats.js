@@ -2,7 +2,7 @@ module.exports = {
     name: 'stats',
     category: 'misc',
 	description: "Bot statuts",
-	async execute(client,message) {
+	async execute(client,message,args,dbl,queue) {
   const Discord = require('discord.js')
     
     let totalSeconds = (client.uptime / 1000);
@@ -15,7 +15,7 @@ let seconds = totalSeconds % 60;
     const user = message.author
  let h = 0;
 client.guilds.cache.forEach(g => {h = h + g.memberCount});
-let playingmusic = message.client.queue.size
+let playingmusic = queue.size
 if (!playingmusic) playingmusic = 0
    
     const embed1 = new Discord.MessageEmbed()

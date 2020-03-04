@@ -43,7 +43,7 @@ module.exports = {
 			  let response;
 			  try {
 				response = await message.channel.awaitMessages(msg => 0 < msg.content && msg.content < videos.length + 1 && msg.author.id == message.author.id, {
-				  maxMatches: 1,
+				  max: 1,
 				  time: 10000,
 				  errors: ['time']
 				});
