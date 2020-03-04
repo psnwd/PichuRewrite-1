@@ -18,7 +18,11 @@ module.exports = {
         .setColor('RANDOM')
         .setAuthor('Server queue')
         .setDescription('**'+output.join(' ')+'**')
-        if (queue.length > 10) {queueemb.setFooter('Made by Lumap#0149 | '+queue.length-10+' more songs...')} else {queueemb.setFooter('Made by Lumap#0149')}
+        if (serverQueue.songs.length > 10) 
+        {queueemb.setFooter('Made by Lumap#0149 | '+serverQueue.songs.length-10+' more songs...')
+      } else {
+        queueemb.setFooter('Made by Lumap#0149')
+      }
         message.channel.send(queueemb)
        // message.channel.send([
         //    "__**Song queue:**__",
