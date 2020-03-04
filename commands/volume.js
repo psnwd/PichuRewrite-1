@@ -31,7 +31,7 @@ module.exports = {
   serverQueue.connection.dispatcher.setVolumeLogarithmic(volume / 250);
   return message.channel.send(new Discord.MessageEmbed()
   .setColor('RANDOM')
-  .setDescrition(`The volume is now **${volume}**!`)
+  .setDescription(`The volume is now **${volume}**!`)
   .setFooter('Made by Lumap#0149'))
           
   

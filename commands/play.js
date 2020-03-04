@@ -137,7 +137,7 @@ module.exports = {
 		
 		serverQueue.textChannel.send(new Discord.MessageEmbed()
 		.setColor('RANDOM')
-		.setDescripton(`Now playing **[${song.title}](${song.url})**`))
+		.setDescription(`Now playing **[${song.title}](${song.url})**`))
 	  }
     },
 }
