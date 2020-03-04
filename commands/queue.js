@@ -19,7 +19,7 @@ module.exports = {
         .setAuthor('Server queue')
         .setDescription('**'+output.join(' ')+'**')
         if (serverQueue.songs.length > 10) 
-        {queueemb.setFooter('Made by Lumap#0149 | '+serverQueue.songs.length-10+' more songs...')
+        {queueemb.setFooter(`${serverQueue.songs.length-10} more songs... @ Made by Lumap#0149`)
       } else {
         queueemb.setFooter('Made by Lumap#0149')
       }
