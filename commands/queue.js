@@ -13,8 +13,13 @@ module.exports = {
             `-${serverQueue.songs[i].title}\n`
           ].join('\n');
         }
-        if (queue.length > 10) output.push(`\nShowing 10 songs of ${queue.length}`);
-        message.channel.send(output.join(' '))
+        const Discord = require('discord.js')
+        let queueemb = new Discord.MessageEmbed()
+        .setColor('RANDOM')
+        .setAuthor('Server queue')
+        .setDescription('**'+output.join(' ')+'**')
+        if (queue.length > 10) {queueemb.setFooter('Made by Lumap#0149 | '+queue.length-10+' more songs...')} else {queueemb.setFooter('Made by Lumap#0149')}
+        message.channel.send(queueemb)
        // message.channel.send([
         //    "__**Song queue:**__",
          //   serverQueue.songs.map(song => "- " + song.title).join("\n")
