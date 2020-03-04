@@ -18,7 +18,7 @@ module.exports = {
         let queueemb = new Discord.MessageEmbed()
         .setColor('RANDOM')
         .setAuthor('Server queue')
-        .setDescription(`__Now playing :__ \n[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})\n\nIncoming : \n**${output.join(' ')}**`)
+        .setDescription(`**__Now playing :__ \n[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})\n\nIncoming : \n${output.join(' ')}**`)
         if (serverQueue.songs.length > 11) 
         {queueemb.setFooter(`${serverQueue.songs.length-11} more songs... | Made by Lumap#0149`)
       } else {
