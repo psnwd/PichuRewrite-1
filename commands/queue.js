@@ -1,5 +1,6 @@
 module.exports = {
     name: 'queue',
+    aliases: ['nowplaying', 'np'],
     category: 'music',
       description: 'Shows server queue',
       async execute(client,message,args,dbl,queue) {
@@ -8,18 +9,18 @@ module.exports = {
 		if (!message.member.voice.channel) return message.channel.send('Please add me in a voice channel');
         if (!serverQueue) return message.channel.send('The queue is empty!');
         const output = []
-        for (let i = 0; i < Math.min(serverQueue.songs.length, 10); i++) {
+        for (let i = 1; i < Math.min(serverQueue.songs.length+1, 11); i++) {
           output[i] = [
-            `-${serverQueue.songs[i].title}\n`
+            `-[${serverQueue.songs[i].title}](${serverQueue.songs[i].url})\n`
           ].join('\n');
         }
         const Discord = require('discord.js')
         let queueemb = new Discord.MessageEmbed()
         .setColor('RANDOM')
         .setAuthor('Server queue')
-        .setDescription('**'+output.join(' ')+'**')
-        if (serverQueue.songs.length > 10) 
-        {queueemb.setFooter(`${serverQueue.songs.length-10} more songs... @ Made by Lumap#0149`)
+        .setDescription(`__Now playing :__ \n[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})\n\nIncoming : \n**${output.join(' ')}**`)
+        if (serverQueue.songs.length > 11) 
+        {queueemb.setFooter(`${serverQueue.songs.length-11} more songs... | Made by Lumap#0149`)
       } else {
         queueemb.setFooter('Made by Lumap#0149')
       }
