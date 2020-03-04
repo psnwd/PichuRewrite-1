@@ -1,8 +1,8 @@
 const Discord = require('discord.js')
 module.exports = {
-    name: 'volume',
+    name: 'resume',
     category: 'music',
-      description: 'Changes the volume',
+      description: 'Resumes the current song',
       async execute(client,message,args,dbl,queue) {
 
         if (!message.member.voice.channel) return message.channel.send(new Discord.MessageEmbed()
