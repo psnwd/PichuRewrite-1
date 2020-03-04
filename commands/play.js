@@ -79,7 +79,7 @@ module.exports = {
 		  
 		  await message.channel.send(new Discord.MessageEmbed()
 		  .setColor('RANDOM')
-		  .setDescription(`**[${video.title}](${video.url})** has been added to the queue!`))
+		  .setDescription(`**${video.title}** has been added to the queue!`))
 		  return await queueSong(video, message, voiceChannel, queue)
 		}
 	  
