@@ -8,6 +8,6 @@ module.exports = {
  
 		if (!serverQueue) return message.channel.send('No song is playing right now :(');
 ;
-		message.channel.send('Now playing '+serverQueue.songs[0].title);
+		message.channel.send('Now playing **'+serverQueue.songs[0].title+'**');
 	},
 };
