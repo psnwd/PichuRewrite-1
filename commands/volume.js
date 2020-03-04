@@ -22,9 +22,9 @@ module.exports = {
   .setFooter('Made by Lumap#0149'));
 
   const volume = parseInt(args[0])
-  if (!volume || volume > 100) return message.channel.send(new Discord.MessageEmbed()
+  if (!volume || volume > 150) return message.channel.send(new Discord.MessageEmbed()
   .setColor('RANDOM')
-  .setDescription('Invalid volume! Please provide a number between 1 and 100')
+  .setDescription('Invalid volume! Please provide a number between 1 and 150')
   .setFooter('Made by Lumap#0149'))
 
   serverQueue.volume = volume;
