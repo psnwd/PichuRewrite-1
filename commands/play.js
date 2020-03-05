@@ -46,6 +46,7 @@ module.exports = {
 			  const results = await ytsr(url)
 			  const videos = results.videos.slice(0, 10)
 			  let index = 0;
+			  let video;
 			  await message.channel.send(new Discord.MessageEmbed()
 			  .setColor('RANDOM')
 			  .setDescription([
@@ -71,7 +72,7 @@ module.exports = {
 			  }
 			  m.delete()
 			  const videoIndex = parseInt(response.first().content)
-			  video = await ytdl.getBasicInfo(videos[videoIndex - 1].videoId)
+			  return video = await ytdl.getBasicInfo(videos[videoIndex - 1].videoId)
 			})
 			} catch(e) {
 			  console.log(e)
