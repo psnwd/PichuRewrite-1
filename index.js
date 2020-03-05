@@ -21,7 +21,7 @@ client.ownerID = process.env.ownerID//insert ID here
 client.prefix = process.env.prefix//insert prefix here 
 client.bot_token = process.env.bot_token//insert bot token here
 client.dbl_token = process.env.dbl_token
-client.ksoftsi = process.env.ksoft-si
+client.ksoftsi = process.env.ksoftsi_token
 //
 //
 //
