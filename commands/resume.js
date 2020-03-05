@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 module.exports = {
     name: 'resume',
+    usage: 'pichu resume',
     category: 'music',
       description: 'Resumes the current song',
       async execute(client,message,args,dbl,queue) {

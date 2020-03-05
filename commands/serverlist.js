@@ -1,5 +1,6 @@
 module.exports = {
 name: 'serverlist',
+usage: 'pichu serverlist',
 description: 'Serverlist',
 category: 'owner',
 async execute(client,message) {

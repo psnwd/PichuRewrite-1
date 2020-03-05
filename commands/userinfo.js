@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'userinfo',
   category: 'utility',
+  usage: 'pichu userinfo',
   aliases: ['ui'],
 	description: 'Shows user info',
 	async execute(client,message,args) {

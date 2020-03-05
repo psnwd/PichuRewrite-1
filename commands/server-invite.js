@@ -1,6 +1,7 @@
 module.exports = {
     name: 'server-invite',
     category: 'utility',
+    usage: 'pichu server-invite',
       description: 'Creates an invite of YOUR server',
       async execute(client,message,args) {
           const Discord = require('discord.js')

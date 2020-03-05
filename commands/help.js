@@ -1,10 +1,11 @@
 const Discord = require('discord.js')
 module.exports = {
     name: 'help',
+    usage: 'pichu help',
     description: 'Shows the help',
     category: 'utility',
-    async execute(client,message,args) {
-        
+    async execute(client,message,args,dbl,queue) {
+        if (!args.join(' ')) {
             const embed = new Discord.MessageEmbed()
             .setColor('RANDOM')
             .setTitle('Pichu\'s help!')
@@ -37,6 +38,24 @@ module.exports = {
             )
 
             message.channel.send(embed)
+        } else {
+            command = client.commands.get(args.join(' '))
+            if (!command) return message.channel.send('This command doesn\'t exist!')
+            let aliases = 'No aliases'
+            if (command.aliases) aliases = command.aliases.join(', ')
+            message.channel.send(new Discord.MessageEmbed()
+            .setColor('RANDOM')
+            .setDescription(`**${command.name}** help :`)
+            .addFields(
+                {name: 'Command name :', value: command.name, inline: true},
+                {name: 'Command alias(es) :', value: aliases, inline: true},
+                {name: 'Command category :', value: command.category, inline: true},
+                {name: 'Command description :', value: command.description, inline: true},
+                {name: 'Command usage :', value: command.usage, inline: true}
+            
+            )
+            )
+        }
 
     },
 };

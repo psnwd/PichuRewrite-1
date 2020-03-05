@@ -3,8 +3,10 @@
   
   module.exports = {
     name: 'dblinfo',
+    aliases: ['botinfo'],
     description: 'Shows bot info (if listed on dbl)',
     category: 'misc',
+    usage: 'pichu dblinfo @mention/bot-id/bot-name',
     async execute(client,message,args,dbl) {
         if (!args) return message.channel.send('Please mention the bot or give bot ID');
         let user = message.mentions.users.first() || client.users.cache.get(args.join(' ')) || client.users.cache.find(user => user.username.toLowerCase() === args.join(' ').toLowerCase() && user.bot === true)

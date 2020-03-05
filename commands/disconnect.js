@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'disconnect',
   category: 'music',
+  usage: 'pichu disconnect',
 	description: 'disonnects to the VC',
 	async execute(client,message) {
 		let voiceChannel = message.member.voice.channel

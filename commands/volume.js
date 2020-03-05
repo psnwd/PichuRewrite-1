@@ -1,6 +1,8 @@
 const Discord = require('discord.js')
 module.exports = {
     name: 'volume',
+    usage: 'pichu volume [number between 1 and 150]',
+    aliases: ['vol'],
     category: 'music',
       description: 'Changes the volume',
       async execute(client,message,args,dbl,queue) {

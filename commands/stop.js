@@ -1,5 +1,6 @@
 module.exports = {
 	name: 'stop',
+	usage: 'pichu stop',
   category: 'music',
 	description: 'Stop the current song AND the queue',
 	async execute(client,message,args,dbl,queue) {

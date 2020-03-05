@@ -2,6 +2,7 @@ const Discord = require('discord.js')
 module.exports = {
     name: 'pause',
     category: 'music',
+    usage: 'pichu pause',
       description: 'Pauses the current song',
       async execute(client,message,args,dbl,queue) {
 

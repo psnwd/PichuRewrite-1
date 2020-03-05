@@ -2,6 +2,7 @@ module.exports = {
 	name: 'connect',
   category: 'music',
   aliases: ['summon'],
+  usage: 'pichu connect',
 	description: 'Connects to the VC',
 	async execute(client,message) {
 		let voiceChannel = message.member.voice.channel

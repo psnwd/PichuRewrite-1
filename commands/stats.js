@@ -1,5 +1,6 @@
 module.exports = {
     name: 'stats',
+    usage: 'pichu stats',
     category: 'misc',
 	description: "Bot statuts",
 	async execute(client,message,args,dbl,queue) {

@@ -2,7 +2,9 @@ const ytdl = require("ytdl-core"), ytpl = require("ytpl"), ytsearch = require("y
 
 
 module.exports = {
-    name: 'play',
+	name: 'play',
+	aliases: ['p'],
+	usage: 'pichu play youtube-url/song name',
     description: 'Play a song!',
     category: 'music',
     async execute(client,message,args,dbl,queue) {
@@ -22,18 +24,19 @@ module.exports = {
 		.setColor('RANDOM')
 		.setDescription('I don\'t have the permissions to talk here!')
 		.setFooter('Made by Lumap#0149'))
-	  
+	  if (!args.join(' ')) return message.channel.send('Please provide me a youtube URL or a song name!')
 		const url = args.join(" ")
 		if (url.includes("list=")) {
 		  const playlist = await ytpl(url.split("list=")[1])
 		  const videos = playlist.items;
-	  
-		  message.channel.send(new Discord.MessageEmbed()
+			message.channel.send('Processing playlist...').then(async msg => {
+		  	  
+		  for (const video of videos) await queueSong(video, message, voiceChannel, queue)
+		  msg.edit(new Discord.MessageEmbed()
 		  .setColor('RANDOM')
 		  .setDescription(`${playlist.title}(${videos.length} songs) has been added to the queue!`)
 		  .setFooter('Made by Lumap#0149 | Hint : playlists max length is 100'))
-	  
-		  for (const video of videos) await queueSong(video, message, voiceChannel, queue)
+			})
 		} else {
 		  let video;
 		  try {
@@ -76,11 +79,11 @@ module.exports = {
 			  .setFooter('Made by Lumap#0149'))
 			}
 		  }
-		  
-		  await message.channel.send(new Discord.MessageEmbed()
+		  await queueSong(video, message, voiceChannel, queue)
+		  return await message.channel.send(new Discord.MessageEmbed()
 		  .setColor('RANDOM')
 		  .setDescription(`**${video.title}** has been added to the queue!`))
-		  return await queueSong(video, message, voiceChannel, queue)
+		  
 		}
 	  
 	  
@@ -90,7 +93,8 @@ module.exports = {
 		const song = {
 		  id: video.id || video.video_id,
 		  title: Util.escapeMarkdown(video.title),
-		  url: "https://www.youtube.com/watch?v=" + (video.id || video.video_url)
+		  url: "https://www.youtube.com/watch?v=" + (video.id || video.video_url),
+		  author: message.author
 		}
 	  
 		if (!serverQueue) {

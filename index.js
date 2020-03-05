@@ -17,11 +17,11 @@ client.version = require('./package.json').version
 //
 //
 //Part to customize if you want to selfhost the bot
-client.ownerID = process.env.ownerID//insert ID here
-client.prefix = process.env.prefix//insert prefix here 
-client.bot_token = process.env.bot_token//insert bot token here
+client.ownerID = '635383782576357407'//insert ID here
+client.prefix = '!'//insert prefix here 
+client.bot_token ='Njc3MTQwODE4MDI4NjU4NzAw.XmD6Ig.MLxdg2s0Vn8gecmZzAGLvE7qjso'//insert bot token here
 client.dbl_token = process.env.dbl_token
-client.ksoftsi = process.env.ksoftsi_token
+client.ksoftsi = '7bc7dd120e05fc2390ab5494a527a8a0577d0ae0'
 //
 //
 //

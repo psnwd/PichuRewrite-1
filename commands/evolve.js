@@ -1,5 +1,6 @@
 module.exports = {
-	name: 'evolve',
+  name: 'evolve',
+  usage: 'pichu evlove',
   category: 'misc',
 	description: 'Pichu is now a pikachu!',
 	async execute(client,message) {

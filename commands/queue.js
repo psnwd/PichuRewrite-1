@@ -1,6 +1,7 @@
 module.exports = {
     name: 'queue',
-    aliases: ['nowplaying', 'np'],
+    aliases: ['nowplaying', 'q', 'np'],
+    usage: 'pichu queue',
     category: 'music',
       description: 'Shows server queue',
       async execute(client,message,args,dbl,queue) {

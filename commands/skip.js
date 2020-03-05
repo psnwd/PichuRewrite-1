@@ -1,6 +1,7 @@
 module.exports = {
 	name: 'skip',
   category: 'music',
+  usage: 'pichu skip',
 	description: 'Skip the current song',
 	async execute(client,message,args,dbl,queue) {
 		const serverQueue = queue.get(message.guild.id);

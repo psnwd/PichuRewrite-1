@@ -1,5 +1,6 @@
 module.exports = {
     name: 'support-server',
+    usage: 'pichu support-server',
     aliases: ['support'],
     category: 'misc',
       description: 'Shows a link to my support server',

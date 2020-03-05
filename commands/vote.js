@@ -1,5 +1,6 @@
 module.exports = {
     name: 'vote',
+    usage: 'pichu vote',
     category: 'misc',
       description: 'Shows a link to vote for me!',
       async execute(client,message,args) {

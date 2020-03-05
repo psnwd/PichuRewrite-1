@@ -6,6 +6,7 @@ module.exports = {
   name: "terminal",
   aliases: ['shell','sh'],
   category: 'owner',
+  usage: 'pichu shell <bash code>',
   description: "It's a cool command!",
   async execute(client,message,args) {
 if (!args) return message.channel.Send('No command to execute provided, time to do nothing...')

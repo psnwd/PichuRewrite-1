@@ -2,6 +2,7 @@ module.exports = {
 	name: 'serverinfo',
   category: 'utility',
   aliases: ['si'],
+  usage: 'pichu serverinfo',
 	description: 'Shows server info',
 	async execute(client,message) {
         const Discord = require('discord.js')
