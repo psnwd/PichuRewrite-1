@@ -6,6 +6,6 @@ module.exports = {
     async execute(client,message,args) {
         if (!args.join(' ')) return message.channel.send('I can\'t say nothing!')
         message.delete().then(
-        console.log(args.join(' ')))
+        message.channel.send(args.join(' ')))
     },
 }
