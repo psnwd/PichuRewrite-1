@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 module.exports = {
-	name: 'shufle',
+	name: 'shuffle',
   category: 'music',
   usage: 'pichu shuffle',
 	description: 'Shuffles the queue!',
