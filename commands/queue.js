@@ -1,6 +1,6 @@
 module.exports = {
     name: 'queue',
-    aliases: ['nowplaying', 'np'],
+    aliases: ['nowplaying', 'q', 'np'],
     category: 'music',
       description: 'Shows server queue',
       async execute(client,message,args,dbl,queue) {
@@ -11,7 +11,7 @@ module.exports = {
         const output = []
         for (let i = 1; i < Math.min(serverQueue.songs.length, 11); i++) {
           output[i] = [
-            `-[${serverQueue.songs[i].title}](${serverQueue.songs[i].url})\n`
+            `${i}- [${serverQueue.songs[i].title}](${serverQueue.songs[i].url})\n`
           ].join('\n');
         }
         const Discord = require('discord.js')
