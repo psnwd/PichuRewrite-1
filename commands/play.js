@@ -53,7 +53,7 @@ module.exports = {
 				videos.map(v => ++index + " - **" + v.title + "**").join("\n"),
 				"**Select your song by sending the number from 1 to " + videos.length + " in chat.**"
 			  ].join("\n\n"))
-			  .setFooter('Made by Lumap#0149 | You have 15 seconds to give a response')).then(m => {
+			  .setFooter('Made by Lumap#0149 | You have 15 seconds to give a response')).then(async m => {
 	  
 			  let response;
 			  try {
