@@ -130,6 +130,10 @@ module.exports = {
 		  queue.delete(guild.id);
 		  return;
 		}
+
+		if (serverQueue.message) {
+			serverQueue.message.delete()
+		}
 	  
 		serverQueue.connection.play(ytdl(song.id))
 		  .on("finish", reason => {
@@ -141,7 +145,9 @@ module.exports = {
 		
 		serverQueue.textChannel.send(new Discord.MessageEmbed()
 		.setColor('RANDOM')
-		.setDescription(`Now playing **[${song.title}](${song.url})** requested by ${song.author}`))
+		.setDescription(`Now playing **[${song.title}](${song.url})** requested by ${song.author}`)).then(msg => {
+			serverQueue.message = msg
+		})
 	  }
     },
 }
