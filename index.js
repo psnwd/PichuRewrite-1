@@ -75,7 +75,7 @@ messagecounter[0] += 1
  
     if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
 
-    
+    if (message.content.match(`^<@!?${client.user.id}>`)) return message.channel.send(`My prefix is \`\`${client.prefix}\`\`!`)
     if (message.content.toLowerCase().startsWith(client.prefix)) {
         const commandName = message.content.slice(client.prefix.length).toLowerCase().split(' ')[0].toLowerCase()
 const args = message.content.slice(client.prefix.length).split(' ').slice(1)
