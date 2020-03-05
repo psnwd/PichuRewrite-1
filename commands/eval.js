@@ -24,7 +24,7 @@ module.exports = {
       .setColor('RANDOM')
       .setDescription('Pichu eval command results :')
       .addFields(
-        {name: 'Input :', value: args},
+        {name: 'Input :', value: `\`\`\`js\n${args.join(' ')}\`\`\``},
         {name: 'Output', value: `\`\`\`js\n${clean(evaled)}\`\`\``}
       )
       .setFooter('Made by Lumap#0149')
@@ -34,7 +34,7 @@ module.exports = {
       .setColor('RANDOM')
       .setDescription('Pichu eval command results :')
       .addFields(
-        {name: 'Input :', value: args},
+        {name: 'Input :', value: `\`\`\`js\n${args.join(' ')}\`\`\``},
         {name: 'Error :', value: `\`\`\`js\n${clean(err)}\`\`\``}
         )
         .setFooter('Made by Lumap#0149')
