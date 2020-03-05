@@ -31,7 +31,9 @@ module.exports = {
               time: 15000,
               errors: ['time']
             });
-        } catch (e) {}
+        } catch (e) {
+          return message.channel.send('Not skipping to the next song, continue playing...')
+        }
         if (response) {client.commands.get('skip').execute(client,message,args,dbl,queue)}
 	},
 };
