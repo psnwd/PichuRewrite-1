@@ -53,7 +53,7 @@ module.exports = {
 				videos.map(v => ++index + " - **" + v.title + "**").join("\n"),
 				"**Select your song by sending the number from 1 to " + videos.length + " in chat.**"
 			  ].join("\n\n"))
-			  .setFooter('Made by Lumap#0149 | You have 15 seconds to give a response'))
+			  .setFooter('Made by Lumap#0149 | You have 15 seconds to give a response')).then(m => {
 	  
 			  let response;
 			  try {
@@ -69,8 +69,10 @@ module.exports = {
 				.setDescription('Video selection timed out, cancelling it...')
 				.setFooter('Made by Lumap#0149'))
 			  }
+			  m.delete()
 			  const videoIndex = parseInt(response.first().content)
 			  video = await ytdl.getBasicInfo(videos[videoIndex - 1].videoId)
+			})
 			} catch(e) {
 			  console.log(e)
 			  return message.channel.send(new Discord.MessageEmbed()
