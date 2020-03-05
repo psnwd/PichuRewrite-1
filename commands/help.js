@@ -9,6 +9,7 @@ module.exports = {
             const embed = new Discord.MessageEmbed()
             .setColor('RANDOM')
             .setTitle('Pichu\'s help!')
+            .setDescription('Hint : To know command informations, do `pichu help <command>`')
             let misccommands = []
             let ownercommands = []
             let musiccommands=[] 
