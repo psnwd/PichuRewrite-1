@@ -3,7 +3,7 @@ module.exports = {
     usage: 'pichu stats',
     category: 'misc',
 	description: "Bot statuts",
-	async execute(client,message,args,dbl,queue) {
+	async execute(client,message,args,dbl,queue,messagecounter) {
   const Discord = require('discord.js')
     
     let totalSeconds = (client.uptime / 1000);
@@ -26,6 +26,8 @@ if (!playingmusic) playingmusic = 0
       {name: 'Uptime :', value: `${days} days, ${hours} hours, ${minutes} minutes and ${Math.round(seconds)} seconds`, inline: true},
       {name: 'Guilds :', value: client.guilds.cache.size, inline: true},
       {name: 'Bot version :', value: client.version, inline: true},
+      {name: 'Messages seen :', value: messagecounter[0], inline: true},
+      {name: 'Commands executed: ', value: messagecounter[1], inline: true},
       {name: 'Total users :', value: h, inline: true},
       {name: 'Number of servers playing music thx to me :', value: playingmusic, inline: true},
       {name: 'number of commands :', value: client.commands.size, inline: true}

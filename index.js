@@ -6,6 +6,7 @@ const path = require('path')
 const client = new Client()
 const fs = require('fs')
 
+
 client.version = require('./package.json').version
 
 
@@ -67,10 +68,10 @@ setInterval(function(){
 }, 60000);
 
 let queue = new Map()
-
+let messagecounter = [0, 0] //[0] is messages seen, [1] is commands used
 //message time
 client.on('message', async message =>{
-
+messagecounter[0] += 1
  
     if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
 
@@ -86,8 +87,8 @@ const args = message.content.slice(client.prefix.length).split(' ').slice(1)
          }
         try {
          
-    
-            await command.execute(client,message,args,dbl,queue)
+          messagecounter[1] += 1
+            await command.execute(client,message,args,dbl,queue,messagecounter)
          
         } catch (err) {
           let error = new Discord.MessageEmbed()
