@@ -46,7 +46,6 @@ module.exports = {
 			  const results = await ytsr(url)
 			  const videos = results.videos.slice(0, 10)
 			  let index = 0;
-			  let video;
 			  await message.channel.send(new Discord.MessageEmbed()
 			  .setColor('RANDOM')
 			  .setDescription([
@@ -54,7 +53,7 @@ module.exports = {
 				videos.map(v => ++index + " - **" + v.title + "**").join("\n"),
 				"**Select your song by sending the number from 1 to " + videos.length + " in chat.**"
 			  ].join("\n\n"))
-			  .setFooter('Made by Lumap#0149 | You have 15 seconds to give a response')).then(async m => {
+			  .setFooter('Made by Lumap#0149 | You have 15 seconds to give a response'))
 	  
 			  let response;
 			  try {
@@ -70,10 +69,8 @@ module.exports = {
 				.setDescription('Video selection timed out, cancelling it...')
 				.setFooter('Made by Lumap#0149'))
 			  }
-			  m.delete()
 			  const videoIndex = parseInt(response.first().content)
-			  return video = await ytdl.getBasicInfo(videos[videoIndex - 1].videoId)
-			})
+			  video = await ytdl.getBasicInfo(videos[videoIndex - 1].videoId)
 			} catch(e) {
 			  console.log(e)
 			  return message.channel.send(new Discord.MessageEmbed()
