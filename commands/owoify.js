@@ -14,5 +14,5 @@ async function work() {
 }
 
 work();
-    }
+    },
 }
