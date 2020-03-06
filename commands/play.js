@@ -82,11 +82,11 @@ module.exports = {
 			  .setFooter('Made by Lumap#0149'))
 			}
 		  }
-		  await queueSong(video, message, voiceChannel, queue)
+		
 		  return await message.channel.send(new Discord.MessageEmbed()
 		  .setColor('RANDOM')
 		  .setDescription(`**${video.title}** has been added to the queue!`))
-		  
+		    await queueSong(video, message, voiceChannel, queue)
 		}
 	  
 	  
