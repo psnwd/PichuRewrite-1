@@ -11,6 +11,6 @@ module.exports = {
 		serverQueue.songs = [];
 		serverQueue.message.delete();
 		serverQueue.connection.dispatcher.end();
-    message.channel.send('Music successfully stopped').then(m => {setTimeout(() => {m.delete()}, 15000)})
+		message.channel.send(new Discord.MessageEmbed() .setColor('RANDOM') .setDescription('Music sucessfullt stopped! ') .setFooter('Made by Lumap#0149')).then(m => {setTimeout(() => {m.delete()}, 15000)})
 	},
 };
