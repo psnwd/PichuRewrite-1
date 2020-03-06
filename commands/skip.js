@@ -10,6 +10,6 @@ module.exports = {
 		if (!serverQueue) return message.channel.send('The queue is empty!');
 		if (serverQueue.songs[0].author.id !== message.author.id) return message.channel.send(new Discord.MessageEmbed() .setColor('RANDOM') .setDescription(`Only **${serverQueue.songs[0].author.username}** can skip this song, beacause he requested the current song`))
 		serverQueue.connection.dispatcher.end();
-    message.channel.send('Music skipped! ') 
+    message.channel.send('Music skipped! ').then(m => {setTimeout(() => {m.delete()}, 15000)})
 	},
 };

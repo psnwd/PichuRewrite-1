@@ -69,7 +69,7 @@ module.exports = {
 				return message.channel.send(new Discord.MessageEmbed()
 				.setColor('RANDOM')
 				.setDescription('Video selection timed out, cancelling it...')
-				.setFooter('Made by Lumap#0149'))
+				.setFooter('Made by Lumap#0149')).then(m => {setTimeout(() => {m.delete()}, 15000)})
 			  }
 			  selectionMessage.delete()
 			  const videoIndex = parseInt(response.first().content)
@@ -79,14 +79,15 @@ module.exports = {
 			  return message.channel.send(new Discord.MessageEmbed()
 			  .setColor('RANDOM')
 			  .setDescription('I wasn\'t able to find a result :(')
-			  .setFooter('Made by Lumap#0149'))
+			  .setFooter('Made by Lumap#0149')).then(m => {setTimeout(() => {m.delete()}, 15000)})
 			}
 		  }
-		
+		  let addedtoqueue;
 		  await message.channel.send(new Discord.MessageEmbed()
 		  .setColor('RANDOM')
-		  .setDescription(`**${video.title}** has been added to the queue!`))
-		    return await queueSong(video, message, voiceChannel, queue)
+		  .setDescription(`**${video.title}** has been added to the queue!`)).then(m => addedtoqueue=m)
+		    return await queueSong(video, message, voiceChannel, queue).then(u => {setTimeout(() => {addedtoqueue.delete()},15000)
+			})
 		}
 	  
 	  

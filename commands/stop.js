@@ -11,6 +11,6 @@ module.exports = {
 		serverQueue.songs = [];
 		serverQueue.message.delete();
 		serverQueue.connection.dispatcher.end();
-    message.channel.send('Music successfully stopped') 
+    message.channel.send('Music successfully stopped').then(m => {setTimeout(() => {m.delete()}, 15000)})
 	},
 };
