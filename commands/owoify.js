@@ -10,7 +10,7 @@ const neko = new nekoclient();
 if (!args.join(' ')) return message.channel.send('Please provide a text.')
 async function work() {
   let owo = await neko.sfw.OwOify({text: args.join(' ')});
-  message.delete().then(message.channel.send(owo));
+  message.delete().then(message.channel.send(owo.owo));
 }
 
 work();
