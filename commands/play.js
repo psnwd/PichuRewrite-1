@@ -35,7 +35,7 @@ module.exports = {
 		  msg.edit(new Discord.MessageEmbed()
 		  .setColor('RANDOM')
 		  .setDescription(`${playlist.title}(${videos.length} songs) has been added to the queue!`)
-		  .setFooter('Made by Lumap#0149 | Hint : playlists max length is 100'))
+		  .setFooter('Made by Lumap#0149 | Hint : playlists max length is 100')).then(m => {setTimeout(() => {m.delete()}, 15000)})
 			})
 		} else {
 		  let video;
