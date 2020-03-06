@@ -82,11 +82,11 @@ module.exports = {
 			  .setFooter('Made by Lumap#0149'))
 			}
 		  }
-		  await queueSong(video, message, voiceChannel, queue)
-		  return await message.channel.send(new Discord.MessageEmbed()
+		
+		  await message.channel.send(new Discord.MessageEmbed()
 		  .setColor('RANDOM')
 		  .setDescription(`**${video.title}** has been added to the queue!`))
-		  
+		    return await queueSong(video, message, voiceChannel, queue)
 		}
 	  
 	  
@@ -97,7 +97,10 @@ module.exports = {
 		  id: video.id || video.video_id,
 		  title: Util.escapeMarkdown(video.title),
 		  url: "https://www.youtube.com/watch?v=" + (video.id || video.video_url),
-		  author: message.author
+		  author: {
+id: message.author.id,
+username: message.author.username
+}
 		}
 	  
 		if (!serverQueue) {
@@ -148,7 +151,7 @@ module.exports = {
 		
 		serverQueue.textChannel.send(new Discord.MessageEmbed()
 		.setColor('RANDOM')
-		.setDescription(`Now playing **[${song.title}](${song.url})** requested by ${song.author}`)).then(msg => {
+		.setDescription(`Now playing **[${song.title}](${song.url})** requested by **${song.author.username}**`)).then(msg => {
 			serverQueue.message = msg
 		})
 	  }

@@ -21,7 +21,7 @@ module.exports = {
   .setDescription('The player is alerady resumed!')
   .setFooter('Made by Lumap#0149'))
 
-  serverQueue.playing = false
+  serverQueue.playing = true
   serverQueue.connection.dispatcher.resume()
   return message.channel.send(new Discord.MessageEmbed()
   .setColor('RANDOM')

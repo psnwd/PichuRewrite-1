@@ -23,7 +23,7 @@ module.exports = {
   .setDescription(`The current volume is **${serverQueue.volume}**`)
   .setFooter('Made by Lumap#0149'));
 
-  if (serverQueue.songs[0].author !== message.author) return message.channel.send(new Discord.MessageEmbed() .setColor('RANDOM') .setDescription(`Only ${serverQueue.songs[0].author} can change the volume, beacause he requested the current song`))
+  if (serverQueue.songs[0].author.id !== message.author.id) return message.channel.send(new Discord.MessageEmbed() .setColor('RANDOM') .setDescription(`Only **${serverQueue.songs[0].author.username}** can change the volume, beacause he requested the current song`))
 	
 
   const volume = parseInt(args[0])
