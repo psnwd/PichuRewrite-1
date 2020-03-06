@@ -28,8 +28,16 @@ client.ksoftsi = process.env.ksoftsi_token
 //
 
 const DBL = require("dblapi.js");
-const dbl = new DBL(client.dbl_token)
+const dbl = new DBL(client.dbl_token, client)
 
+
+dbl.on('posted', () => {
+  console.log('Server count posted!');
+})
+
+dbl.on('error', e => {
+ console.log(`Oops! ${e}`);
+})
 
 
 
@@ -48,9 +56,7 @@ client.commands = new Discord.Collection()
 //client events
 client.on('ready', () => {
 
-  setInterval(() => {
-    dbl.postStats(client.guilds.cache.size).then(console.log('Server count posted !'));
-}, 1800000);
+
 
 console.log(`Logged in as ${client.user.tag}!`)
 client.user.setActivity(`Is a pokémon | ${client.guilds.cache.size} servers | ${client.prefix}help`) 
