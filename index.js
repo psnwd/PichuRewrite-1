@@ -60,8 +60,8 @@ for (let i = 0; i<client.categories.length; i++) {
     .filter(file => file.endsWith('.js'));
   for (var file of commandFiles) {
     var command = require(`./commands/${client.categories[i]}/${file}`); 
-    client.commands.set(command.name, command);
-  }
+    client.commands.set(command.name, command); 
+  } 
 } 
 //client events
 client.on('ready', () => {

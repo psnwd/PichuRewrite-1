@@ -51,5 +51,5 @@ function getCMD(client, message, input) {
         embed.setFooter(`Syntax: <> = required, [] = optional`);
     }
 
-    return message.channel.send(embed.setColor("GREEN").setDescription(info).setFooter('Made by Link#4444 (and Lumap#0149)'));
+    return message.channel.send(embed.setColor("GREEN").setDescription(info).setFooter('Syntax: <> = required, [] = optional | Made by Link#4444 (and Lumap#0149)'));
 }
