@@ -111,7 +111,7 @@ const args = message.content.slice(client.prefix.length).split(' ').slice(1)
         } catch (err) {
           let error = new Discord.MessageEmbed()
           .setColor('RED')
-          .setAuthor('Oops! Soemthing went wrong!')
+          .setAuthor('Oops! Something went wrong!')
           .setDescription('Hi. An error happend during the execution of the **'+command.name+'** command. You should never get an error like that. Please contact Lumap#1049 with this error :')
           .addFields(
             { name: 'Error :', value: `\`\`\`js\n${err}\`\`\``})
