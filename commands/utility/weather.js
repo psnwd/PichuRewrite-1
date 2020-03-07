@@ -2,6 +2,7 @@ module.exports = {
 	name: 'weather',
     aliases: ['w'], 
     usage: 'pichu weather <city>',
+    category: 'utility',
 	description: "Add me in your server!",
 	execute(client,message,args) {
 		const Discord = require('discord.js')

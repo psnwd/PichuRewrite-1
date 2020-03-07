@@ -15,8 +15,7 @@ module.exports = {
 
 function getAll(client, message) {
     const embed = new Discord.MessageEmbed()
-        .setColor("RANDOM") //bruh    cred it   //I will  //thanks // If you want to listen to smg2 ost,I'm in music 1 vc (dbl) no thanks im listening on spotify rn
-
+        .setColor("RANDOM") 
     const commands = (category) => {
         return client.commands
             .filter(cmd => cmd.category === category)
@@ -24,7 +23,7 @@ function getAll(client, message) {
             .join(", ");
     }
 
-    const info = client.categories
+    const info = client.categories 
         .map(cat => stripIndents`**${cat[0].toUpperCase() + cat.slice(1)}** \n${commands(cat)}`)
         .reduce((string, category) => string + "\n" + category);
 
