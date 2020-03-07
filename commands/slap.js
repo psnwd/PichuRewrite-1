@@ -1,7 +1,7 @@
 module.exports = {
     name: 'slap',
     category: 'fun',
-    usage: 'pichu slap @mention/username/user-id ',
+    usage: 'pichu slap [@mention/username/user-id] ',
     description: 'slaps someone',
     async execute(client,message,args,dbl,queue) {
        

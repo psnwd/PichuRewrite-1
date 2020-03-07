@@ -1,6 +1,6 @@
 module.exports = {
     name: 'say',
-    usage: 'pichu say',
+    usage: 'pichu say <text>',
     description: 'say things',
     category: 'misc',
     async execute(client,message,args) {

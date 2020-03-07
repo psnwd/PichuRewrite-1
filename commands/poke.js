@@ -1,7 +1,7 @@
 module.exports = {
     name: 'poke',
     category: 'fun',
-    usage: 'pichu poke @mention/username/user-id ',
+    usage: 'pichu poke [@mention/username/user-id] ',
     description: 'Pokes someone',
     async execute(client,message,args,dbl,queue) {
        

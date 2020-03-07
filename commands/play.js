@@ -4,7 +4,7 @@ const ytdl = require("ytdl-core"), ytpl = require("ytpl"), ytsearch = require("y
 module.exports = {
 	name: 'play',
 	aliases: ['p'],
-	usage: 'pichu play youtube-url/song name',
+	usage: 'pichu play <youtube-url/song name>',
     description: 'Play a song!',
     category: 'music',
     async execute(client,message,args,dbl,queue) {
