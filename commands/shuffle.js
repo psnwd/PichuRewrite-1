@@ -34,7 +34,7 @@ module.exports = {
               errors: ['time']
             });
         } catch (e) {
-          return message.channel.send('Not skipping to the next song, continue playing...').then(m => {setTimeout(() => {m.delete()}, 15000)})
+          return message.channel.send(new Discord.MessageEmbed() .setColor('RANDOM') .setDescription('Not skipping to the next song, continue playing...') .setFooter('Made by Lumap#0149')).then(m => {setTimeout(() => {m.delete()}, 15000)})
         }
         if (response) {
           client.commands.get('skip').execute(client,message,args,dbl,queue)
