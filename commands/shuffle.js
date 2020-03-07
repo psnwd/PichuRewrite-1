@@ -5,13 +5,9 @@ module.exports = {
   usage: 'pichu shuffle',
 	description: 'Shuffles the queue!',
 	async execute(client,message,args,dbl,queue) {
-    dbl.hasVoted(message.author.id).then(async voted => {
-      if (!voted) {return message.channel.send(new Discord.MessageEmbed() .setColor('RANDOM') .setDescription('Hi. Beacause this command takes a lot of CPU usage, you have to [vote](https://top.gg/bot/674497635171696644/vote) for me in order to use this command!') .setFooter('Made by Lumap#0149'))}
-      else { 
-        if (!message.member.voice.channel) return message.channel.send('You are not in a voice channel!')
+        if (!message.member.voice.channel) return message.channel.send('You are not in a voice channen!')
         const serverQueue = queue.get(message.guild.id)
         if (!serverQueue) return message.channel.send('There is nothing playing')
-       
         if (serverQueue.songs.length < 3) return message.channel.send('There is no queue to shuffle (queue need at least 3 songs to be shuffled)')
         if (serverQueue.songs[0].author.id !== message.author.id) return message.channel.send(new Discord.MessageEmbed() .setColor('RANDOM') .setDescription(`Only **${serverQueue.songs[0].author.username}** can do this, beacause he requested the current song`) .setFooter('Made by Lumap#0149')).then(m => {setTimeout(() => {m.delete()}, 15000)})
         function shuffle(a) {
@@ -44,8 +40,5 @@ module.exports = {
           client.commands.get('skip').execute(client,message,args,dbl,queue)
           successmessage.delete()
         }
-      }
-    });
-        
 	},
 };
