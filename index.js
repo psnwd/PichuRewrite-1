@@ -31,14 +31,21 @@ const DBL = require("dblapi.js");
 const dbl = new DBL(client.dbl_token, { webhookPort: process.env.PORT, webhookAuth: 'password' })
 
 
-dbl.on('posted', () => {
+dbl.webhook.on('posted', () => {
   console.log('Server count posted!');
 })
 
+dbl.webhook.on('ready', hook => {
+  console.log(`Webhook running at http://${hook.hostname}:${hook.port}${hook.path}`);
+});
 
-dbl.on('error', e => {
+dbl.webhook.on('error', e => {
  console.log(`Oops! ${e}`);
 })
+
+dbl.webhook.on('vote', vote => {
+  console.log(`User with ID ${vote.user} just voted!`);
+});
 
 
 
