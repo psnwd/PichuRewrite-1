@@ -52,6 +52,7 @@ dbl.webhook.on('vote', vote => {
 
 //initializing commands here
 client.commands = new Discord.Collection()
+client.aliases = new Discord.Collection()
 client.categories = require("fs").readdirSync("./commands/")
 
 for (let i = 0; i<client.categories.length; i++) {
@@ -59,14 +60,16 @@ for (let i = 0; i<client.categories.length; i++) {
      .readdirSync(`./commands/${client.categories[i]}`)
     .filter(file => file.endsWith('.js'));
   for (var file of commandFiles) {
-    var command = require(`./commands/${client.categories[i]}/${file}`); 
-    client.commands.set(command.name, command); 
-  } 
+    var command = require(`./commands/${client.categories[i]}/${file}`);
+    client.commands.set(command.name, command);
+    if (command.aliases && Array.isArray(command.aliases)) command.aliases.forEach(alias => client.aliases.set(alias, command.name));
+  }  //just added aliases
 } 
 //client events
+
+
+
 client.on('ready', () => {
-
-
 
 console.log(`Logged in as ${client.user.tag}!`)
 client.user.setActivity(`Is a pokémon | ${client.guilds.cache.size} servers | ${client.prefix}help`) 
@@ -96,7 +99,7 @@ messagecounter[0] += 1
         const commandName = message.content.slice(client.prefix.length).toLowerCase().split(' ')[0].toLowerCase()
 const args = message.content.slice(client.prefix.length).split(' ').slice(1)
         const command = client.commands.get(commandName)
-            || client.commands.find(cmd => cmd.aliases &&                       cmd.aliases.includes(commandName))
+            || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
         if (!command) return;
         if (command.category === 'owner') {
           if (message.author.id !== client.ownerID) return message.reply("You tried to execute a owner-only command, and you can't do that :(")

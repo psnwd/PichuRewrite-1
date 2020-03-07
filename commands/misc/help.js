@@ -33,14 +33,8 @@ function getAll(client, message) {
 //random color already exists
 function getCMD(client, message, input) {
     const embed = new Discord.MessageEmbed()
-
-    const cmd = client.commands.get(input.toLowerCase()) || client.commands.get(client.aliases.get(input.toLowerCase()));
-
-    let info = `No information found for command **${input.toLowerCase()}**`;
-
-    if (!cmd) {
-        return message.channel.send(embed.setColor("RED").setDescription(info));
-    }
+    if (!client.commands.get(input.toLowerCase()) || !client.aliases.get(input.toLowerCase())) return message.channel.send(`No information found for command **${input.toLowerCase()}**`)
+    const cmd = client.commands.get(input.toLowerCase()) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
 
     if (cmd.name) info = `**Command name**: ${cmd.name}`;
     if (cmd.aliases) info += `\n**Aliases**: ${cmd.aliases.map(a => `\`${a}\``).join(", ")}`;
