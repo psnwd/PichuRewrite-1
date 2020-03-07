@@ -1,4 +1,5 @@
 const Discord = require('discord.js')
+const { stripIndents } = require("common-tags");
 module.exports = {
     name: "help",
     category: "utility",

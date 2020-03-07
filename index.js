@@ -50,21 +50,19 @@ dbl.webhook.on('vote', vote => {
 
 
 
-
 //initializing commands here
 client.commands = new Discord.Collection()
 client.categories = require("fs").readdirSync("./commands/")
-//categories.join(' ') will work? I would say maybe wait
+
 for (let i = 0; i<client.categories.length; i++) {
  var commandFiles = fs
      .readdirSync(`./commands/${client.categories[i]}`)
     .filter(file => file.endsWith('.js'));
-    //lemme grab some code  k, i'll try that
   for (var file of commandFiles) {
-    var command = require(`./commands/${client.categories[i]}/${file}`); //?
+    var command = require(`./commands/${client.categories[i]}/${file}`); 
     client.commands.set(command.name, command);
   }
-} //client.categories is an array so yes
+} 
 //client events
 client.on('ready', () => {
 
