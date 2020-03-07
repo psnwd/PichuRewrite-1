@@ -47,6 +47,7 @@ module.exports = {
 			  const videos = results.videos.slice(0, 10)
 			  let index = 0;
 			  let selectionMessage;
+			  if (videos.size === 0) return message.channel.send('An error occured, please try again!').then(m => {setTimeout(() => {m.delete()}, 15000)})
 			  await message.channel.send(new Discord.MessageEmbed()
 			  .setColor('RANDOM')
 			  .setDescription([
