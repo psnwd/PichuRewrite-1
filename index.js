@@ -114,8 +114,8 @@ client.on('message', async message => {
 let prefix = client.prefix
   if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
   require('axios').post('https://pichu-api.glitch.me/database/prefixes/get', {password: client.pichuApiPassword, key: message.guild.id}).then(res => {
-    if (res.data) {prefix = res.data} else {prefix = client.prefix}
-  })
+    if (res.data) {prefix = res.data} else {prefix = client.prefix}.then(async unusedvar => {
+  
   if (message.content.match(`^<@!?${client.user.id}>`)) return message.channel.send(`My prefix is \`\`${prefix}\`\`!`)
   if (message.content.toLowerCase().startsWith(prefix)) {
     const commandName = message.content.slice(client.prefix.length).toLowerCase().split(' ')[0].toLowerCase()
@@ -142,6 +142,8 @@ let prefix = client.prefix
       console.log(err)
     }
   }
+}) 
+}) 
 });
 
 client.login(client.bot_token)
