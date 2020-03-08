@@ -31,7 +31,7 @@ module.exports = {
 		}
     if (user.id === ownerID) return message.reply('I can\'t ban my dev')
     
-if(!message.member.permissions.toArray().incudes("BAN_MEMBERS"))
+if(!message.member.permissions.toArray().includes("BAN_MEMBERS"))
    return message.channel.send(missingpermsfromauthor)
     
 		if (!user.bannable) {
