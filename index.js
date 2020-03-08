@@ -118,7 +118,7 @@ let prefix = client.prefix
 
   if (message.content.match(`^<@!?${client.user.id}>`)) return message.channel.send(`My prefix is \`\`${prefix}\`\`!`)
   if (message.content.toLowerCase().startsWith(prefix)) {
-    const commandName = message.content.slice(client.prefix.length).toLowerCase().split(' ')[0].toLowerCase()
+    const commandName = message.content.slice(prefix.length).toLowerCase().split(' ')[0].toLowerCase()
     const args = message.content.slice(prefix.length).split(' ').slice(1)
     const command = client.commands.get(commandName)
       || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
