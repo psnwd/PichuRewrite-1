@@ -31,6 +31,7 @@ setInterval(() => {
 client.ownerID = process.env.ownerID//insert ID here 
 client.bot_token = process.env.bot_token//insert bot token here
 client.dbl_token = process.env.dbl_token
+client.prefix = process.env.prefix
 client.ksoftsi = process.env.ksoftsi_token
 client.pichuApiPassword = process.env.pichuApiPassword
 //
@@ -113,12 +114,12 @@ client.on('message', async message => {
 
   if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
   require('axios').post('https://pichu-api.glitch.me/database/prefixes/get', {password: client.pichuApiPassword, key: message.guild.id}).then(res => {
-    if (res.data) {client.prefix = res.data} else {client.prefix = process.env.prefix}
+    if (res.data) {prefix = res.data} else {prefix = client.prefix}
   })
-  if (message.content.match(`^<@!?${client.user.id}>`)) return message.channel.send(`My prefix is \`\`${client.prefix}\`\`!`)
-  if (message.content.toLowerCase().startsWith(client.prefix)) {
+  if (message.content.match(`^<@!?${client.user.id}>`)) return message.channel.send(`My prefix is \`\`${prefix}\`\`!`)
+  if (message.content.toLowerCase().startsWith(prefix)) {
     const commandName = message.content.slice(client.prefix.length).toLowerCase().split(' ')[0].toLowerCase()
-    const args = message.content.slice(client.prefix.length).split(' ').slice(1)
+    const args = message.content.slice(prefix.length).split(' ').slice(1)
     const command = client.commands.get(commandName)
       || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
     if (!command) return;
