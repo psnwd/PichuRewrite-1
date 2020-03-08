@@ -29,7 +29,6 @@ setInterval(() => {
 //
 //Part to customize if you want to selfhost the bot
 client.ownerID = process.env.ownerID//insert ID here 
-client.prefix = process.env.prefix
 client.bot_token = process.env.bot_token//insert bot token here
 client.dbl_token = process.env.dbl_token
 client.ksoftsi = process.env.ksoftsi_token
@@ -113,7 +112,9 @@ client.on('message', async message => {
   messagecounter[0] += 1
 
   if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
-
+  require('axios').post('https://pichu-api.glitch.me/database/prefixes/get', {password: client.pichuApiPassword, key: message.guild.id}).then(res => {
+    if (res.data) {client.prefix = res.data} else {client.prefix = process.env.prefix}
+  })
   if (message.content.match(`^<@!?${client.user.id}>`)) return message.channel.send(`My prefix is \`\`${client.prefix}\`\`!`)
   if (message.content.toLowerCase().startsWith(client.prefix)) {
     const commandName = message.content.slice(client.prefix.length).toLowerCase().split(' ')[0].toLowerCase()
