@@ -2,7 +2,7 @@
 module.exports = {
   name: 'lol',
   aliases: ['olo'],
-  category: 'utility',
+  category: 'misc',
   usage: 'pichu lol',
 	description: 'Says lol',
 	async execute(client,message,args) {
