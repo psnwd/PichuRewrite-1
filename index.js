@@ -28,8 +28,8 @@ setInterval(() => {
 //
 //
 //Part to customize if you want to selfhost the bot
-client.ownerID = process.env.ownerID//insert ID here
-client.prefix = process.env.prefix//insert prefix here 
+client.ownerID = process.env.ownerID//insert ID here 
+client.prefix = process.env.prefix
 client.bot_token = process.env.bot_token//insert bot token here
 client.dbl_token = process.env.dbl_token
 client.ksoftsi = process.env.ksoftsi_token
@@ -37,6 +37,9 @@ client.pichuApiPassword = process.env.pichuApiPassword
 //
 //
 //
+
+
+
 
 const DBL = require("dblapi.js");
 const dbl = new DBL(client.dbl_token, { webhookPort: process.env.PORT, webhookAuth: 'password' })
