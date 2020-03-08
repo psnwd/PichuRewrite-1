@@ -81,7 +81,7 @@ for (let i = 0; i<client.categories.length; i++) {
 client.on('messageDelete', (message) => {
   if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
   
-})
+}) //im gonna make a file which you can use like a node module
 client.on('ready', () => {
 
 console.log(`Logged in as ${client.user.tag}!`)

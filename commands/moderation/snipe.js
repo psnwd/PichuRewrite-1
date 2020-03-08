@@ -5,6 +5,6 @@ module.exports = {
     description: 'Get the last deleted message',
     category: 'moderation',
     async execute(client,message) {
-
-    }, 
+    
+    },
 } 

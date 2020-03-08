@@ -98,7 +98,7 @@ module.exports = {
 		const song = {
 		  id: video.id || video.video_id,
 		  title: Util.escapeMarkdown(video.title),
-		  url: "https://www.youtube.com/watch?v=" + (video.id || video.video_url),
+		  url: video.video_url || "https://www.youtube.com/watch?v=" + video.id,
 		  author: {
 id: message.author.id,
 username: message.author.username
