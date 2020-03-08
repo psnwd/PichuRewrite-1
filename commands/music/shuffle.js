@@ -5,7 +5,7 @@ module.exports = {
   usage: 'pichu shuffle',
 	description: 'Shuffles the queue!',
 	async execute(client,message,args,dbl,queue) {
-    dbl.hasVoted(message.author.id).then(voted => {
+    dbl.hasVoted(message.author.id).then(async voted => {
       if (!voted) {return message.channel.send(new Discord.MessageEmbed() .setColor('RANDOM') .setTitle('Vote lock') .setDescription('Hi Beacause thos command uses a lot of CPU usage, you have to [vote](https://top.gg/bot/674497635171696644/vote) for me in order to use it for 12 hours') .setFooter('Made by Lumap#0149'))}
       else {
         if (!message.member.voice.channel) return message.channel.send('You are not in a voice channen!')
