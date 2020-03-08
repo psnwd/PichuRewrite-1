@@ -111,7 +111,7 @@ let messagecounter = [0, 0] //[0] is messages seen, [1] is commands used
 //message time
 client.on('message', async message => {
   messagecounter[0] += 1
-
+let prefix = '' 
   if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
   require('axios').post('https://pichu-api.glitch.me/database/prefixes/get', {password: client.pichuApiPassword, key: message.guild.id}).then(res => {
     if (res.data) {prefix = res.data} else {prefix = client.prefix}
