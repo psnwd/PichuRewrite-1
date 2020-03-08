@@ -1,4 +1,5 @@
 const Quick = require("quick.db-plus")
+const Discord = require('discord.js')
 module.exports = {
     name: 'snipe',
     usage: 'pichu snipe',
