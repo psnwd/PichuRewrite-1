@@ -53,23 +53,6 @@ dbl.webhook.on('vote', vote => {
 });
 
 
-client.on("messageDelete", (message) => {
-  if (message.author.bot) return;
-
-  var snipes = require("./snipe.json");
-  snipes[`${message.channel.id}`] = [`${message}`, `${message.author.tag}`];
-
-  
-  var fileName = './snipe.json';
-
-  fs.writeFile(fileName, JSON.stringify(snipes, null, 2), function(error) {
-    if (error) {
-      return console.log(error)
-    }
-  }); 
-});  //thx google 
-
-
 //initializing commands here
 client.commands = new Discord.Collection()
 client.aliases = new Discord.Collection()
