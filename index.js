@@ -6,6 +6,12 @@ const path = require('path')
 const client = new Client()
 const fs = require('fs')
 const http = require('http')
+const express = require('express')
+const app = express()
+
+app.get("/", (request, response) => {
+  response.send("u found this !")
+});
 
 
 client.version = require('./package.json').version
@@ -27,6 +33,7 @@ client.prefix = process.env.prefix//insert prefix here
 client.bot_token = process.env.bot_token//insert bot token here
 client.dbl_token = process.env.dbl_token
 client.ksoftsi = process.env.ksoftsi_token
+client.pichuApiPassword = process.env.pichuApiPassword
 //
 //
 //
@@ -71,7 +78,10 @@ for (let i = 0; i<client.categories.length; i++) {
 //client events
 
 
-
+client.on('messageDelete', (message) => {
+  if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
+  
+})
 client.on('ready', () => {
 
 console.log(`Logged in as ${client.user.tag}!`)
@@ -95,9 +105,9 @@ let messagecounter = [0, 0] //[0] is messages seen, [1] is commands used
 client.on('message', async message =>{
 messagecounter[0] += 1
  
-    if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
+if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
 
-    if (message.content.match(`^<@!?${client.user.id}>`)) return message.channel.send(`My prefix is \`\`${client.prefix}\`\`!`)
+if (message.content.match(`^<@!?${client.user.id}>`)) return message.channel.send(`My prefix is \`\`${client.prefix}\`\`!`)
     if (message.content.toLowerCase().startsWith(client.prefix)) {
         const commandName = message.content.slice(client.prefix.length).toLowerCase().split(' ')[0].toLowerCase()
 const args = message.content.slice(client.prefix.length).split(' ').slice(1)
