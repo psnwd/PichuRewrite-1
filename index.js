@@ -5,12 +5,16 @@ const newUsers = new Discord.Collection()
 const path = require('path')
 const client = new Client()
 const fs = require('fs')
+const http = require('http')
 
 
 client.version = require('./package.json').version
 
 
 
+setInterval(() => {
+  http.get(`http://${process.env.PROJECT_DOMAIN}.herokuapp.com/`);
+}, 280000);
 
 
 

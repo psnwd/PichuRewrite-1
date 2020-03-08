@@ -35,7 +35,7 @@ function getCMD(client, message, input) {
     const embed = new Discord.MessageEmbed()
     if (!client.commands.get(input.toLowerCase())){ 
         if (!client.aliases.get(input.toLowerCase())) return message.channel.send(`No information found for command **${input.toLowerCase()}**`)
-    }
+    } //done
     const cmd = client.commands.get(input.toLowerCase()) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
 
     if (cmd.name) info = `**Command name**: ${cmd.name}`;
