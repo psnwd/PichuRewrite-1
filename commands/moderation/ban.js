@@ -34,7 +34,7 @@ if(!message.member.permissions.toArray().includes("BAN_MEMBERS"))
 const userbanned = new Discord.MessageEmbed()
 .setColor('#5147FF')
 .setAuthor('User banned!')
-.setDescription(`**${user.username}#${user.discriminator}** is now banned from this server!`)
+.setDescription(`**${user.user.username}#${user.user.discriminator}** is now banned from this server!`)
 .setFooter("Made by Lumap#0149'");
     
     user.send(`You were banned from **${message.guild.name}** by ${message.author.username}#${message.author.discriminator}`)
