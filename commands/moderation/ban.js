@@ -21,7 +21,7 @@ module.exports = {
 	description: 'Ban a user',
 	execute(client,message) {
     const { ownerID } = client.ownerID
-    let user = message.mentions.users.first() || client.users.cache.get(args.join(' '))
+    let user = message.mentions.members.first() || message.guild.members.cache.get(args.join(' '))
 		if (!user) {
 			return message.channel.send(nouser);
 		}
