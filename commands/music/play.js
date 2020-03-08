@@ -66,7 +66,7 @@ module.exports = {
 				});
 			  } catch(e) {
 				selectionMessage.delete()
-				  console.log(e)
+				  
 				return message.channel.send(new Discord.MessageEmbed()
 				.setColor('RANDOM')
 				.setDescription('Video selection timed out, cancelling it...')

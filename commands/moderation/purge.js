@@ -12,8 +12,10 @@ module.exports = {
         if (isNaN(amount)) return message.channel.send("You need to tell me a number of messages I should purge!")
         amount = Number(amount)
         if (!amount || amount < 2 || amount > 100) return message.channel.send('Invalid number! Please provide a number between 1 and 99')
-        let messages = message.channel.messages.fetch(amount)
-        message.channel.bulkDelete(messages)
+        const fetched = await message.channel.messages.fetch({
+			limit: amount,
+		});
+        message.channel.bulkDelete(fetched)
         message.channel.send(new Discord.MessageEmbed().setColor('RANDOM').setTitle("Purge succesfull").setDescription(`**${amount}** Messages have been purged :white_check_mark:`).setFooter('Made by Lumap#0149 and Link#4444'))
     }, 
 }
