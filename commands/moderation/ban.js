@@ -7,10 +7,6 @@ const nouser = new Discord.MessageEmbed()
 .setAuthor("You didn't provide a userid/@mention")
 
 
-const usernobannable = new Discord.MessageEmbed()
-.setColor('#5147FF')
-.setAuthor("I can't ban this user :(")
-
 const missingpermsfromauthor = new Discord.MessageEmbed()
 .setColor('#5147FF')
 .setAuthor("You don't have the following permission : 'BAN_MEMBERS'")
@@ -34,9 +30,7 @@ module.exports = {
 if(!message.member.permissions.toArray().includes("BAN_MEMBERS"))
    return message.channel.send(missingpermsfromauthor)
     
-		if (!user.bannable) {
-			return message.channel.send(usernobannable);
-		}
+		
 const userbanned = new Discord.MessageEmbed()
 .setColor('#5147FF')
 .setAuthor('User banned!')
