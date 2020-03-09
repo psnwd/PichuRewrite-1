@@ -83,7 +83,7 @@ for (let i = 0; i < client.categories.length; i++) {
 client.snipes = new Discord.Collection()
 
 client.on('messageDelete', (message) => {
-  if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
+  if (!message.guild || message.channel.type === "dm" || message.author === client.user) return;
   client.snipes.set(message.channel.id, {
     content: message.content,
     user: message.author
