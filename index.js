@@ -59,7 +59,7 @@ dbl.webhook.on('error', e => {
 
 dbl.webhook.on('vote', vote => {
   user = client.users.cache.get(vote.user)
-  client.channels.cache.get('685971547315240969').send(new Discord.MessageEmbed().setColor('RANDOM').setThumbnail(user.avatarURL({ format: 'png', dynamic: true, size: 2048 })).setDescription(`Thanks you for voting <@${user.id}> (**${user.id}**)! As a reward, you get... Respect lol`))
+  client.channels.cache.get('685971547315240969').send(new Discord.MessageEmbed().setColor('RANDOM').setThumbnail(user.avatarURL({ format: 'png', dynamic: true, size: 2048 })).setDescription(`Thanks you for voting <@${user.id}> (**${user.id}**)! As a reward, you get... Eternal respect from my dev`))
 });
 
 
