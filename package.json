@@ -1,7 +1,7 @@
 {
   "name": "pichu",
   "description": "No description",
-  "version": "1.0.0-aplha",
+  "version": "1.0.0-alpha",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
