@@ -10,7 +10,6 @@ const Discord = require('discord.js')
 module.exports = {
   name: 'eval',
   usage: 'pichu eval <js code>',
-  aliases: ['e'],
   description: 'Eval something',
   category: 'owner',
   async execute(client,message,args,dbl,queue) {
