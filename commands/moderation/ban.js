@@ -19,8 +19,8 @@ module.exports = {
     category: 'moderation',
     usage: 'pichu ban <@mention/userid>',
 	description: 'Ban a user',
-	execute(client,message) {
-    const { ownerID } = client.ownerID
+	execute(client,message,args) {
+    const ownerID = client.ownerID
     let user = message.mentions.members.first() || message.guild.members.cache.get(args.join(' '))
 		if (!user) {
 			return message.channel.send(nouser);
