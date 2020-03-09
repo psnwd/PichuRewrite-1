@@ -22,25 +22,13 @@ module.exports = {
             return a;
         }
         serverQueue.songs = shuffle(serverQueue.songs)
-        let successmessage;
+        
         message.channel.send(new Discord.MessageEmbed()
         .setColor('RANDOM')
-        .setDescription('Queue shuffled! If you want to skip to the next song, type skip in the next 15 seconds')
+        .setDescription('Queue shuffled! ')
         .setFooter('Made by Lumap#0149')
-        ).then(m => {successmessage=m})
-        try {
-            response = await message.channel.awaitMessages(msg => msg.content.toLowerCase() === 'skip' && msg.author.id == message.author.id, {
-              max: 1,
-              time: 15000,
-              errors: ['time']
-            });
-        } catch (e) {
-          return message.channel.send(new Discord.MessageEmbed() .setColor('RANDOM') .setDescription('Not skipping to the next song, continue playing...') .setFooter('Made by Lumap#0149')).then(m => {setTimeout(() => {m.delete()}, 15000)})
-        }
-        if (response) {
-          client.commands.get('skip').execute(client,message,args,dbl,queue)
-          successmessage.delete()
-        }
+        ).then(m => {client.commands.get('skip').execute(client,message,args,dbl,queue)})
+        
       
 
         
