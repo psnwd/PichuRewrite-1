@@ -6,21 +6,18 @@ const path = require('path')
 const client = new Client()
 const fs = require('fs')
 const http = require('http')
-const express = require('express')
-const app = express()
+var express = require('express');
+var app = express();
+require("dotenv").config()
 
-app.get("/", (request, response) => {
-  response.send("u found this !")
-});
+
 
 
 client.version = require('./package.json').version
 
 
 
-setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.herokuapp.com/`);
-}, 280000);
+
 
 
 
@@ -32,7 +29,7 @@ client.ownerID = process.env.ownerID//insert ID here
 client.bot_token = process.env.bot_token//insert bot token here
 client.dbl_token = process.env.dbl_token
 client.prefix = process.env.prefix
-client.ksoftsi = process.env.ksoftsi_token
+client.ksoftsi_token = process.env.ksoftsi_token
 client.pichuApiPassword = process.env.pichuApiPassword
 //
 //
@@ -41,8 +38,9 @@ client.pichuApiPassword = process.env.pichuApiPassword
 
 
 
+
 const DBL = require("dblapi.js");
-const dbl = new DBL(client.dbl_token, { webhookPort: process.env.PORT, webhookAuth: 'password' })
+const dbl = new DBL(client.dbl_token, { webhookPort: process.env.PORT, webhookAuth: 'dQw4w9WgXcQ' }, client)
 
 
 dbl.webhook.on('posted', () => {
@@ -107,19 +105,21 @@ setInterval(function () {
 }, 60000);
 
 let queue = new Map()
-let messagecounter = [0, 0] //[0] is messages seen, [1] is commands used
+let messagecounter = [0, 0, 0] //[0] is messages seen, [1] is commands used, [2] is events received
+
+client.on('raw', () => {
+  messagecounter[2]+=1
+});
 //message time
 client.on('message', async message => {
   messagecounter[0] += 1
 let prefix = client.prefix
   if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
-  require('axios').post('https://pichu-api.glitch.me/database/prefixes/get', {password: client.pichuApiPassword, key: message.guild.id}).then(res => {
-    if (message.author.id === client.ownerID) {prefix = ''} else {if (res.data) {prefix = res.data} else {prefix = client.prefix}}}).then(async unusedvar => {
-
-  if (message.content.match(`^<@!?${client.user.id}>`)) {if (message.author.id === client.ownerID) {return message.channel.send('Hi lumap!')} else {return message.channel.send(`My prefix is \`\`${prefix}\`\`!`)}} 
-  if (message.content.toLowerCase().startsWith(`${prefix}`)) {
-    const commandName = message.content.slice(`${prefix}`.length).toLowerCase().split(' ')[0].toLowerCase()
-    const args = message.content.slice(`${prefix}`.length).split(' ').slice(1)
+ 
+  if (message.content.match(`^<@!?${client.user.id}>`)) {return message.channel.send(`My prefix is \`\`${prefix}\`\`!`)} 
+  if (message.content.toLowerCase().startsWith(prefix)) {
+    const commandName = message.content.slice(prefix.length).toLowerCase().split(' ')[0].toLowerCase()
+    const args = message.content.slice(prefix.length).split(' ').slice(1)
     const command = client.commands.get(commandName)
       || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
     if (!command) return;
@@ -142,7 +142,7 @@ let prefix = client.prefix
       console.log(err)
     }
   }
-}) 
+
 
 });
 

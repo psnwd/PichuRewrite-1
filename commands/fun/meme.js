@@ -8,14 +8,26 @@ aliases: ['memes'],
 	description: "Shows a meme",
 	async execute (client,message) {
         message.channel.send('Generating...').then(async msg => {
-          const res = await require('axios').get('https://api.ksoft.si/images/rand-reddit/dankmemes', {headers: {'Authorization': 'Bearer '+client.ksoftsi}})
+          const { KSoftClient } = require('@ksoft/api');
 
-        msg.edit(new Discord.MessageEmbed()
+          const ksoft = new KSoftClient(client.ksoftsi_token);
+          
+          /* I use a helper asnyc function called main here.
+           * This would also work using a lambda function or class method,
+           * as long as it's asynchronous.
+           */
+          async function main() {
+              const { url } = await ksoft.images.meme();
+              msg.edit(new Discord.MessageEmbed()
       .setColor('RANDOM')
-      .setDescription(`Image not showing? Click [here](${res.data.image_url}) !`)
-      .setImage(res.data.image_url)
+      .setDescription(`Image not showing? Click [here](${url}) !`)
+      .setImage(url)
       .setTimestamp()
-        .setFooter('Made by Lumap#0149'))})
+        .setFooter('Made by Lumap#0149')) // discord.js
+          }
+          
+          main();
+        })
 
 	}
 };
