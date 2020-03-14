@@ -47,7 +47,7 @@ module.exports = {
 			  const videos = results.videos.slice(0, 10)
 			  let index = 0;
 			  let selectionMessage;
-			  if (videos.size === 0) return message.channel.send('An error occured, please try again!').then(m => {setTimeout(() => {m.delete()}, 15000)})
+			  if (videos.length === 0) return message.channel.send('An error occured, please try again!').then(m => {setTimeout(() => {m.delete()}, 15000)})
 			  await message.channel.send(new Discord.MessageEmbed()
 			  .setColor('RANDOM')
 			  .setDescription([
@@ -117,6 +117,7 @@ username: message.author.username
 	  
 		  try {
 			const connection = await voiceChannel.join();
+			message.guild.voiceStates.cache.get('674497635171696644').setSelfDeaf(true)
 			queueConstruct.connection = connection;
 			queue.set(message.guild.id, queueConstruct)
 			playSong(message.guild, queue, queueConstruct.songs[0])
@@ -136,6 +137,7 @@ username: message.author.username
 		if (!song) {
 		  serverQueue.voiceChannel.leave();
 		  queue.delete(guild.id);
+		message.channel.send(new Discord.MessageEmbed().setColor('RANDOM').setDescription('Queue has ended, leaving voice channel...').setFooter('Thanks you for using pichu! | Made by Lumap#0149')) 
 		  return;
 		}
 
@@ -143,17 +145,29 @@ username: message.author.username
 			serverQueue.message.delete()
 		}
 	  
-		serverQueue.connection.play(ytdl(song.id))
+		serverQueue.connection.play(ytdl(song.id), {format: 'audioonly'} )
 		  .on("finish", reason => {
+			serverQueue.songs.shift();
+			playSong(guild, queue, serverQueue.songs[0])
+		  })
+		  .on("end", reason => {
 			serverQueue.songs.shift();
 			playSong(guild, queue, serverQueue.songs[0])
 		  })
 		  .on("error", console.error)
 		  .setVolumeLogarithmic(serverQueue.volume / 250)
-		
-		serverQueue.textChannel.send(new Discord.MessageEmbed()
+		const embednp = new Discord.MessageEmbed()
 		.setColor('RANDOM')
-		.setDescription(`Now playing **[${song.title}](${song.url})** requested by **${song.author.username}**`)).then(msg => {
+		.setDescription(`Now playing **[${song.title}](${song.url})** requested by **${song.author.username}**`)
+		let rng = Math.floor(Math.random()*10)
+		if (rng === 5) {
+			embednp.setFooter('Please consider voting for me if you like me! pichu vote | Made by Lumap#0149')
+		} else if (rng === 2) {
+			embednp.setFooter('Do you like this bot? if yes, consider adding it in your server to support my dev! pichu invite | Made by Lumap#0149')
+		} else {
+			embednp.setFooter('Made by Lumap#0149')
+		}
+		serverQueue.textChannel.send(embednp).then(msg => {
 			serverQueue.message = msg
 		})
 	  }

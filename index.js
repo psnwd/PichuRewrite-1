@@ -116,10 +116,11 @@ client.on('message', async message => {
 let prefix = client.prefix
   if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
  
-  if (message.content.match(`^<@!?${client.user.id}>`)) {return message.channel.send(`My prefix is \`\`${prefix}\`\`!`)} 
+  if (message.content.toLowerCase().startsWith(`<@${client.user.id}>`)) {prefix=`<@${client.user.id}> `}
+  if (message.content.toLowerCase().startsWith(`<@!${client.user.id}>`)) {prefix=`<@!${client.user.id}> `}
   if (message.content.toLowerCase().startsWith(prefix)) {
     const commandName = message.content.slice(prefix.length).toLowerCase().split(' ')[0].toLowerCase()
-    const args = message.content.slice(prefix.length).split(' ').slice(1)
+   const args = message.content.slice(prefix.length).split(' ').slice(1)
     const command = client.commands.get(commandName)
       || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
     if (!command) return;

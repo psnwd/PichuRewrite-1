@@ -31,7 +31,7 @@ if (!playingmusic) playingmusic = 0
       {name: 'Events received :', value: messagecounter[2].toLocaleString(), inline: true},
       {name: 'Total users :', value: h.toLocaleString(), inline: true},
       {name: 'Number of servers playing music thx to me :', value: playingmusic, inline: true},
-      {name: 'number of commands :', value: client.commands.size, inline: true}
+      {name: 'Number of commands :', value: client.commands.size, inline: true}
     )
     .setFooter('Made by Lumap#0149')
     
