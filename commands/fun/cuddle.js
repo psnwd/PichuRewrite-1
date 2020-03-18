@@ -12,6 +12,7 @@ module.exports = {
             const cuddle = await neko.sfw.cuddle()
             const Discord = require('discord.js')
             msg.edit(new Discord.MessageEmbed()
+            .setAuthor(client.user.tag, client.user.avatarURL({format: 'png', dynamic: true, size: 2048}))
             .setColor('RANDOM')
             .setDescription(`**${message.author.username}** cuddles **${user.username}**`)
             .setImage(cuddle.url))

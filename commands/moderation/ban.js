@@ -2,14 +2,6 @@
 const Discord = require('discord.js');
 
 
-const nouser = new Discord.MessageEmbed()
-.setColor('#5147FF')
-.setAuthor("You didn't provide a userid/@mention")
-
-
-const missingpermsfromauthor = new Discord.MessageEmbed()
-.setColor('#5147FF')
-.setAuthor("You don't have the following permission : 'BAN_MEMBERS'")
 
 
 
@@ -20,6 +12,17 @@ module.exports = {
     usage: 'pichu ban <@mention/userid>',
 	description: 'Ban a user',
 	execute(client,message,args) {
+		const nouser = new Discord.MessageEmbed()
+.setAuthor(client.user.tag, client.user.avatarURL({format: 'png', dynamic: true, size: 2048}))
+.setColor('#5147FF')
+.setAuthor("You didn't provide a userid/@mention")
+
+
+const missingpermsfromauthor = new Discord.MessageEmbed()
+.setAuthor(client.user.tag, client.user.avatarURL({format: 'png', dynamic: true, size: 2048}))
+.setColor('#5147FF')
+.setAuthor("You don't have the following permission : 'BAN_MEMBERS'")
+
     const ownerID = client.ownerID
     let user = message.mentions.members.first() || message.guild.members.cache.get(args.join(' '))
 		if (!user) {
@@ -32,6 +35,7 @@ if(!message.member.permissions.toArray().includes("BAN_MEMBERS"))
     
 		
 const userbanned = new Discord.MessageEmbed()
+.setAuthor(client.user.tag, client.user.avatarURL({format: 'png', dynamic: true, size: 2048}))
 .setColor('#5147FF')
 .setAuthor('User banned!')
 .setDescription(`**${user.user.username}#${user.user.discriminator}** is now banned from this server!`)

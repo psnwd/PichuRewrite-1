@@ -3,9 +3,9 @@
   
   module.exports = {
     name: 'dblinfo',
-    aliases: ['botinfo'],
+    aliases: ['botinfo', 'bi'],
     description: 'Shows bot info (if listed on dbl)',
-    category: 'misc',
+    category: 'utility',
     usage: 'pichu dblinfo <@mention/bot-id/bot-name>',
     async execute(client,message,args,dbl) {
         if (!args) return message.channel.send('Please mention the bot or give bot ID');
@@ -27,22 +27,22 @@
               { name: 'Bot short desc :', value: bot.shortdesc, inline: true },
               { name: 'Bot total votes :', value: bot.points, inline: true },
               { name: 'Bot monthly votes :', value: bot.monthlyPoints, inline: true },
-              {name: 'Bot top.gg page :', value: 'https://top.gg/bot/'+user.id, inline: true},
-              {name: 'Link to vote for this bot :', value: 'https://top.gg/bot/'+user.id+'/vote', inline: true}
+              { name: 'Bot approval date :', value: bot.date, inline: true }
               )
               
             let bottags = ''
             bot.tags.forEach(tag => bottags += tag+', ')
             if (!bottags) bottags = 'No tags'
             e.addFields({ name: 'Bot tags :', value: bottags, inline: true })
-            if (bot.website) {e.addFields({ name: 'Bot website :', value: bot.website, inline: true })}
-            if (bot.support) {e.addFields({ name: 'Bot support server invite : ', value: 'https://discord.gg/'+bot.support, inline: true })}
-            if (bot.github) {e.addFields({ name: 'Bot github repo :', value: bot.github, inline: true })}
+            let links = ''
+            links += `[Invite](${bot.invite})`
+            if (bot.website) links += ` | [Website](${bot.website})`
+            if (bot.support) links += ` |[Support Server](https://discord.gg/${bot.support})`
+            if (bot.github) links += ` | [Github](${bot.github})`
+            e.addFields({name: 'Links', value: links, inline: true})
             let botowners = ''
             bot.owners.forEach(owner => botowners += owner + ', ')
             e.addFields({name: 'Bot owners ID :', value: botowners})
-            if (bot.invite) {e.addFields({ name: 'Bot invite link :', value: bot.invite, inline: true })}
-            e.addFields({ name: 'Bot approval date :', value: bot.date, inline: true })
             if (bot.certifiedBot) {e.addFields({ name: 'Is bot certified ?', value: 'Yes', inline: true })}
             else {e.addFields({ name: 'Is bot certified ?', value: 'No', inline: true })}
             if (bot.vanity) {e.addFields({ name: 'Bot vanity URL :', value: bot.vanity, inline: true })}

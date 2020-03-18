@@ -1,15 +1,16 @@
 module.exports = {
   name: 'avatar',
-  aliases: ['pfp'],
+  aliases: ['pfp', 'av'],
   category: 'utility',
   usage: 'pichu avatar [@mention/username/user-id]',
 	description: 'Shows user avatar',
 	async execute(client,message,args) {
-let user = client.users.cache.get(args.join(' ')) || message.mentions.users.first() || client.users.cache.find(user => user.username.toLowerCase() === args.join(' ').toLowerCase()) || message.author 
+let member = message.guild.members.cache.find(member => member.user.id === args.join(' ')) || message.mentions.members.first() || message.guild.members.cache.find(member => member.user.username.toLowerCase() === args.join(' ').toLowerCase()) || message.member
 
         const Discord = require('discord.js')
-            let avatar = user.avatarURL({format: 'png', dynamic: true, size: 2048})
+            let avatar = member.user.avatarURL({format: 'png', dynamic: true, size: 2048})
             let avataremb = new Discord.MessageEmbed()
+            .setAuthor(client.user.tag, client.user.avatarURL({format: 'png', dynamic: true, size: 2048}))
             .setColor('RANDOM')
             .setDescription(`[Click here to download](${avatar})`)
             .setImage(avatar)

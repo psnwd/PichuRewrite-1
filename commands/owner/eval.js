@@ -1,10 +1,4 @@
- function clean(text) {
-  if (typeof(text) === "string")
-    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
-  else
-      return text;
-}
-
+ 
 const Discord = require('discord.js')
 
 module.exports = {
@@ -15,7 +9,7 @@ module.exports = {
   async execute(client,message,args,dbl,queue) {
    try {
       const code = args.join(" ");
-      let evaled = eval(code);
+      let evaled = await eval(code);
  
       if (typeof evaled !== "string")
         evaled = require("util").inspect(evaled);
@@ -24,7 +18,7 @@ module.exports = {
       .setDescription('Pichu eval command results :')
       .addFields(
         {name: 'Input :', value: `\`\`\`js\n${args.join(' ')}\`\`\``},
-        {name: 'Output', value: `\`\`\`js\n${clean(evaled)}\`\`\``}
+        {name: 'Output', value: `\`\`\`js\n${evaled}\`\`\``}
       )
       .setFooter('Made by Lumap#0149')
       message.react('✅').then(message.channel.send(successembed));
@@ -34,7 +28,7 @@ module.exports = {
       .setDescription('Pichu eval command results :')
       .addFields(
         {name: 'Input :', value: `\`\`\`js\n${args.join(' ')}\`\`\``},
-        {name: 'Error :', value: `\`\`\`js\n${clean(err)}\`\`\``}
+        {name: 'Error :', value: `\`\`\`js\n${err}\`\`\``}
         )
         .setFooter('Made by Lumap#0149')
       message.react('✖️').then(message.channel.send(failureembed));

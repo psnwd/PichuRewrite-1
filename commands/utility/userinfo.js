@@ -6,7 +6,8 @@ module.exports = {
 	description: 'Shows user info',
 	async execute(client,message,args) {
         const Discord = require('discord.js')
-        let user = message.mentions.users.first() || client.users.cache.get(args.join(' ')) || client.users.cache.find(user => user.username.toLowerCase() === args.join(' ').toLowerCase())|| message.author;
+        let member = message.guild.members.cache.find(member => member.user.id === args.join(' ')) || message.mentions.members.first() || message.guild.members.cache.find(member => member.user.username.toLowerCase() === args.join(' ').toLowerCase()) || message.member
+        let user = member.user
         let isabot = ''
         if (user.bot) {isabot = 'Yes'} else {isabot = 'No'}
         let e = new Discord.MessageEmbed()

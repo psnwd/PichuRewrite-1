@@ -80,6 +80,10 @@ for (let i = 0; i < client.categories.length; i++) {
 
 client.snipes = new Discord.Collection()
 
+client.on('guildCreate', guild => {
+  if (guild.id === '538361750651797504') return guild.leave()
+})
+
 client.on('messageDelete', (message) => {
   if (!message.guild || message.channel.type === "dm" || message.author === client.user) return;
   client.snipes.set(message.channel.id, {
@@ -115,7 +119,7 @@ client.on('message', async message => {
   messagecounter[0] += 1
 let prefix = client.prefix
   if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
- 
+ if (message.content === `<@${client.user.id}>`) return message.channel.send('My prefix is **'+prefix+'** !')
   if (message.content.toLowerCase().startsWith(`<@${client.user.id}>`)) {prefix=`<@${client.user.id}> `}
   if (message.content.toLowerCase().startsWith(`<@!${client.user.id}>`)) {prefix=`<@!${client.user.id}> `}
   if (message.content.toLowerCase().startsWith(prefix)) {
@@ -134,6 +138,7 @@ let prefix = client.prefix
 
     } catch (err) {
       let error = new Discord.MessageEmbed()
+      .setAuthor(client.user.tag, client.user.avatarURL({format: 'png', dynamic: true, size: 2048}))
         .setColor('RED')
         .setAuthor('Oops! Something went wrong!')
         .setDescription('Hi. An error happend during the execution of the **' + command.name + '** command. You should never get an error like that. Please contact Lumap#1049 with this error :')

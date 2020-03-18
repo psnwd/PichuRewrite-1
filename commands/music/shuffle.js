@@ -24,10 +24,11 @@ module.exports = {
         serverQueue.songs = shuffle(serverQueue.songs)
         
         message.channel.send(new Discord.MessageEmbed()
+        .setAuthor(client.user.tag, client.user.avatarURL({format: 'png', dynamic: true, size: 2048}))
         .setColor('RANDOM')
         .setDescription('Queue shuffled! ')
         .setFooter('Made by Lumap#0149')
-        ).then(m => {client.commands.get('skip').execute(client,message,args,dbl,queue)})
+        )
         
       
 

@@ -7,7 +7,8 @@ aliases: ['memes'],
   usage: 'pichu meme',
 	description: "Shows a meme",
 	async execute (client,message) {
-        message.channel.send('Generating...').then(async msg => {
+    message.channel.startTyping()
+  
           const { KSoftClient } = require('@ksoft/api');
 
           const ksoft = new KSoftClient(client.ksoftsi_token);
@@ -18,16 +19,18 @@ aliases: ['memes'],
            */
           async function main() {
               const { url } = await ksoft.images.meme();
-              msg.edit(new Discord.MessageEmbed()
+              message.channel.send(new Discord.MessageEmbed()
+              .setAuthor(client.user.tag, client.user.avatarURL({format: 'png', dynamic: true, size: 2048}))
       .setColor('RANDOM')
       .setDescription(`Image not showing? Click [here](${url}) !`)
       .setImage(url)
       .setTimestamp()
         .setFooter('Made by Lumap#0149')) // discord.js
+        message.channel.stopTyping()
           }
           
           main();
-        })
-
+        
+        
 	}
 };

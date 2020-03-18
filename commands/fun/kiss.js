@@ -12,6 +12,7 @@ module.exports = {
             const kiss = await neko.sfw.kiss()
             const Discord = require('discord.js')
             msg.edit(new Discord.MessageEmbed()
+            .setAuthor(client.user.tag, client.user.avatarURL({format: 'png', dynamic: true, size: 2048}))
             .setColor('RANDOM')
             .setDescription(`**${message.author.username}** kisses **${user.username}**`)
             .setImage(kiss.url))

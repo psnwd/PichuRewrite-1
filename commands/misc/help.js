@@ -16,6 +16,7 @@ module.exports = {
 
 function getAll(client, message) {
     const embed = new Discord.MessageEmbed()
+
         .setColor("RANDOM") 
     const commands = (category) => {
         return client.commands
@@ -33,6 +34,7 @@ function getAll(client, message) {
 //random color already exists
 function getCMD(client, message, input) {
     const embed = new Discord.MessageEmbed()
+    .setAuthor(client.user.tag, client.user.avatarURL({format: 'png', dynamic: true, size: 2048}))
     if (!client.commands.get(input.toLowerCase())){ 
         if (!client.aliases.get(input.toLowerCase())) return message.channel.send(`No information found for command **${input.toLowerCase()}**`)
     } //done

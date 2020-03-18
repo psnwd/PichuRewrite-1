@@ -29,10 +29,10 @@ module.exports = {
 		if (url.includes("list=")) {
 		  const playlist = await ytpl(url.split("list=")[1])
 		  const videos = playlist.items;
-			message.channel.send('Processing playlist...').then(async msg => {
+			message.channel.send('Processing playlist...').then(async m => {
 		  	  
 		  for (const video of videos) await queueSong(video, message, voiceChannel, queue)
-		  msg.edit(new Discord.MessageEmbed()
+		  m.edit(new Discord.MessageEmbed()
 		  .setColor('RANDOM')
 		  .setDescription(`${playlist.title}(${videos.length} songs) has been added to the queue!`)
 		  .setFooter('Made by Lumap#0149 | Hint : playlists max length is 100')).then(m => {setTimeout(() => {m.delete()}, 15000)})
@@ -94,16 +94,36 @@ module.exports = {
 	  
 	  async function queueSong(video, message, voiceChannel, queue) {
 		const serverQueue = queue.get(message.guild.id)
-	  
+		let seconds = video.length_seconds
+		const minute = Math.round(seconds/60,0)
+		seconds%=60
+		seconds = seconds < 10 ? "0"+seconds : seconds
+		
 		const song = {
 		  id: video.id || video.video_id,
-		  title: Util.escapeMarkdown(video.title),
+		  title: video.title,
 		  url: video.video_url || "https://www.youtube.com/watch?v=" + video.id,
+		  duration: `${minute}:${seconds}`,
 		  author: {
 id: message.author.id,
 username: message.author.username
 }
 		}
+		if (video.thumbnail) {song.thumbnail = video.thumbnail}
+		if (video.author) {song.artist = video.author.name}
+		if (video.duration) {song.duration = video.duration}
+		if (video.player_response) {
+			let vid = video.player_response.videoDetails
+			if (vid.isLiveContent) song.duration = 'Live'
+			song.thumbnail = vid.thumbnail.thumbnails[vid.thumbnail.thumbnails.length-1].url
+			}
+
+			if (video.server_response) {
+				let vid = video.server_response.videoDetails
+		
+				song.artist = vid.author.name
+				}
+		
 	  
 		if (!serverQueue) {
 		  const queueConstruct = {
@@ -145,20 +165,28 @@ username: message.author.username
 			serverQueue.message.delete()
 		}
 	  
-		serverQueue.connection.play(ytdl(song.id), {format: 'audioonly'} )
-		  .on("finish", reason => {
+		serverQueue.connection.play(ytdl(song.id))
+		  .on("finish", () => {
 			serverQueue.songs.shift();
+			if (serverQueue.songs[0]) {
+				if (serverQueue.songs[0].duration === 'NaN:NaN') {serverQueue.songs.shift()}
+				}
 			playSong(guild, queue, serverQueue.songs[0])
 		  })
-		  .on("end", reason => {
+		  .on("end", () => {
 			serverQueue.songs.shift();
+			if (serverQueue.songs[0]) {
+			if (serverQueue.songs[0].duration === 'NaN:NaN') {serverQueue.songs.shift()}
+			}
 			playSong(guild, queue, serverQueue.songs[0])
 		  })
 		  .on("error", console.error)
 		  .setVolumeLogarithmic(serverQueue.volume / 250)
 		const embednp = new Discord.MessageEmbed()
 		.setColor('RANDOM')
-		.setDescription(`Now playing **[${song.title}](${song.url})** requested by **${song.author.username}**`)
+		.setTitle('Now playing...')
+		.setThumbnail(song.thumbnail)
+		.setDescription(`Song: **[${song.title}](${song.url})**\nRequested by **${song.author.username}**\nDuration: **${song.duration}**\nArtist: **${song.artist}**`)
 		let rng = Math.floor(Math.random()*10)
 		if (rng === 5) {
 			embednp.setFooter('Please consider voting for me if you like me! pichu vote | Made by Lumap#0149')

@@ -17,11 +17,14 @@ module.exports = {
             `${i}- [${serverQueue.songs[i].title}](${serverQueue.songs[i].url})\n`
           ].join('\n');
         }
+        if ((!output[1])) output[1]='Nothing'
+        
         const Discord = require('discord.js')
         let queueemb = new Discord.MessageEmbed()
+        .setAuthor(client.user.tag, client.user.avatarURL({format: 'png', dynamic: true, size: 2048}))
         .setColor('RANDOM')
         .setAuthor('Server queue')
-        .setDescription(`**__Now playing :__ \n[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})\n\n__Incoming :__ \n${output.join(' ')}**`)
+        .setDescription(`**__Now playing :__** \n[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})\n\n**__Incoming :__** \n${output.join(' ')}`)
         if (serverQueue.songs.length > 11) 
         {queueemb.setFooter(`${serverQueue.songs.length-11} more songs... | Made by Lumap#0149`)
       } else {
