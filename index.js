@@ -86,6 +86,7 @@ client.on('guildCreate', guild => {
 
 client.on('messageDelete', (message) => {
   if (!message.guild || message.channel.type === "dm" || message.author === client.user) return;
+  if (!message.content) return;
   client.snipes.set(message.channel.id, {
     content: message.content,
     user: message.author
@@ -117,6 +118,7 @@ client.on('raw', () => {
 //message time
 client.on('message', async message => {
   messagecounter[0] += 1
+  if (message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) return message.channel.send('Hi! My prefix is **pichu** !')
 let prefix = client.prefix
   if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
  if (message.content === `<@${client.user.id}>`) return message.channel.send('My prefix is **'+prefix+'** !')
@@ -141,7 +143,7 @@ let prefix = client.prefix
       .setAuthor(client.user.tag, client.user.avatarURL({format: 'png', dynamic: true, size: 2048}))
         .setColor('RED')
         .setAuthor('Oops! Something went wrong!')
-        .setDescription('Hi. An error happend during the execution of the **' + command.name + '** command. You should never get an error like that. Please contact Lumap#1049 with this error :')
+        .setDescription('Hi. An error happend during the execution of the **' + command.name + '** command. You should never get an error like that. Please contact Lumap#0149 with this error :')
         .addFields(
           { name: 'Error :', value: `\`\`\`js\n${err}\`\`\`` })
       message.reply(error)

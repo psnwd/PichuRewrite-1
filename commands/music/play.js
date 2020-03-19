@@ -116,6 +116,7 @@ username: message.author.username
 			let vid = video.player_response.videoDetails
 			if (vid.isLiveContent) song.duration = 'Live'
 			song.thumbnail = vid.thumbnail.thumbnails[vid.thumbnail.thumbnails.length-1].url
+			song.artist = vid.author.name
 			}
 
 			if (video.server_response) {
@@ -157,7 +158,7 @@ username: message.author.username
 		if (!song) {
 		  serverQueue.voiceChannel.leave();
 		  queue.delete(guild.id);
-		message.channel.send(new Discord.MessageEmbed().setColor('RANDOM').setDescription('Queue has ended, leaving voice channel...').setFooter('Thanks you for using pichu! | Made by Lumap#0149')) 
+		message.channel.send(new Discord.MessageEmbed().setColor('RANDOM').setDescription('Queue has ended, leaving voice channel...').setFooter('Thank you for using pichu! | Made by Lumap#0149')) 
 		  return;
 		}
 

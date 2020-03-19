@@ -13,6 +13,15 @@ module.exports = {
  
       if (typeof evaled !== "string")
         evaled = require("util").inspect(evaled);
+        if (evaled.length>2000) {
+          const hastebin = require('hastebin')
+          let bin = await hastebin.createPaste(`${evaled}`,{
+            raw: false,
+            contentType: 'js',
+            server: 'https://hastebin.com'
+            })
+            return message.channel.send(bin)
+        } else {
       const successembed = new Discord.MessageEmbed()
       .setColor('RANDOM')
       .setDescription('Pichu eval command results :')
@@ -21,7 +30,7 @@ module.exports = {
         {name: 'Output', value: `\`\`\`js\n${evaled}\`\`\``}
       )
       .setFooter('Made by Lumap#0149')
-      message.react('✅').then(message.channel.send(successembed));
+      message.react('✅').then(message.channel.send(successembed))};
     } catch (err) {
       const failureembed = new Discord.MessageEmbed()
       .setColor('RANDOM')
