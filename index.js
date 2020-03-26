@@ -1,46 +1,22 @@
 //Do not touch this
 const Discord = require('discord.js')
 const Client = require('./client/Client')
-const newUsers = new Discord.Collection()
-const path = require('path')
 const client = new Client()
 const fs = require('fs')
-const http = require('http')
-var express = require('express');
-var app = express();
-require("dotenv").config()
-
-
-
-
+const config = require('./config.json')
+client.config = config
 client.version = require('./package.json').version
+client.snipes = new Discord.Collection()
+let queue = new Map()
+let messagecounter = [0, 0, 0] 
 
-
-
-
-
-
-
-//
-//
-//
-//Part to customize if you want to selfhost the bot
-client.ownerID = process.env.ownerID//insert ID here 
-client.bot_token = process.env.bot_token//insert bot token here
-client.dbl_token = process.env.dbl_token
-client.prefix = process.env.prefix
-client.ksoftsi_token = process.env.ksoftsi_token
-client.pichuApiPassword = process.env.pichuApiPassword
-//
-//
-//
-
-
-
-
+const guildCreate = require('./src/events/guildCreate.js')
+const guildDelete = require('./src/events/guildDelete.js')
+const messageDelete = require('./src/events/messageDelete.js')
+const msg = require('./src/events/message.js')
 
 const DBL = require("dblapi.js");
-const dbl = new DBL(client.dbl_token, { webhookPort: process.env.PORT, webhookAuth: 'dQw4w9WgXcQ' }, client)
+const dbl = new DBL(client.config.tokens.dbl, { webhookPort: process.env.PORT, webhookAuth: client.config.dbl.webhookPassword }, client)
 
 
 dbl.webhook.on('posted', () => {
@@ -57,102 +33,64 @@ dbl.webhook.on('error', e => {
 
 dbl.webhook.on('vote', vote => {
   user = client.users.cache.get(vote.user)
-  client.channels.cache.get('685971547315240969').send(new Discord.MessageEmbed().setColor('RANDOM').setThumbnail(user.avatarURL({ format: 'png', dynamic: true, size: 2048 })).setDescription(`Thanks you for voting <@${user.id}> (**${user.id}**)! As a reward, you get... Eternal respect from my dev`))
+  client.channels.cache.get(client.config.dbl.voteChannelID).send(new Discord.MessageEmbed().setColor('RANDOM').setThumbnail(user.avatarURL({ format: 'png', dynamic: true, size: 2048 })).setDescription(`Thanks you for voting <@${user.id}> (**${user.id}**)! As a reward, you get... Eternal respect from my dev`))
 });
 
 
 //initializing commands here
 client.commands = new Discord.Collection()
 client.aliases = new Discord.Collection()
-client.categories = require("fs").readdirSync("./commands/")
+client.categories = require("fs").readdirSync("./src/commands/")
 
 for (let i = 0; i < client.categories.length; i++) {
   var commandFiles = fs
-    .readdirSync(`./commands/${client.categories[i]}`)
+    .readdirSync(`./src/commands/${client.categories[i]}`)
     .filter(file => file.endsWith('.js'));
   for (var file of commandFiles) {
-    var command = require(`./commands/${client.categories[i]}/${file}`);
+    var command = require(`./src/commands/${client.categories[i]}/${file}`);
     client.commands.set(command.name, command);
     if (command.aliases && Array.isArray(command.aliases)) command.aliases.forEach(alias => client.aliases.set(alias, command.name));
-  }  //just added aliases
+  }  
 }
-//client events
 
-client.snipes = new Discord.Collection()
 
-client.on('guildCreate', guild => {
-  if (guild.id === '538361750651797504') return guild.leave()
+
+
+client.on('guildCreate', async guild => {
+ guildCreate(client,guild)
 })
 
-client.on('messageDelete', (message) => {
-  if (!message.guild || message.channel.type === "dm" || message.author === client.user) return;
-  if (!message.content) return;
-  client.snipes.set(message.channel.id, {
-    content: message.content,
-    user: message.author
-  })
-}) //im gonna make a file which you can use like a node module
+
+client.on('guildDelete', async guild => {
+ guildDelete(client,guild)  
+})
+
+
+client.on('messageDelete', (message) => { 
+  messageDelete(client,message)
+}) 
+
+
 client.on('ready', () => {
-
   console.log(`Logged in as ${client.user.tag}!`)
-  client.user.setActivity(`Is a pokémon | ${client.guilds.cache.size} servers | ${client.prefix}help`)
+  client.user.setActivity(`Is a pokémon | ${client.guilds.cache.size} servers | ${client.config.prefix}help`)
 })
+
 client.on("reconnecting", () => {
   console.log("Reconnecting!");
 });
+
 client.on("disconnect", () => {
   console.log("Disconnect!");
 });
 
-//set current game to resresh every minute (for server count)
-setInterval(function () {
-  client.user.setActivity(`Is a pokémon | ${client.guilds.cache.size} servers | ${client.prefix}help`)
-}, 60000);
-
-let queue = new Map()
-let messagecounter = [0, 0, 0] //[0] is messages seen, [1] is commands used, [2] is events received
-
 client.on('raw', () => {
   messagecounter[2]+=1
 });
-//message time
+
 client.on('message', async message => {
-  messagecounter[0] += 1
-  if (message.content === `<@${client.user.id}>` || message.content === `<@!${client.user.id}>`) return message.channel.send('Hi! My prefix is **pichu** !')
-let prefix = client.prefix
-  if (!message.guild || message.channel.type === "dm" || message.author.bot || message.author === client.user) return;
- if (message.content === `<@${client.user.id}>`) return message.channel.send('My prefix is **'+prefix+'** !')
-  if (message.content.toLowerCase().startsWith(`<@${client.user.id}>`)) {prefix=`<@${client.user.id}> `}
-  if (message.content.toLowerCase().startsWith(`<@!${client.user.id}>`)) {prefix=`<@!${client.user.id}> `}
-  if (message.content.toLowerCase().startsWith(prefix)) {
-    const commandName = message.content.slice(prefix.length).toLowerCase().split(' ')[0].toLowerCase()
-   const args = message.content.slice(prefix.length).split(' ').slice(1)
-    const command = client.commands.get(commandName)
-      || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
-    if (!command) return;
-    if (command.category === 'owner') {
-      if (message.author.id !== client.ownerID) return message.reply("You tried to execute a owner-only command, and you can't do that :(")
-    }
-    try {
-
-      messagecounter[1] += 1
-      await command.execute(client, message, args, dbl, queue, messagecounter)
-
-    } catch (err) {
-      let error = new Discord.MessageEmbed()
-      .setAuthor(client.user.tag, client.user.avatarURL({format: 'png', dynamic: true, size: 2048}))
-        .setColor('RED')
-        .setAuthor('Oops! Something went wrong!')
-        .setDescription('Hi. An error happend during the execution of the **' + command.name + '** command. You should never get an error like that. Please contact Lumap#0149 with this error :')
-        .addFields(
-          { name: 'Error :', value: `\`\`\`js\n${err}\`\`\`` })
-      message.reply(error)
-      console.log(err)
-    }
-  }
-
-
+  msg(client,message,dbl,queue,messagecounter)
 });
 
-client.login(client.bot_token)
+client.login(client.config.tokens.bot)
 

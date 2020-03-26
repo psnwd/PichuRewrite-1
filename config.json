@@ -1,0 +1,23 @@
+{
+    "ownerID": "your id",
+    "ownerTag": "Username#0000",
+    "port": "5000",
+    "prefix": "!",
+    "tokens": {
+        "bot": "bot token",
+        "dbl": "dbl token",
+        "ksoft": "ksoftsi token"
+        },
+      
+    "dbl": {
+        "webhookPassword": "dbl webhook authorization",
+        "voteChannelID": "channel id"
+        
+      },
+    "channels": {
+        "guildCreate": "channel id",
+        "guildDelete": "channel id",
+        "commandExecuted": "channel id",
+        "error": "channel id"
+    }
+}

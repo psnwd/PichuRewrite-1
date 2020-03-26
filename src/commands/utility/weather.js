@@ -1,17 +1,20 @@
 module.exports = {
 	name: 'weather',
     aliases: ['w'], 
-    usage: 'pichu weather <city>',
+    usage: 'pichu weather <C/F> <city>',
     category: 'utility',
-	description: "Add me in your server!",
+	description: "Shows weather of a city",
 	execute(client,message,args) {
 		const Discord = require('discord.js')
  
   if (!args.join(' ')) return message.reply('You need to provide a city')
-  //ya yeet
+  
   var weather = require('weather-js')
- let city = args.join(' ')
-weather.find({search: city, degreeType: 'C'}, function(err, result) {
+  let degreetype = args[0]
+  
+ let city = args.slice(1).join(' ')
+ if (!city) return message.channel.send('Please provide a city name. See `pichu help weather` for further details.')
+weather.find({search: city, degreeType: degreetype}, function(err, result) {
   if(err) console.log(err);
  
 

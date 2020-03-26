@@ -155,7 +155,7 @@ username: message.author.username
 	  async function playSong(guild, queue, song) {
 		const serverQueue = queue.get(guild.id);
 	  
-		if (!song) {
+		if (serverQueue.songs === [] || !song) {
 		  serverQueue.voiceChannel.leave();
 		  queue.delete(guild.id);
 		message.channel.send(new Discord.MessageEmbed().setColor('RANDOM').setDescription('Queue has ended, leaving voice channel...').setFooter('Thank you for using pichu! | Made by Lumap#0149')) 

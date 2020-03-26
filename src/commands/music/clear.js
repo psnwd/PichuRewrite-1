@@ -4,6 +4,7 @@ module.exports = {
   usage: 'pichu clear',
 	description: 'Clears the queue',
 	async execute(client,message,args,dbl,queue) {
+    const Discord = require('discord.js')
     let serverQueue = queue.get(message.guild.id)
     if (serverQueue.songs[0].author.id !== message.author.id) return message.channel.send(new Discord.MessageEmbed() .setColor('RANDOM') .setDescription(`Only **${serverQueue.songs[0].author.username}** can do this, beacause he requested the current song`) .setFooter('Made by Lumap#0149')).then(m => {setTimeout(() => {m.delete()}, 15000)})
   

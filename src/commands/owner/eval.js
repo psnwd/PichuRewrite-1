@@ -20,7 +20,7 @@ module.exports = {
             contentType: 'js',
             server: 'https://hastebin.com'
             })
-            return message.channel.send(bin)
+            return message.author.send(bin)
         } else {
       const successembed = new Discord.MessageEmbed()
       .setColor('RANDOM')

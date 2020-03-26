@@ -23,6 +23,7 @@ if (!playingmusic) playingmusic = 0
     const embed1 = new Discord.MessageEmbed()
     .setAuthor(client.user.tag, client.user.avatarURL({format: 'png', dynamic: true, size: 2048}))
     .setColor('#5147FF')
+    .setImage(`https://top.gg/api/widget/${client.user.id}.png)`)
     .setAuthor('Bot stats: ')
     .addFields(
       {name: 'Uptime :', value: `${days} days, ${hours} hours, ${minutes} minutes and ${Math.round(seconds)} seconds`, inline: true},

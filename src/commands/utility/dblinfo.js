@@ -8,7 +8,7 @@
     category: 'utility',
     usage: 'pichu dblinfo <@mention/bot-id/bot-name>',
     async execute(client,message,args,dbl) {
-        if (!args) return message.channel.send('Please mention the bot or give bot ID');
+        if (!args.join(' ')) return message.channel.send('Please mention the bot, give bot ID or bot name');
         let user = message.mentions.users.first() || client.users.cache.get(args.join(' ')) || client.users.cache.find(user => user.username.toLowerCase() === args.join(' ').toLowerCase() && user.bot === true)
         if (!user) return message.channel.send('Bot not found!');
         if (!user.bot) return message.channel.send('This is not a bot!');
@@ -37,15 +37,15 @@
             let links = ''
             links += `[Invite](${bot.invite})`
             if (bot.website) links += ` | [Website](${bot.website})`
-            if (bot.support) links += ` |[Support Server](https://discord.gg/${bot.support})`
+            if (bot.support) links += ` | [Support Server](https://discord.gg/${bot.support})`
             if (bot.github) links += ` | [Github](${bot.github})`
-            e.addFields({name: 'Links', value: links, inline: true})
             let botowners = ''
             bot.owners.forEach(owner => botowners += owner + ', ')
             e.addFields({name: 'Bot owners ID :', value: botowners})
             if (bot.certifiedBot) {e.addFields({ name: 'Is bot certified ?', value: 'Yes', inline: true })}
             else {e.addFields({ name: 'Is bot certified ?', value: 'No', inline: true })}
             if (bot.vanity) {e.addFields({ name: 'Bot vanity URL :', value: bot.vanity, inline: true })}
+            e.addFields({name: 'Links', value: links, inline: true})
             e.setFooter('Made by Lumap#0149')
             message.channel.send(e)
         })

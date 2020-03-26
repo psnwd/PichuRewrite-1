@@ -13,7 +13,7 @@ module.exports = {
           .addFields(
               {name: 'Creator :', value: 'Lumap#0149', inline: true},
               {name: 'Initial creation date :', value :'Around september 2019', inline: true},
-              {name: 'Latest changelog :', value :'1.0.0 : \nThe bot is finished!\nBug fixes, as always', inline: true},
+              {name: 'Latest changelog :', value :'1.1.1 : \nMusic update!\nBug fixes!\nNew commands!', inline: true},
               {name: 'Am I going to evolve ?', value: 'No', inline: true},
 	  
           )
