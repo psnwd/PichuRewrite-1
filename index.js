@@ -36,6 +36,16 @@ dbl.webhook.on('vote', vote => {
   client.channels.cache.get(client.config.dbl.voteChannelID).send(new Discord.MessageEmbed().setColor('RANDOM').setThumbnail(user.avatarURL({ format: 'png', dynamic: true, size: 2048 })).setDescription(`Thanks you for voting <@${user.id}> (**${user.id}**)! As a reward, you get... Eternal respect from my dev`))
 });
 
+client.functions = new Discord.Collection()
+for (let i = 0; i < require('fs').readdirSync('./src/functions/').length; i++) {
+  var commandFiles = fs
+    .readdirSync(`./src/functions`)
+    .filter(file => file.endsWith('.js'));
+  for (var file of commandFiles) {
+    var f = require(`./src/functions/${file}`);
+    client.functions.set(f.name, f)
+  }
+}
 
 //initializing commands here
 client.commands = new Discord.Collection()
@@ -73,7 +83,7 @@ client.on('messageDelete', (message) => {
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
-  client.user.setActivity(`Is a pokémon | ${client.guilds.cache.size} servers | ${client.config.prefix}help`)
+  client.user.setActivity(` ${client.config.prefix}help | ${client.guilds.cache.size} servers | ${client.functions.get('totalUsers').execute(client)} users`)
 })
 
 client.on("reconnecting", () => {

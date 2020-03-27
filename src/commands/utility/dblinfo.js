@@ -9,8 +9,9 @@
     usage: 'pichu dblinfo <@mention/bot-id/bot-name>',
     async execute(client,message,args,dbl) {
         if (!args.join(' ')) return message.channel.send('Please mention the bot, give bot ID or bot name');
-        let user = message.mentions.users.first() || client.users.cache.get(args.join(' ')) || client.users.cache.find(user => user.username.toLowerCase() === args.join(' ').toLowerCase() && user.bot === true)
-        if (!user) return message.channel.send('Bot not found!');
+        let member = client.functions.get('findByID').execute(message.guild,args.join(' ')) || message.mentions.members.first() || client.functions.get('findByUsername').execute(message.guild,args.join(' ')) || message.member
+        let user = member.user
+       if (!user) return message.channel.send('Bot not found!');
         if (!user.bot) return message.channel.send('This is not a bot!');
         dbl.getBot(user.id).then(bot => {
           

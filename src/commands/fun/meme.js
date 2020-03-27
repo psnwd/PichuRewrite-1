@@ -11,7 +11,7 @@ aliases: ['memes'],
   
           const { KSoftClient } = require('@ksoft/api');
 
-          const ksoft = new KSoftClient(client.ksoftsi_token);
+          const ksoft = new KSoftClient(client.config.tokens.ksoft);
           
           /* I use a helper asnyc function called main here.
            * This would also work using a lambda function or class method,

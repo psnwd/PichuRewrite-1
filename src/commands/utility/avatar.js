@@ -5,8 +5,8 @@ module.exports = {
   usage: 'pichu avatar [@mention/username/user-id]',
 	description: 'Shows user avatar',
 	async execute(client,message,args) {
-let member = message.guild.members.cache.find(member => member.user.id === args.join(' ')) || message.mentions.members.first() || message.guild.members.cache.find(member => member.user.username.toLowerCase() === args.join(' ').toLowerCase()) || message.member
-
+        let member = client.functions.get('findByID').execute(message.guild,args.join(' ')) || message.mentions.members.first() || client.functions.get('findByUsername').execute(message.guild,args.join(' ')) || message.member
+   
         const Discord = require('discord.js')
             let avatar = member.user.avatarURL({format: 'png', dynamic: true, size: 2048})
             let avataremb = new Discord.MessageEmbed()
@@ -15,7 +15,7 @@ let member = message.guild.members.cache.find(member => member.user.id === args.
             .setDescription(`[Click here to download](${avatar})`)
             .setImage(avatar)
             .setFooter('Made by Lumap#0149')
-            message.channel.send(avataremb)
+        message.channel.send(avataremb)
         
 
 	},

@@ -13,9 +13,7 @@ hours %= 24;
 totalSeconds %= 3600;
 let minutes = Math.floor(totalSeconds / 60);
 let seconds = totalSeconds % 60;
-    const user = message.author
- let h = 0;
-client.guilds.cache.forEach(g => {h = h + g.memberCount});
+
 let playingmusic = queue.size
 if (!playingmusic) playingmusic = 0
    
@@ -32,7 +30,7 @@ if (!playingmusic) playingmusic = 0
       {name: 'Messages seen :', value: messagecounter[0].toLocaleString(), inline: true},
       {name: 'Commands executed: ', value: messagecounter[1].toLocaleString(), inline: true},
       {name: 'Events received :', value: messagecounter[2].toLocaleString(), inline: true},
-      {name: 'Total users :', value: h.toLocaleString(), inline: true},
+      {name: 'Total users :', value: client.functions.get('totalUsers').execute(client), inline: true},
       {name: 'Number of servers playing music thx to me :', value: playingmusic, inline: true},
       {name: 'Number of commands :', value: client.commands.size, inline: true}
     )

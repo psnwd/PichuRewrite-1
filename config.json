@@ -1,23 +1,23 @@
 {
-    "ownerID": "your id",
-    "ownerTag": "Username#0000",
+    "ownerID": "635383782576357407",
+    "ownerTag": "Lumap#0149",
     "port": "5000",
-    "prefix": "!",
+    "prefix": "pichu ",
     "tokens": {
-        "bot": "bot token",
-        "dbl": "dbl token",
-        "ksoft": "ksoftsi token"
+        "bot": "Njc0NDk3NjM1MTcxNjk2NjQ0.XnIBrw.xmg-3RUIsa9rQwtGwbial_FwK5U",
+        "dbl": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDQ5NzYzNTE3MTY5NjY0NCIsImJvdCI6dHJ1ZSwiaWF0IjoxNTg0NTI5ODk4fQ.477nE3r80kvv33u1OS4NTYYCX-H9iR57clP0E483rxQ",
+        "ksoft": "vvtUVSpTpRpTj2nE2bMkrF3KRL2JtVFkQhGaNXqe"
         },
       
     "dbl": {
-        "webhookPassword": "dbl webhook authorization",
-        "voteChannelID": "channel id"
+        "webhookPassword": "pichuIsTheBest",
+        "voteChannelID": "685971547315240969"
         
       },
     "channels": {
-        "guildCreate": "channel id",
-        "guildDelete": "channel id",
-        "commandExecuted": "channel id",
-        "error": "channel id"
+        "guildCreate": "692004636311289947",
+        "guildDelete": "692004658406883388",
+        "commandExecuted": "692004833577664523",
+        "error": "692004696277254284"
     }
 }

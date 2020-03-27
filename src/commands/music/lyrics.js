@@ -12,7 +12,7 @@ const hastebin = require('hastebin')
   
           const { KSoftClient } = require('@ksoft/api');
 
-          const ksoft = new KSoftClient(client.ksoftsi_token);
+          const ksoft = new KSoftClient(client.config.tokens.Ksoft);
           
 
                 tracks = await ksoft.lyrics.search(args.join(' '), {textOnly: true, limit: 5})
