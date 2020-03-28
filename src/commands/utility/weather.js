@@ -11,8 +11,7 @@ module.exports = {
   
   var weather = require('weather-js')
   let degreetype = args[0]
-  
- let city = args.slice(1).join(' ')
+  let city = args.slice(1).join(' ')
  if (!city) return message.channel.send('Please provide a city name. See `pichu help weather` for further details.')
 weather.find({search: city, degreeType: degreetype}, function(err, result) {
   if(err) console.log(err);
