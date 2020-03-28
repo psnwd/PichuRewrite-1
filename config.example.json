@@ -1,0 +1,24 @@
+{
+    "ownerID": "635383782576357407",
+    "ownerTag": "Lumap#0149",
+    "port": "5000",
+    "prefix": "pichu ",
+    "tokens": {
+
+        "bot": "bot token",
+        "dbl": "dbl token",
+        "ksoft": "ksoftsi token"
+        },
+      
+    "dbl": {
+        "webhookPassword": "dbl webhook auth",
+        "voteChannelID": "channel id"
+        
+      },
+    "channels": {
+        "guildCreate": "channel id",
+        "guildDelete": "channel id",
+        "commandExecuted": "channel id",
+        "error": "channel id"
+    }
+}
