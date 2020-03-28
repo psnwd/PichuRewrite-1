@@ -35,6 +35,7 @@ module.exports = async (client,message,dbl,queue,messagecounter) => {
         .addFields(
           { name: 'Error :', value: `\`\`\`js\n${err}\`\`\`` })
       message.reply(error)
+      error.setTitle(`Command : ${command.name}`)
       client.channels.cache.get(client.config.channels.error).send(error)
       
     }

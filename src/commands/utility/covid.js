@@ -9,12 +9,13 @@ module.exports = {
         const Discord = require('discord.js')
         if (args.join(' ')) {
         let country = await covid.getCountry({country: args.join(' ')});
+        if (!country || !country.country) return message.channel.send('country not found')
    let emb = new Discord.MessageEmbed()
    .setColor('RANDOM')
    .setTitle(`Coronavirus stats in ${country.country} :`)
    .setDescription(`Total cases: **${country.cases}**\nToday cases : **${country.todayCases}**\nDeaths : **${country.deaths}**\nToday deaths : **${country.todayDeaths}**\nRecovered : **${country.recovered}**\nActive cases: **${country.active}**\nCritical persons : **${country.critical}**`)
-   .setThumbnail(country.countryInfo.flag)
    .setFooter('Made by Lumap#0149')
+   if (country.countryInfo) {emb.setThumbnail(country.countryInfo.flag)}
    message.channel.send(emb)
     } else {
         let all = await covid.getAll();

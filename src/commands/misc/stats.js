@@ -16,7 +16,7 @@ let seconds = totalSeconds % 60;
 
 let playingmusic = queue.size
 if (!playingmusic) playingmusic = 0
-   
+
 
     const embed1 = new Discord.MessageEmbed()
     .setAuthor(client.user.tag, client.user.avatarURL({format: 'png', dynamic: true, size: 2048}))
