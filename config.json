@@ -4,15 +4,10 @@
     "port": "5000",
     "prefix": "pichu ",
     "tokens": {
-<<<<<<< HEAD
-        "bot": "Njc0NDk3NjM1MTcxNjk2NjQ0.Xn35EQ.Yfp4FgRBht94hge3PWJYScM0zT0",
-        "dbl": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDQ5NzYzNTE3MTY5NjY0NCIsImJvdCI6dHJ1ZSwiaWF0IjoxNTg1MzE0MDM5fQ.hq2MQwAwnjNV7dlSWKGr-ECy4JNlqbM_V-O0mJeS3DM",
-        "ksoft": "vvtUVSpTpRpTj2nE2bMkrF3KRL2JtVFkQhGaNXqe"
-=======
+
         "bot": "bot token",
         "dbl": "dbl token",
         "ksoft": "ksoftsi token"
->>>>>>> 04587cf617da770915f0fba8c888b96cbe2ce7c7
         },
       
     "dbl": {
