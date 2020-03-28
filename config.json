@@ -4,20 +4,26 @@
     "port": "5000",
     "prefix": "pichu ",
     "tokens": {
+<<<<<<< HEAD
         "bot": "Njc0NDk3NjM1MTcxNjk2NjQ0.Xn35EQ.Yfp4FgRBht94hge3PWJYScM0zT0",
         "dbl": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDQ5NzYzNTE3MTY5NjY0NCIsImJvdCI6dHJ1ZSwiaWF0IjoxNTg1MzE0MDM5fQ.hq2MQwAwnjNV7dlSWKGr-ECy4JNlqbM_V-O0mJeS3DM",
         "ksoft": "vvtUVSpTpRpTj2nE2bMkrF3KRL2JtVFkQhGaNXqe"
+=======
+        "bot": "bot token",
+        "dbl": "dbl token",
+        "ksoft": "ksoftsi token"
+>>>>>>> 04587cf617da770915f0fba8c888b96cbe2ce7c7
         },
       
     "dbl": {
-        "webhookPassword": "pichuIsTheBest",
-        "voteChannelID": "685971547315240969"
+        "webhookPassword": "dbl webhook auth",
+        "voteChannelID": "channel id"
         
       },
     "channels": {
-        "guildCreate": "692004636311289947",
-        "guildDelete": "692004658406883388",
-        "commandExecuted": "692004833577664523",
-        "error": "692004696277254284"
+        "guildCreate": "channel id",
+        "guildDelete": "channel id",
+        "commandExecuted": "channel id",
+        "error": "channel id"
     }
 }
